@@ -41,6 +41,9 @@ storybook-static/
 .env.development.local
 .env.test.local
 .env.production.local
+.pack
+.pack.old
+.eslintcache
 
 # React Native
 .expo/
