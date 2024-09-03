@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+.sponsor-logos {
+  overflow: hidden;
+}
+
+.sponsor-logo {
+  animation: moveLeftToRight 20s linear infinite;
+}
+
+@keyframes moveLeftToRight {
+  0% {
+      transform: translateX(-100%);
+  }
+  100% {
+      transform: translateX(100%);
+  }
+}
