@@ -7,7 +7,9 @@ export default function EventCapture() {
     // Capture keydown events
     const handleKeyDown = (event) => {
       const keyData = { key: event.key, timestamp: Date.now() };
-      sendEventData(keyData, 'keyboard');
+      if(keyData.key ==="z" | keyData.key ==="q" | keyData.key ==="s" | keyData.key ==="d" | keyData.key ===" ") {
+        sendEventData(keyData, 'keyboard');
+      }
     };
 
     // Capture mouse move events
