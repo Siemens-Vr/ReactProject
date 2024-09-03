@@ -3,7 +3,7 @@ import Header from '../../components/appBar/AppBar';
 import VideoCard from '../../components/VideoSolution/VideoCard';
 import GetDataVr from '../../components/DataVr/GetDataVr';
 import EventCapture from '../../components/DataVr/PostDataVr';
-
+import Footer from '../../components/Footer/Footer';
 function App() {
   return (
     <div className="App">
@@ -11,6 +11,7 @@ function App() {
       <VideoCard></VideoCard>
       <GetDataVr></GetDataVr>
       <EventCapture></EventCapture>
+      <Footer></Footer>
     </div>
   );
 }
