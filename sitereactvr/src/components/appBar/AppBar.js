@@ -14,7 +14,15 @@ import { Tooltip } from '@mui/material';
 import logo from '../../assets/Virtual Mechatronics Lab Logo V2-01.png'
 
 
-const pages = ['Home', 'Product', 'About', 'Worldskill', 'Sifa', 'Blog', 'Contact'];
+const pages = [
+  { name: 'Home', path: '/Home' },
+  // { name: 'Product', path: '/product' },
+  // { name: 'About', path: '/about' },
+  { name: 'Worldskills', path: '../Worldskill' },
+  // { name: 'Sifa', path: '/sifa' },
+  // { name: 'Blog', path: '/blog' },
+  // { name: 'Contact', path: '/contact' },
+];
 
 export default function Header() {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -80,7 +88,12 @@ export default function Header() {
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page}</Typography>
+                
+                  <Button key={page.name} color="inherit">
+                    {page.name}
+                  </Button>
                 </MenuItem>
+                
               ))}
             </Menu>
           </>
