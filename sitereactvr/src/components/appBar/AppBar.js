@@ -31,12 +31,7 @@ export default function Header() {
   };
 
   return (
-    <AppBar position="static"   PaperProps={{
-        style: {
-          backgroundColor: 'transparent',
-          boxShadow: 'none',
-        },
-      }}>
+    <AppBar position="static">
       <Toolbar>
       <Tooltip title="Logo" >
           <img
