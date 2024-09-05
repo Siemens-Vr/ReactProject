@@ -32,8 +32,8 @@ const Partners = () => {
     ]
   return (
     <Box className="bg-light py-5">
-      <Box className="container">
-        <Typography variant="h4" sx={{ color: '#1363C6', textAlign: 'center' }}>
+      <Box className="container" sx={{backgroundColor:'rgba(244,247,254,255)'}}>
+        <Typography variant="h4" sx={{ color: '#1363C6', textAlign: 'center', fontWeight:'bold' }}>
 
           Partners
         </Typography>
