@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { get } from '../../services/axios';
+import { get } from '../axios';
 
 const GetDataVr = () => {
   const [data, setData] = useState(null);
