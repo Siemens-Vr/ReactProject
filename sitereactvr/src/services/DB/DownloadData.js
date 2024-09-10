@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { get } from '../axios';
 
-const AccountData = () => {
+const GetDownloadData = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -32,4 +32,4 @@ const AccountData = () => {
   );
 };
 
-export default AccountData;
+export default GetDownloadData;
