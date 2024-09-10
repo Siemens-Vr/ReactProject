@@ -79,6 +79,6 @@ public/
 .yarn/install-state.gz
 .pnp.*
 
-# Ignoring firebase emulation files
+# Ignoring Firebase emulation files
 firebase-debug.log
 firebase-debug.*
