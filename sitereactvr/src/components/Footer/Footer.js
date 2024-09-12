@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
+import PhoneIcon from '@mui/icons-material/Phone';
 import { Tooltip } from '@mui/material';
 
 
@@ -33,8 +34,7 @@ const Footer = () => {
             <a href="map:Nyeri-Kenya" style={{color: 'rgba(255,255,255,.5'}}>Nyeri,Kenya</a>
           </Typography>
           <Typography  sx={{color:'rgba(255,255,255,.5)'}}>
-            <i className="fa fa-phone-alt me-3"></i> 
-            <a href="tel:+25416115027" style={{ color: 'rgba(255,255,255,.5)' }}>+25416115027</a>
+            <PhoneIcon className="mr-2" /> +254716150627
           </Typography>
           <Typography  sx={{color:'rgba(255,255,255,.5)'}}>
             <i  className="fa fa-envelope me-3"></i> 
