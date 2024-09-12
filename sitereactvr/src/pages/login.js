@@ -15,7 +15,7 @@ const Login = () => {
   };
 
   return (
-    <Box className="login-page" sx={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', top: '-50px' }}>
+    <Box className="login-page" sx={{ minHeight: '70vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       
       {/* Smooth Slide-In Animation */}
       <motion.div
@@ -24,12 +24,22 @@ const Login = () => {
         transition={{ duration: 0.6 }} // Animation duration
         style={{ width: '100%', maxWidth: '400px' }}
       >
-        <Box sx={{ p: 4, boxShadow: 3, borderRadius: 2, backgroundColor: 'rgba(244,247,254,255)' }}>
+        <Box sx={{ p: 4, boxShadow: 20, borderRadius: 2, backgroundColor: 'rgba(244,247,258,260)' }}>
           
           {/* Form Heading */}
-          <Typography variant="h5" sx={{ textAlign: 'center', mb: 2 }}>
-            Log In
-          </Typography>
+          <Button 
+            variant="outlined" 
+            sx={{ 
+                borderColor: 'grey.400', // Set border color to grey
+                borderRadius: '9999px', // Make the button fully rounded
+                color: 'primary.main',
+                marginTop:'0px',
+                marginBottom:'20px'
+            }} 
+            className="mb-2"
+        >
+        log in
+        </Button>
 
           {/* Email/Username Input */}
           <TextField

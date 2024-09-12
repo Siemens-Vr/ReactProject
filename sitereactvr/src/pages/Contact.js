@@ -74,7 +74,7 @@ const Contact = () => {
                 color:'#14183e',
                 fontWeight:'bolder',
                 alignItems:'center'}}>
-                <PhoneIcon className="mr-2" /> +25416150627
+                <PhoneIcon className="mr-2" /> +254716150627
               </Typography>
               <Typography variant="h5" className="mb-1 flex items-center justify-center"
               sx={{ 

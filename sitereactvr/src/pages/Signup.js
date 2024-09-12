@@ -13,7 +13,7 @@ const Signup = () => {
   const handleMouseDownPassword = (event) => event.preventDefault();
 
   return (
-    <Box className="signup-page" sx={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <Box className="signup-page" sx={{ minHeight: '90vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       
       {/* Smooth Slide-In Animation */}
       <motion.div
@@ -22,12 +22,22 @@ const Signup = () => {
         transition={{ duration: 0.6 }} // Animation duration
         style={{ width: '100%', maxWidth: '400px' }}
       >
-        <Box sx={{ p: 4, boxShadow: 3, borderRadius: 2, backgroundColor:'rgba(244,247,254,255)' }}>
+        <Box sx={{ p: 4, boxShadow: 20, borderRadius: 2, backgroundColor:'rgba(244,247,258,260)' }}>
           
           {/* Form Heading */}
-          <Typography variant="h5" sx={{ textAlign: 'center', mb: 2 }}>
-            Sign Up
-          </Typography>
+          <Button 
+            variant="outlined" 
+            sx={{ 
+                borderColor: 'grey.400', // Set border color to grey
+                borderRadius: '9999px', // Make the button fully rounded
+                color: 'primary.main',
+                marginTop:'0px',
+                marginBottom:'20px'
+            }} 
+            className="mb-2"
+        >
+        Sign up
+        </Button>
 
           {/* Username Input */}
           <TextField

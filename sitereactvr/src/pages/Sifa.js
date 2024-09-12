@@ -489,23 +489,21 @@ const Sifa = () => {
                           justifyContent: 'flex-start' // Align items to start of row
                         }}
                       >
-                        <i className="fa fa-users text-white"
-                          style={{
-                            fontSize: '24px',
-                            marginRight: '16px', // Ensure space between icon and text
-                            color: '#ffffff',
-                            fontWeight: 'bold'
-                          }}
-                        ></i>
-                        <Box className="ms-3">
-                          <Typography variant="h2" className="text-white mb-0" data-toggle="counter-up"sx={{fontWeight:'bold'}}>
-                            <AnimatedNumber endNumber={9999} /> {/* Animated number here */}
-                          </Typography>
-                          <Typography className="text-white mb-0">
-                            Happy students
-                          </Typography>
+                        <Box
+                            className="d-flex align-items-center rounded p-3"
+                            sx={{ background: 'rgba(256, 256, 256, 0.1)', flexDirection: 'row', alignItems: 'center' }}
+                        >
+                            <i className="fa fa-users text-white" style={{ fontSize: '24px', marginRight: '16px' }}></i>
+                            <Box>
+                            <Typography variant="h2" className="text-white mb-0">
+                                <AnimatedNumber endNumber={9999} /> {/* Ensure you're passing a number */}
+                            </Typography>
+                            <Typography className="text-white mb-0">
+                                Happy students
+                            </Typography>
+                            </Box>
                         </Box>
-                      </Box>
+                        </Box>
                     </Grid>
 
                     <Grid item xs={12} sm={6}>
@@ -517,18 +515,23 @@ const Sifa = () => {
                           alignItems: 'center'
                         }}
                       >
-                        <i className="fa fa-check text-white" style={{ fontSize: '24px', marginRight: '16px' }}></i>
-                        <Box>
-                          <Typography variant="h2" className="text-white mb-0" data-toggle="counter-up" sx={{fontWeight:'bold'}}>
-                            <AnimatedNumber endNumber={9999} /> {/* Animated number here */}
-                          </Typography>
-                          <Typography className="text-white mb-0">
-                            Project Complete
-                          </Typography>
+                        <Box
+                            className="d-flex align-items-center rounded p-3"
+                            sx={{ background: 'rgba(256, 256, 256, 0.1)', flexDirection: 'row', alignItems: 'center' }}
+                        >
+                            <i className="fa fa-check text-white" style={{ fontSize: '24px', marginRight: '16px' }}></i>
+                            <Box>
+                            <Typography variant="h2" className="text-white mb-0">
+                                <AnimatedNumber endNumber={9999} /> {/* Ensure you're passing a number */}
+                            </Typography>
+                            <Typography className="text-white mb-0">
+                                Project Complete
+                            </Typography>
+                            </Box>
                         </Box>
-                      </Box>
+                        </Box>
                     </Grid>
-
+  
                   </Grid>
                 </Grid>
                 <Grid item xs={12} md={6} className="text-center md:text-right">

@@ -404,82 +404,102 @@ const VirtualMechatronicsLab = () => {
                 </Box>
             </Box> 
 
-            {/* Feature Section */}
+           {/* Features */}
             <Box className="container-fluid bg-primary text-white py-12">
-                <Box className="container mx-auto" sx={{ 
-                    padding: '50px 0',  // Padding around the section
-                    backgroundColor: '#1363c6',  // Background color
-                    textAlign: 'center',
-                    color:'#FFFFFF'  // Center the content
-                }}>
-                    <Grid container spacing={5}>
-                        <Grid item xs={12} md={6} className="mb-8" sx={{backgroundColor:'transparent',textDecoration:'#FFFFFF',position:'relative'}} >
-                        <Button 
-                        variant="outlined" 
-                        sx={{ 
-                            position:'absolute',
-                            top:'0px',
-                            borderColor: '#ffffff', // Set border color to grey
-                            borderRadius: '9999px', // Make the button fully rounded
-                            // color: 'primary.main',
-                            textDecoration:'#ffffff'
-                        }} 
-                        className="px-6 py-2 mb-8"
+            <Box className="container mx-auto" sx={{ 
+                padding: '50px 20px',  // Add horizontal padding to move content away from margin
+                backgroundColor: '#1363c6',  // Background color
+                textAlign: 'center',
+                color:'#FFFFFF'
+            }}>
+                <Grid container spacing={5}>
+                <Grid item xs={12} md={6} className="mb-8" sx={{backgroundColor:'transparent',textDecoration:'#FFFFFF',position:'relative'}} >
+                    <Button 
+                    variant="outlined" 
+                    sx={{ 
+                        position: 'absolute',
+                        top: '0px',
+                        borderColor: '#ffffff', // Set border color to grey
+                        borderRadius: '9999px', // Make the button fully rounded
+                        color: '#ffffff' // Set button text color
+                    }} 
+                    className="px-6 py-2 mb-8"
                     >
-                        Why Choose Us
+                    Why choose Us
                     </Button>
-                            <Typography variant="h3" className="mb-4" sx={{textDecoration:'#FFFFFF'}}>
-                                Experience Mechatronics Excellence
-                            </Typography>
-                            <Typography className="mb-4"
-                            sx={{
-                            textDecoration:'#FFFFFF',
-                            textAlign:'justify',
-                            padding:'0px 20px'}}>
-                                We lead in virtual mechatronics solutions, blending VR, robotics, and automation with unparalleled expertise. Choose us for seamless experiences, optimized processes, and transformative solutions, propelling your business into the future. tempor
-                            </Typography>
+                    <Typography variant="h3" className="mb-4" sx={{textDecoration:'#FFFFFF'}}>
+                    Experience Mechatronics Excellence
+                    </Typography>
+                    <Typography className="mb-4"
+                    sx={{
+                        textDecoration:'#FFFFFF',
+                        textAlign:'justify', // Justify text
+                        padding:'0px 20px' // Add horizontal padding
+                    }}>
+                    We lead in virtual mechatronics solutions, blending VR, robotics, and automation with unparalleled expertise. Choose us for seamless experiences, optimized processes, and transformative solutions, propelling your business into the future. tempor
+                    </Typography>
 
-                            <FeatureList />
-                            <Grid container spacing={4} pt={3}>
-                        <Grid item xs={12} sm={6}>
-                            <Box className="d-flex  align-items-center rounded p-3" sx={{ background: 'rgba(256, 256, 256, 0.1)', flexDirection:'row' , gap:2}}>
-                                <i className=" fa fa-users text-white" sx={{color:'rgba(255,255,255,.5)',fontWeight:'bold',fontSize:'24px'}}></i> 
-                                <Box className="ms-3">
-                                    <Typography variant="h2" className="text-white mb-0" data-toggle="counter-up">
-                                        9999
-                                    </Typography>
-                                    <Typography className="text-white mb-0">
-                                        Happy students
-                                    </Typography>
-                                </Box>
-                            </Box>
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                        <Box
-                            className="d-flex align-items-center rounded p-3"
-                            sx={{ background: 'rgba(256, 256, 256, 0.1)', flexDirection: 'row', alignItems: 'center' }}
+                    <FeatureList />
+                    
+                    <Grid container spacing={4} pt={3}>
+                    <Grid item xs={12} sm={6}>
+                        <Box className="d-flex align-items-center rounded p-3"
+                        sx={{
+                            background: 'rgba(256, 256, 256, 0.1)',
+                            flexDirection: 'row',
+                            gap: 2, // Space between icon and text
+                            justifyContent: 'flex-start' // Align items to start of row
+                        }}
                         >
-                            <i className="fa fa-check text-white" style={{ fontSize: '24px', marginRight: '16px' }}></i>
-                            <Box>
-                                <Typography variant="h2" className="text-white mb-0" data-toggle="counter-up">
-                                    9999
-                                </Typography>
-                                <Typography className="text-white mb-0">
-                                    Project Complete
-                                </Typography>
-                            </Box>
+                        <i className="fa fa-users text-white"
+                            style={{
+                            fontSize: '24px',
+                            marginRight: '16px', // Ensure space between icon and text
+                            color: '#ffffff',
+                            fontWeight: 'bold'
+                            }}
+                        ></i>
+                        <Box className="ms-3">
+                            <Typography variant="h2" className="text-white mb-0" data-toggle="counter-up">
+                            <AnimatedNumber endNumber={9999} /> {/* Animated number here */}
+                            </Typography>
+                            <Typography className="text-white mb-0">
+                            Happy students
+                            </Typography>
+                        </Box>
                         </Box>
                     </Grid>
-                         <AnimatedNumber/>
+
+                    <Grid item xs={12} sm={6}>
+                        <Box
+                        className="d-flex align-items-center rounded p-3"
+                        sx={{ 
+                            background: 'rgba(256, 256, 256, 0.1)', 
+                            flexDirection: 'row', 
+                            alignItems: 'center'
+                        }}
+                        >
+                        <i className="fa fa-check text-white" style={{ fontSize: '24px', marginRight: '16px' }}></i>
+                        <Box>
+                            <Typography variant="h2" className="text-white mb-0" data-toggle="counter-up">
+                            <AnimatedNumber endNumber={9999} /> {/* Animated number here */}
+                            </Typography>
+                            <Typography className="text-white mb-0">
+                            Project Complete
+                            </Typography>
+                        </Box>
+                        </Box>
                     </Grid>
+
                     </Grid>
-                    <Grid item xs={12} md={6} className="text-center md:text-right">
-                            <img className="img-fluid rounded-lg shadow-lg" 
-                            src ={choose} alt="img" />
-                        </Grid>
-                    </Grid>
-                </Box>
+                </Grid>
+                <Grid item xs={12} md={6} className="text-center md:text-right">
+                    <img className="img-fluid rounded-lg shadow-lg" src={choose} alt="img" />
+                </Grid>
+                </Grid>
             </Box>
+            </Box>
+
 
             {/* Projects Section */}
             <Box className="container-fluid bg-gray-100 py-12">
@@ -691,7 +711,7 @@ const FeatureList = () => (
             'Immersive learning experiences through innovative integration',
             'Streamlined processes for enhanced educational efficiency',
         ].map((feature, index) => (
-            <Typography key={index} variant="body1" sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+            <Typography key={index} variant="body1" sx={{ display: 'flex', alignItems: 'center', mb: 2, justifyContent: 'flex-start' }}>
                 <Box 
                     sx={{ 
                         bgcolor: 'white', 
@@ -699,35 +719,37 @@ const FeatureList = () => (
                         borderRadius: '50%', 
                         width: 32, 
                         height: 32, 
-                        marginLeft:'16px',
                         display: 'flex', 
                         alignItems: 'center', 
                         justifyContent: 'center', 
-                        mr: 2 // Margin right for spacing between icon and text
+                        mr: 3 // Increase margin right for more spacing between icon and text
                     }}
                 >
                     <i className="fa fa-check"></i>
                 </Box>
-                {feature}
+                <Box sx={{ flex: 1 }}>
+                  {feature}
+                </Box>
             </Typography>
-            
         ))}
     </>
-);
+  );
+  
+  
 const AnimatedNumber = ({ endNumber }) => {
-    const props = useSpring({
-        from: { number: 0 },
-        to: { number: endNumber },
-        config: { duration: 2000 }, // Duration of the animation
-        reset: true,
+    const { number } = useSpring({
+      from: { number: 0 },
+      to: { number: endNumber },
+      config: { duration: 2000 },
     });
-
+  
     return (
-        <animated.div>
-            {props.number.to(n => n.toFixed(0))}
-        </animated.div>
+      <animated.span>
+        {/* number.to(n => n.toFixed(0)) ensures the spring value is properly rendered */}
+        {number.to(n => n.toFixed(0))}
+      </animated.span>
     );
-};
+  };
 
 
 
