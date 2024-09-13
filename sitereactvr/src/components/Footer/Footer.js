@@ -21,28 +21,31 @@ const Footer = () => {
       <Grid container spacing={5}>
         <Grid item md={6} lg={3}>
           <Tooltip title="Logo">
-            <Typography variant="h4" sx={{ color: '#FFFFFF' }}className="mb-3 text-white">
+            <Typography variant="h3" sx={{ color: '#FFFFFF' }}className="mb-3 text-white">
               Virtual Mechatronics
             </Typography>
           </Tooltip>
           <Typography mb={0} sx={{ color: 'rgba(255,255,255,.5)' }}>Unlocking the potential: Virtually</Typography>
         </Grid>
-        <Grid item md={6} lg={3}>
-          <Typography variant="h5" sx={{ color: '#FFFFFF' }} fontFamily={'Font Awesome 5 Free'} className="mb-4 ">Get in touch</Typography>
+        <Grid item md={6} lg={3} space-y-5 sx={{alignContent:'justify'}}>
+          <Typography variant="h4" sx={{ color: '#FFFFFF' }} fontFamily={'Font Awesome 5 Free'} className="mb-4 ">Get in touch</Typography>
           <Typography  sx={{color:'rgba(255,255,255,.5)'}}>
             <i  className="fa fa-map-marker-alt me-3"></i>
             <a href="map:Nyeri-Kenya" style={{color: 'rgba(255,255,255,.5'}}>Nyeri,Kenya</a>
           </Typography>
+          <br></br>
           <Typography  sx={{color:'rgba(255,255,255,.5)'}}>
             <PhoneIcon className="mr-2" /> +254716150627
           </Typography>
+          <br></br>
           <Typography  sx={{color:'rgba(255,255,255,.5)'}}>
             <i  className="fa fa-envelope me-3"></i> 
             <a href="mailto:vr.africa@dkut.ac.ke" style={{ color: 'rgba(255,255,255,.5)' }}>vr.africa@dkut.ac.ke</a>
           </Typography>
-          <Box sx={{ display: 'flex', pt: 2 }} fontFamily={'Font Awesome 5 Free'}>
+          <br></br>
+          <Box className="me-3"sx={{ display: 'flex', pt: 2 }} fontFamily={'Font Awesome 5 Free'}>
               <Button  
-                className="btn btn-social"
+                className="btn btn-social me-3"
                 href='https://vml.dkut.ac.ke'
                 sx={{
                   color: 'rgba(255,255,255,.5)',
@@ -67,7 +70,7 @@ const Footer = () => {
                 <i className={"fab fa-twitter"}></i>
               </Button>
               <Button 
-                className="btn btn-social"
+                className="btn btn-social me-3"
                 href='https://vml.dkut.ac.ke'
                 sx={{
                   color: 'rgba(255,255,255,.5)',
@@ -169,7 +172,7 @@ const Footer = () => {
           </Box>
         </Grid>
         <Grid item md={6} lg={3}>
-  <Typography variant="h6" sx={{ color: '#FFFFFF', textTransform: 'none', }} className="mb-4">
+  <Typography variant="h4" sx={{ color: '#FFFFFF', textTransform: 'none', }} className="mb-4">
     Popular Links
   </Typography>
   {[
@@ -208,7 +211,7 @@ const Footer = () => {
   ))}
 </Grid>
         <Grid item md={6} lg={3}>
-          <Typography variant="h5"sx={{ color: '#FFFFFF', textTransform: 'none', }} className="mb-4 ">Our Projects</Typography>
+          <Typography variant="h4"sx={{ color: '#FFFFFF', textTransform: 'none', }} className="mb-4 ">Our Projects</Typography>
             {[
                { label: 'Virtual Reality', url: '/projects/vr' },
                { label: 'Virtual Mechatronics', url: '/projects/mechatronics' },
@@ -245,9 +248,10 @@ const Footer = () => {
         </Grid>
       </Grid>
       <Box className="copyright" sx={{ mt: 4, padding: '25px 0', fontSize: '16px', borderTop: '1px solid rgba(255,255,255,.1)' }}>
-        <Typography variant="body2" align="left"sx={{color:'#FFFFF'}}>
+        <Typography variant="body2" align="left"sx={{color:'rgba(255,255,255,.5)'}}>
           © 
-          <a href="#" style={{ color: 'rgba(255,255,255,.5)', textDecoration: 'none' }} className="border-bottom">Virtual Mechatronics,  All Rights Reserved.</a> 
+          <a href="#" style={{ color: 'rgba(255,255,255,.5)', textDecoration: 'underline' }} className="border-bottom"> Virtual Mechatronics,</a>
+          <a href="#" style={{ color: 'rgba(255,255,255,.5)', textDecoration: 'none' }} className="border-bottom">  All Rights Reserved.</a> 
         </Typography>
         <Box className="footer-menu" sx={{ display: 'flex', justifyContent: 'right', mt: 2 }}>
           {['Home', 'Cookies', 'Help'].map((item, index) => (
