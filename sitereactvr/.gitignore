@@ -71,6 +71,7 @@ public/
 *.tgz
 *.bak
 *.backup
+*.gz
 
 # Yarn Berry (v2) files
 .yarn/cache/
