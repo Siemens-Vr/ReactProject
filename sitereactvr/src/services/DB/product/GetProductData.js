@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { get } from '../../services/axios';
+import { get } from '../../axios';
 
-const GetDataVr = () => {
+const GetProductData = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -9,7 +9,7 @@ const GetDataVr = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await get('/api-shadow');
+        const result = await get('/api-database/product');
         setData(result);
       } catch (err) {
         setError(err);
@@ -32,4 +32,4 @@ const GetDataVr = () => {
   );
 };
 
-export default GetDataVr;
+export default GetProductData;
