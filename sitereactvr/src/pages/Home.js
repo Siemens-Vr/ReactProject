@@ -848,12 +848,4 @@ const ProjectItem = ({ imgSrc, title, description }) => (
     </Grid>
 );
 
-
-
-
-
-
-
-
-
 export default VirtualMechatronicsLab;
