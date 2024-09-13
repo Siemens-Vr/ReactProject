@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {post} from '../../axios';
+import axios from 'axios';
 
 function PostProductData() {
   // Créez des états distincts pour chaque champ
@@ -19,7 +19,7 @@ function PostProductData() {
 
     try {
       // Envoyer les données au serveur Node.js
-      const response = await post('/api-database/product', { name, price });
+      const response = await axios.post('http://localhost:5002/product', { name, price });
       console.log('Réponse du serveur:', response.data);
     } catch (error) {
       console.error('Erreur lors de l\'envoi des données:', error);

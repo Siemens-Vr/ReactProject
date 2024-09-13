@@ -28,6 +28,7 @@ export const post = async (endpoint, data = {}) => {
     return response.data;
   } catch (error) {
     handleError(error);
+    throw error; // Assurez-vous de lancer l'erreur pour la gérer ailleurs si nécessaire
   }
 };
 
@@ -49,8 +50,12 @@ export const del = async (endpoint, data = {}) => {
   }
 };
 
+
+// Fonction de gestion des erreurs
 const handleError = (error) => {
-  // Handle error
-  console.error('API call failed. ', error);
-  throw error;
+  if (error.code === 'ECONNABORTED') {
+    console.error('La requête a dépassé le délai d\'attente.');
+  } else {
+    console.error('Une erreur s\'est produite :', error.message);
+  }
 };
