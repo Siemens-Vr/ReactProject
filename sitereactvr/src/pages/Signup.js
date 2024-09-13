@@ -69,7 +69,6 @@ const Signup = () => {
            <TextField select label="Gender" fullWidth variant="outlined" required sx={{ mb: 2,backgroundColor:'#ffffff' }}>
               <MenuItem value="Male">Male</MenuItem>
               <MenuItem value="Female">Female</MenuItem>
-              <MenuItem value="Other">Other</MenuItem>
 
               
             </TextField>

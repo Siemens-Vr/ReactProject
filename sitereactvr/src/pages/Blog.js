@@ -15,17 +15,6 @@ const Blog = () => {
         backgroundColor: 'light grey',  // Background color
         textAlign: 'center',  // Center the content
     }}>
-    <Button 
-            variant="outlined" 
-            sx={{ 
-                borderColor: 'grey.400', // Set border color to grey
-                borderRadius: '9999px', // Make the button fully rounded
-                color: 'primary.main',
-            }} 
-            className="px-6 py-2 mb-8"
-        >
-        Blogs
-        </Button>
         <Typography variant="h4" className="mb-8" sx={{ color: '#14183e', fontWeight:'bold' }}>
             Explore Our Blogs
         </Typography>
@@ -119,7 +108,9 @@ const ProjectItem1 = ({ imgSrc, title, description }) => (
                         marginBottom: '18px',
                         fontWeight:'700',
                         textAlign:'justify',
-                        marginLeft:'0px'
+                        marginLeft:'20px',
+                        alignText:'center',
+                        marginRight:'20px',
                     }}
                 >
                     {description}
@@ -132,7 +123,7 @@ const ProjectItem1 = ({ imgSrc, title, description }) => (
                         borderRadius: '50%',  // Make the button circular
                         minWidth: '50px',  // Minimum width to keep it circular
                         height: '50px',  // Height to match the width
-                        marginLeft: '0px',  // Move the button to the left a little
+                        marginLeft: '20px',  // Move the button to the left a little
                         marginRight: 'auto',
                         display: 'flex',
                         justifyContent: 'center',
