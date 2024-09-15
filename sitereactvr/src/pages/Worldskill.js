@@ -11,37 +11,7 @@ import ws4 from '../assets/img/worldskill/Pic.png';
 import ws5 from '../assets/img/worldskill/Pic2.png';
 import ws6 from '../assets/img/worldskill/Untitled design.png';
 import Worldskill1 from '../assets/img/worldskill/worldskillphoto.png'
-// import { makeStyles } from '@mui/styles';
 
-// const useStyles = makeStyles({
-//   imageWrapper: {
-//     position: 'relative',
-//     width: '100%',
-//     overflow: 'hidden',
-//   },
-//   image: {
-//     display: 'block',
-//     width: '100%',
-//     height: 'auto',
-//   },
-//   descriptionOverlay: {
-//     position: 'absolute',
-//     bottom: '0',
-//     left: '0',
-//     width: '100%',
-//     backgroundColor: 'rgba(0, 0, 0, 0.7)',
-//     color: 'white',
-//     textAlign: 'center',
-//     padding: '10px',
-//     transform: 'translateY(100%)',
-//     transition: 'transform 0.3s ease-in-out',
-//   },
-//   imageWrapperHover: {
-//     '&:hover $descriptionOverlay': {
-//       transform: 'translateY(0)',
-//     },
-//   },
-// });
 const services = [
   {
     icon: <FaRobot size={32} />,
@@ -81,15 +51,7 @@ const WorldSkills = () => {
             backgroundColor: 'white',  // Background color
             textAlign: 'center',  // Center the content
         }} >
-          <Button variant="outlined" color="primary" className="rounded-full px-3 mb-3"
-          sx={{ 
-              borderColor: 'grey.400', // Set border color to grey
-              borderRadius: '9999px', // Make the button fully rounded
-              color: 'primary.main',
-          }} 
-            >
-            WORDSKILLS
-          </Button>
+          <Typography variant='h4'sx={{fontWeight:'bold',color:'#14183e'}}>WORLDSKILLS</Typography>
         </Box>
         <Grid container spacing={5} alignItems="center">
           <Grid item lg={6} className="wow fadeIn" data-wow-delay="0.1s">
@@ -195,7 +157,7 @@ const WorldSkills = () => {
               borderRadius: '9999px', // Make the button fully rounded
               color: 'primary.main',
           }}>
-              WorldSkills 1
+              <Typography variant='h4'sx={{fontWeight:'bold',color:'#14183e'}}>WorldSkills 1</Typography>
             </Box>
 
             <Typography variant="body1" className="mb-4"
@@ -464,17 +426,6 @@ const WorldSkills = () => {
                     backgroundColor: 'light grey',  // Background color
                     textAlign: 'center',  // Center the content
                 }}>
-                <Button 
-                        variant="outlined" 
-                        sx={{ 
-                            borderColor: 'grey.400', // Set border color to grey
-                            borderRadius: '9999px', // Make the button fully rounded
-                            color: 'primary.main',
-                        }} 
-                        className="px-6 py-2 mb-8"
-                    >
-                    Projects
-                    </Button>
                     <Typography variant="h4" className="mb-8" sx={{ color: '#14183e', fontWeight:'bold' }}>
                         Explore Our Recent 
                         <br></br>Projects

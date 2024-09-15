@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Box, Button, TextField, Typography, IconButton,MenuItem } from '@mui/material';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { Password, Visibility, VisibilityOff } from '@mui/icons-material';
 import { motion } from 'framer-motion'; // For smooth form slide-in animation
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -11,6 +12,28 @@ const Signup = () => {
   const handleClickShowConfirmPassword = () => setShowConfirmPassword(!showConfirmPassword);
 
   const handleMouseDownPassword = (event) => event.preventDefault();
+   
+
+  const [FirstName, setFirstName] = useState('');
+  const [LastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [Gender, setGender]= useState('');
+  const [Age, setAge] = useState('');
+  const [Company, setCompany] = useState('');
+  const [password, setPassword] = useState('');
+  const [ConfirmPassword,setConfirmPassword]= useState('');
+  const navigate = useNavigate();
+
+  const handleSignup = async () => {
+    // Simulated server response
+    if (email && password) {
+      localStorage.setItem('user', JSON.stringify({ email })); // Save user data
+      alert('Signup successful!');
+      navigate('/'); // Redirect to home page after signup
+    } else {
+      alert('Please fill all fields');
+    }
+  };
 
   return (
     <Box className="signup-page" sx={{ minHeight: '90vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -28,8 +51,8 @@ const Signup = () => {
           <Button 
             variant="outlined" 
             sx={{ 
-                borderColor: 'grey.400', // Set border color to grey
-                borderRadius: '9999px', // Make the button fully rounded
+                borderColor: 'grey.400', 
+                borderRadius: '9999px', 
                 color: 'primary.main',
                 marginTop:'0px',
                 marginBottom:'20px'
@@ -42,8 +65,24 @@ const Signup = () => {
           {/* Username Input */}
           <TextField
             fullWidth
-            label="Username"
+            label="First Name"
             variant="outlined"
+            sx={{ mb: 2, backgroundColor:'#ffffff' }}
+            value={FirstName}
+            onChange={(e)=> setFirstName(e.target.value)}
+            InputProps={{
+              sx: {
+                transition: 'border-color 0.3s ease', // Form Field Focus Animation
+                '&:focus-within': { borderColor: 'primary.main', boxShadow: '0 0 5px rgba(0, 123, 255, 0.5)' },
+              },
+            }}
+          />
+           <TextField
+            fullWidth
+            label="Last Name"
+            variant="outlined"
+            value={LastName}
+            onChange={(e)=> setLastName(e.target.value)}
             sx={{ mb: 2, backgroundColor:'#ffffff' }}
             InputProps={{
               sx: {
@@ -59,6 +98,8 @@ const Signup = () => {
             label="Email"
             variant="outlined"
             sx={{ mb: 2 ,backgroundColor:'#ffffff'}}
+            value={email}
+            onChange={(e)=> setEmail(e.target.value)}
             InputProps={{
               sx: {
                 transition: 'border-color 0.3s ease', // Form Field Focus Animation
@@ -66,7 +107,10 @@ const Signup = () => {
               },
             }}
           />
-           <TextField select label="Gender" fullWidth variant="outlined" required sx={{ mb: 2,backgroundColor:'#ffffff' }}>
+           <TextField select label="Gender" fullWidth variant="outlined" 
+           value={Gender}
+           onChange={(e)=> setGender(e.target.value)}
+           required sx={{ mb: 2,backgroundColor:'#ffffff' }}>
               <MenuItem value="Male">Male</MenuItem>
               <MenuItem value="Female">Female</MenuItem>
 
@@ -74,7 +118,25 @@ const Signup = () => {
             </TextField>
 
 
-            <TextField label="Age" variant="outlined" fullWidth required type="number" sx={{ mb: 2,backgroundColor:'#ffffff' }} />
+            <TextField label="Age" variant="outlined" fullWidth required type="number" 
+            value={Age}
+            onChange={(e)=> setAge(e.target.value)}
+            sx={{ mb: 2,backgroundColor:'#ffffff' }} />
+             
+             {/* company Input */}
+          <TextField
+            fullWidth
+            label="Company"
+            variant="outlined"
+            sx={{ mb: 2 ,backgroundColor:'#ffffff'}}
+            value={Company}
+            onChange={(e)=> setCompany(e.target.value)}
+            InputProps={{
+              sx: {
+                transition: 'border-color 0.3s ease', // Form Field Focus Animation
+                '&:focus-within': { borderColor: 'primary.main', boxShadow: '0 0 5px rgba(0, 123, 255, 0.5)' },
+              },
+            }}/>
 
           {/* Password Input with Toggle Animation */}
           <TextField
@@ -83,6 +145,8 @@ const Signup = () => {
             type={showPassword ? 'text' : 'password'}
             variant="outlined"
             sx={{ mb: 2,backgroundColor:'#ffffff' }}
+            // value={Password}
+            // onChange={(e)=> setPassword(e.target.value)}
             InputProps={{
               endAdornment: (
                 <IconButton
@@ -110,6 +174,8 @@ const Signup = () => {
             type={showConfirmPassword ? 'text' : 'password'}
             variant="outlined"
             sx={{ mb: 2,backgroundColor:'#ffffff'}}
+            value={ConfirmPassword}
+            onChange={(e)=> setConfirmPassword(e.target.value)}
             InputProps={{
               endAdornment: (
                 <IconButton

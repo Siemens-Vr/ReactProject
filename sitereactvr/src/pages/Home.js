@@ -494,93 +494,132 @@ const VirtualMechatronicsLab = () => {
 
             {/* Testimonial Section */}
             <Box className="container-xxl py-12">
-                <Box className="container mx-auto"
-                sx={{ 
-                    padding: '50px 0',  // Padding around the section
-                    backgroundColor: 'white',  // Background color
-                    textAlign: 'center',  // Center the content
-                }}>
-                    <Grid container spacing={5}>
-                        <Grid item xs={12} md={5}>
-                            <Typography variant="h4" className="mb-4"sx={{ color: '#14183e', fontWeight:'bold' }}>
-                                What Our Sponsors &
-                                <br></br>
-                                 Partners Say!
-                            </Typography>
-                            <Typography className="mb-4"
-                             sx={{
-                                marginTop: '10px', textAlign: 'justify', fontSize: '18px', color: 'rgb(85,85,85)',
-                                fontWeight: 'normal', padding: '0 20px', lineHeight: '1.5', fontFamily: 'sans-serif',
-                              }}>
-                                The virtual mechatronics lab has had the great pleasure of engaging with sponsors and partners. Here are the words they have to say.
-                            </Typography>
-                            <Button variant="contained" color="primary" className="rounded-full px-6 py-2" sx={{borderRadius: '9999px',marginRight:'10px'}}>
-                                Read More
-                            </Button>
-                        </Grid>
-                        <Grid item xs={12} md={7}>
-                        <Grid item xs={12} md={7}>
-                            <Box
-                                className="border-l-4 border-primary pl-4"
-                                sx={{ 
-                                    padding: '50px 0',  // Padding around the section
-                                    backgroundColor: 'white',  // Background color
-                                    textAlign: 'left',  // Align text to the left
-                                }}
-                            >
-                                {/* Quotation Icon */}
-                                <i
-                                    className="fa fa-quote-left fa-2x text-primary mb-3"
-                                    style={{ color: '#1363c6', float: 'left', marginRight: '10px' }}  // Move the icon to the left and make it blue
-                                ></i>
+            <Box
+                className="container mx-auto"
+                sx={{
+                padding: '50px 0', // Padding around the section
+                backgroundColor: 'white', // Background color
+                textAlign: 'center', // Center the content
+                }}
+            >
+                <Grid container spacing={5}>
+                {/* Left Grid (Text) */}
+                <Grid
+                    item
+                    xs={12}
+                    md={5}
+                    sx={{
+                    borderRight: { md: '2px solid #ddd' }, // Add border on the right of the left grid for larger screens
+                    paddingRight: '20px', // Add padding to the right to give space before the border
+                    }}
+                >
+                    <Typography
+                    variant="h4"
+                    className="mb-4"
+                    sx={{ color: '#14183e', fontWeight: 'bold' }}
+                    >
+                    What Our Sponsors & <br />
+                    Partners Say!
+                    </Typography>
+                    <Typography
+                    className="mb-4"
+                    sx={{
+                        marginTop: '10px',
+                        textAlign: 'justify',
+                        fontSize: '18px',
+                        color: 'rgb(85,85,85)',
+                        fontWeight: 'normal',
+                        padding: '0 20px',
+                        lineHeight: '1.5',
+                        fontFamily: 'sans-serif',
+                    }}
+                    >
+                    The virtual mechatronics lab has had the great pleasure of engaging with sponsors and partners. Here are the words they have to say.
+                    </Typography>
+                    <Button
+                    variant="contained"
+                    color="primary"
+                    className="rounded-full px-6 py-2"
+                    sx={{ borderRadius: '9999px', marginRight: '10px' }}
+                    >
+                    Read More
+                    </Button>
+                </Grid>
 
-                                {/* Quotation Text */}
-                                <Typography 
-                                    variant="h5" 
-                                    className="italic text-gray-700"
-                                    sx={{ 
-                                        marginTop: '10px',
-                                        textAlign: 'justify',
-                                        fontFamily: 'Open Sans, sans-serif',
-                                        color: 'rgb(85, 85, 85)',
-                                        fontWeight: 'normal',
-                                        padding: '0 20px',
-                                    }}
-                                >
-                                    Partnering with a Virtual Mechatronics Lab can be a powerful way to achieve various business goals.
-                                </Typography>
+                {/* Right Grid (Testimonial) */}
+                <Grid item xs={12} md={7}>
+                <Grid item xs={12} md={7}>
+                    <Box
+                    className="border-l-4 border-primary pl-4"
+                    sx={{
+                        padding: '50px 0', // Padding around the section
+                        backgroundColor: 'white', // Background color
+                        textAlign: 'left', // Align text to the left
+                    }}
+                    >
+                    {/* Quotation Icon */}
+                    <i
+                        className="fa fa-quote-left fa-2x text-primary mb-3"
+                        style={{
+                        color: '#1363c6',
+                        float: 'left',
+                        marginRight: '10px',
+                        }} // Move the icon to the left and make it blue
+                    ></i>
 
-                                {/* Profile Picture and Details */}
-                                <Box 
-                                    className="flex items-center mt-4"
-                                    sx={{
-                                        display: 'flex',  // Use flexbox to align items horizontally
-                                        alignItems: 'center',  // Vertically align items in the center
-                                    }}
-                                >
-                                    <img
-                                        className="w-16 h-16"
-                                        src={prof}
-                                        alt="Prof. Eng. Jean Bosco"
-                                        style={{
-                                            borderRadius: '50%',
-                                            width: '64px', 
-                                            height: '64px',  
-                                            objectFit: 'cover',  
-                                            marginRight: '10px',  
-                                        }}
-                                    />
-                                    <Box>
-                                        <Typography variant="h6" sx={{ color: '#14183e', fontWeight:'bold' }}>Prof. Eng. Jean Bosco</Typography>
-                                        <Typography variant="body1">University Professor</Typography>
-                                    </Box>
-                                </Box>
-                            </Box>
-                        </Grid>
-                    </Grid>
-                    </Grid>
-                </Box>
+                    {/* Quotation Text */}
+                    <Typography
+                        variant="h5"
+                        className="italic text-gray-700"
+                        sx={{
+                        marginTop: '10px',
+                        textAlign: 'justify',
+                        fontFamily: 'Open Sans, sans-serif',
+                        color: 'rgb(85, 85, 85)',
+                        fontWeight: 'normal',
+                        padding: '0 20px',
+                        }}
+                    >
+                        Partnering with a Virtual Mechatronics Lab can be a powerful way to achieve various business goals.
+                    </Typography>
+
+                    {/* Profile Picture and Details */}
+                    <Box
+                        className="flex items-center mt-4"
+                        sx={{
+                        display: 'flex', // Use flexbox to align items horizontally
+                        alignItems: 'center', // Vertically align items in the center
+                        }}
+                    >
+                        <img
+                        className="w-20 h-20" // Increase size here
+                        src={prof}
+                        alt="Prof. Eng. Jean Bosco"
+                        style={{
+                            borderRadius: '50%',
+                            width: '80px', // Increase width
+                            height: '80px', // Increase height
+                            objectFit: 'cover',
+                            marginRight: '10px',
+                        }}
+                        />
+                        <Box>
+                        <Typography
+                            variant="h6"
+                            sx={{ color: '#14183e', fontWeight: 'bold' }}
+                        >
+                            Prof. Eng. Jean Bosco
+                        </Typography>
+                        <Typography variant="body1">University Professor</Typography>
+                        </Box>
+                    </Box>
+                    </Box>
+                </Grid>
+                </Grid>
+                </Grid>
             </Box>
+            </Box>
+
         </div>
     );
 };

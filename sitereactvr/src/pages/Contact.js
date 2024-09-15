@@ -7,7 +7,7 @@ import EmailIcon from '@mui/icons-material/Email';
 
 const Contact = () => {
   return (
-    <Box className="content-container py-10" sx={{alignItems:'center'}}>
+    <Box className="content-container py-10 ml-10" sx={{alignItems:'center'}}>
       <Container maxWidth="md"x={{alignItems:'center'}}>
         {/* Contact Heading Section */}
         <Box className="mx-auto text-center" data-wow-delay="0.1s" sx={{ maxWidth: 500,
@@ -16,21 +16,8 @@ const Contact = () => {
             textAlign: 'center',
             alignContent:'center'
          }}>
-          <Button
-            variant="outlined"
-            className="rounded-full border px-3 mb-3"
-            color="primary"
-            size="small"
-            sx={{ 
-                borderColor: 'grey.400', // Set border color to grey
-                borderRadius: '9999px', // Make the button fully rounded
-                color: 'primary.main',
-                alignItems:'center',
-            }} 
-          >
-            Contact Us
-          </Button>
-          <Typography variant="h4" className="mb-4"
+            <Typography variant='h4'sx={{fontWeight:'bold',color:'#14183e'}}>CONTACT US</Typography>
+          <Typography variant="h5" className="mb-4"
           sx={{ 
             marginTop: '10px',
             textAlign:'justify',
@@ -40,7 +27,7 @@ const Contact = () => {
             alignContent:'center',}}>
             If You Have Any Query, 
           </Typography>
-          <Typography variant="h4" className="mb-4"
+          <Typography variant="h5" className="mb-4"
           sx={{ 
             marginTop: '10px',
             textAlign:'justify',
@@ -61,7 +48,7 @@ const Contact = () => {
                 marginTop: '10px',
                 textAlign:'justify',
                 fontFamily:'Open Sans,sans-serif',
-                color:'#14183e',
+                color:'blue',
                 fontWeight:'bolder',
                 alignItems:'center',}}>
                 <LocationOnIcon className="mr-2" /> Nyeri, Kenya
@@ -71,7 +58,7 @@ const Contact = () => {
                 marginTop: '10px',
                 textAlign:'justify',
                 fontFamily:'Open Sans,sans-serif',
-                color:'#14183e',
+                color:'blue',
                 fontWeight:'bolder',
                 alignItems:'center'}}>
                 <PhoneIcon className="mr-2" /> +254716150627
@@ -81,7 +68,7 @@ const Contact = () => {
                 marginTop: '10px',
                 textAlign:'justify',
                 fontFamily:'Open Sans,sans-serif',
-                color:'#14183e',
+                color:'blue',
                 fontWeight:'bolder',
                 alignItems:'center',}}>
                 <EmailIcon className="mr-2" /> vr.africa@dkut.ac.ke
