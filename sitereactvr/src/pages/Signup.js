@@ -36,7 +36,7 @@ const Signup = () => {
   };
 
   return (
-    <Box className="signup-page" sx={{ minHeight: '90vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+    <Box className="signup-page" sx={{ minHeight: '120vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       
       {/* Smooth Slide-In Animation */}
       <motion.div
