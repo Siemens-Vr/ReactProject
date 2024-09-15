@@ -51,7 +51,7 @@ const WorldSkills = () => {
             backgroundColor: 'white',  // Background color
             textAlign: 'center',  // Center the content
         }} >
-          <Typography variant='h4'sx={{fontWeight:'bold',color:'#14183e'}}>WORLDSKILLS</Typography>
+          {/* <Typography variant='h4'sx={{fontWeight:'bold',color:'#14183e'}}>WORLDSKILLS</Typography> */}
         </Box>
         <Grid container spacing={5} alignItems="center">
           <Grid item lg={6} className="wow fadeIn" data-wow-delay="0.1s">
@@ -303,6 +303,7 @@ const WorldSkills = () => {
                 backgroundColor: 'rgba(244,247,254,255)',  // Background color
                 textAlign: 'center',  // Center the content
               }}>
+                <Typography variant='h4'sx={{fontWeight:'bold',color:'#14183e'}}>Services</Typography>
               <Grid container spacing={5} alignItems="center">
                 <Grid item lg={12}>
                   <Grid container spacing={4}>
@@ -498,7 +499,7 @@ const ProjectItem1 = ({ imgSrc, title, description }) => (
                 }
                 }}
             >
-                <Typography 
+                 <Typography 
                     variant="h6" 
                     sx={{ 
                         backgroundColor: 'rgba(0, 0, 0, 0.6)',  // Dark grey translucent background
@@ -506,8 +507,9 @@ const ProjectItem1 = ({ imgSrc, title, description }) => (
                         borderRadius: '4px',  // Curved margins
                         display: 'inline-block',  // Ensure the background fits the text
                         marginBottom: '8px',
-                        marginLeft:'0px',
+                        marginLeft:'-40px',
                         textAlign:'justify',  // Space below the title
+
                     }}
                 >
                     {title}
@@ -521,7 +523,9 @@ const ProjectItem1 = ({ imgSrc, title, description }) => (
                         marginBottom: '18px',
                         fontWeight:'700',
                         textAlign:'justify',
-                        marginLeft:'0px'
+                        marginLeft:'20px',
+                        alignText:'center',
+                        marginRight:'20px',
                     }}
                 >
                     {description}
@@ -534,7 +538,7 @@ const ProjectItem1 = ({ imgSrc, title, description }) => (
                         borderRadius: '50%',  // Make the button circular
                         minWidth: '50px',  // Minimum width to keep it circular
                         height: '50px',  // Height to match the width
-                        marginLeft: '0px',  // Move the button to the left a little
+                        marginLeft: '20px',  // Move the button to the left a little
                         marginRight: 'auto',
                         display: 'flex',
                         justifyContent: 'center',
