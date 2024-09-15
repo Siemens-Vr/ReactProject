@@ -183,7 +183,7 @@ export default function Header() {
                     borderColor: 'blue', 
                   }
                 }}>
-                <Link to="/login" style={{ color: 'inherit', textDecoration: 'none' }}>
+                <Link to="/signup" style={{ color: 'inherit', textDecoration: 'none' }}>
                   Sign up
                 </Link>
               </Button>
