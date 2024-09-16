@@ -126,13 +126,13 @@ export default function Header() {
                 <NavLink
                 to={page.path}
                 style={({ isActive }) => ({
-                  textDecoration: isActive ? 'underline' : 'none', // Underline if the route is active
-                  fontWeight: isActive ? 'bold' : 'normal', // Bolder text for active pages
-                  color: 'inherit', // Keep the text color
-                  opacity: isActive ? 1 : 0.5, // Dim inactive pages
-                  transform: isActive ? 'translateY(0px)' : 'translateY(10)', // Move active page forward
-                  transition: 'all 0.3s ease', // Smooth transition between styles
-                })}
+                  textDecoration: isActive ? 'underline' : 'none', 
+                  fontWeight: isActive ? 'bold' : 'normal', 
+                  color: 'inherit', 
+                  opacity: isActive ? 1 : 0.5,
+                  transform: isActive ? 'translateY(0px)' : 'translateY(10)', 
+                  transition: 'all 0.3s ease', 
+                  })}
               >
                 {page.name}
               </NavLink>
