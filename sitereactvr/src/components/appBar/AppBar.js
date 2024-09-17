@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { NavLink, useNavigate, Link} from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,10 +12,11 @@ import MenuItem from '@mui/material/MenuItem';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { Tooltip } from '@mui/material';
-import AccountCircle from '@mui/icons-material/AccountCircle'; 
+import AccountCircle from '@mui/icons-material/AccountCircle';
 import logo from '../../assets/Virtual Mechatronics Lab Logo V2-01.png';
-import { Link } from 'react-router-dom';
 
+
+// List of constant pages
 const pages = [
   { name: 'Home', path: '/' },
   { name: 'Product', path: '/product' },
@@ -27,7 +29,8 @@ const pages = [
 
 export default function Header() {
   const [anchorElNav, setAnchorElNav] = useState(null);
-  const [anchorElUser, setAnchorElUser] = useState(null); 
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Simulate user login state
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
@@ -43,9 +46,25 @@ export default function Header() {
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
-  
+
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+  const navigate =useNavigate();
+  useEffect(()=>{
+    const user= localStorage.getItem('user');
+    if (user) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    setIsLoggedIn(false);
+    setAnchorElUser(null);
+    alert('Logged out successfully!');
+    navigate('/login');
+    
   };
 
   return (
@@ -102,55 +121,119 @@ export default function Header() {
           </>
         ) : (
           <Box sx={{ display: 'flex' }}>
-            {pages.map((page) => (
-              <Button key={page.name} color="inherit">
-                <Link to={page.path} style={{ textDecoration: 'none', color: 'inherit' }}>
-                  {page.name}
-                </Link>
-              </Button>
-            ))}
-          </Box>
+          {pages.map((page) => (
+            <Button key={page.name} color="inherit">
+                <NavLink
+                to={page.path}
+                style={({ isActive }) => ({
+                  textDecoration: isActive ? 'underline' : 'none', 
+                  fontWeight: isActive ? 'bold' : 'normal', 
+                  color: 'inherit', 
+                  opacity: isActive ? 1 : 0.5,
+                  transform: isActive ? 'translateY(0px)' : 'translateY(10)', 
+                  transition: 'all 0.3s ease', 
+                  })}
+              >
+                {page.name}
+              </NavLink>
+            </Button>
+          ))}
+        </Box>
         )}
 
         {/* User Account Section */}
         <Box>
-          <IconButton
-            size="large"
-            edge="end"
-            aria-label="account"
-            aria-controls="user-menu-appbar"
-            aria-haspopup="true"
-            onClick={handleOpenUserMenu}
-            color="inherit"
-          >
-            <AccountCircle />
-          </IconButton>
-          <Menu
-            id="user-menu-appbar"
-            anchorEl={anchorElUser} // Use the correct state for the anchor element
-            anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-            open={Boolean(anchorElUser)} // Check if the user menu is open
-            onClose={handleCloseUserMenu} // Handle closing the user menu
-          >
-            <MenuItem onClick={handleCloseUserMenu}>
-              <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
-                Login
-              </Link>
-            </MenuItem>
-            {/* <MenuItem onClick={handleCloseUserMenu}>
-              <Link to="/signup" style={{ textDecoration: 'none', color: 'inherit' }}>
-                Signup
-              </Link>
-            </MenuItem> */}
-          </Menu>
+          {!isLoggedIn ? (
+            // Show Login and Signup buttons when not logged in
+            <>
+              <Button variant="outlined"
+                className="rounded-full border px-3 mb-3"
+                size="small"
+                sx={{ 
+                  borderColor: 'grey.400',
+                  borderRadius: '9999px', 
+                  color: '#ffffff',
+                  backgroundColor: 'transparent',
+                  alignItems: 'center',
+                  mr: 1,
+                  '&:hover': {
+                    backgroundColor: '#ffffff',
+                    color: 'blue', 
+                    borderColor: 'blue',
+                  }
+                }}>
+                <Link to="/login" style={{ color: 'inherit', textDecoration: 'none' }}>
+                  Login
+                </Link>
+              </Button>
+
+              <Button variant="outlined"
+                className="rounded-full border px-3 mb-3"
+                size="small"
+                sx={{ 
+                  borderColor: 'grey.400',
+                  borderRadius: '9999px', 
+                  color: '#ffffff',
+                  backgroundColor: 'transparent', 
+                  alignItems: 'center',
+                  mr: 1,
+                  '&:hover': {
+                    backgroundColor: '#ffffff', 
+                    color: 'blue', 
+                    borderColor: 'blue', 
+                  }
+                }}>
+                <Link to="/signup" style={{ color: 'inherit', textDecoration: 'none' }}>
+                  Sign up
+                </Link>
+              </Button>
+
+            </>
+          ) : (
+            // Show account icon and user menu when logged in
+            <>
+              <IconButton
+                size="large"
+                edge="end"
+                aria-label="account"
+                aria-controls="user-menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenUserMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="user-menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Link to="/profile" style={{ textDecoration: 'none', color: 'inherit' }}>
+                    View Profile
+                  </Link>
+                </MenuItem>
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Link to="/edit-profile" style={{ textDecoration: 'none', color: 'inherit' }}>
+                    Edit Profile
+                  </Link>
+                </MenuItem>
+                <MenuItem onClick={handleLogout}>
+                  Logout
+                </MenuItem>
+              </Menu>
+            </>
+          )}
         </Box>
       </Toolbar>
     </AppBar>

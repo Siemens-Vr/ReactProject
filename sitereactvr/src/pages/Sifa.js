@@ -101,9 +101,7 @@ const Sifa = () => {
     <div className={classes.contentContainer}>
       {/* sifa */}
       <Container className="py-1">
-      <Box className="mx-auto text-center mb-3" style={{ maxWidth: '500px', justifyContent: 'center', alignItems: 'center' }}>
-          <Button variant="outlined" className="text-primary px-3 mb-3" style={{ borderRadius: '9999px' }}>SIFA</Button>
-        </Box>
+      <Typography variant='h4'sx={{fontWeight:'bold',color:'#14183e'}}>SIFA</Typography>
         <Grid container spacing={5} alignItems="center">
           <Grid item lg={6}>
             <div className={classes.aboutImg}>
