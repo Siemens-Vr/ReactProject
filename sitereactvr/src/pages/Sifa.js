@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Grid, Button, Typography, Box, Card, CardContent } from '@mui/material';
-import { FaFacebookF, FaTwitter, FaYoutube, FaLinkedinIn, FaCheck, FaBook, FaBrain, FaIndustry, FaVrCardboard } from 'react-icons/fa';
+import { FaFacebookF, FaTwitter, FaYoutube, FaLinkedinIn,  FaBook, FaBrain, FaIndustry, FaVrCardboard } from 'react-icons/fa';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -101,9 +101,7 @@ const Sifa = () => {
     <div className={classes.contentContainer}>
       {/* sifa */}
       <Container className="py-1">
-      <Box className="mx-auto text-center mb-3" style={{ maxWidth: '500px', justifyContent: 'center', alignItems: 'center' }}>
-          <Button variant="outlined" className="text-primary px-3 mb-3" style={{ borderRadius: '9999px' }}>SIFA</Button>
-        </Box>
+      <Typography variant='h4'sx={{fontWeight:'bold',color:'#14183e'}}>SIFA</Typography>
         <Grid container spacing={5} alignItems="center">
           <Grid item lg={6}>
             <div className={classes.aboutImg}>
@@ -150,7 +148,7 @@ const Sifa = () => {
                 </Typography>
               </Grid>
             </Grid>
-            <Box className="mt-4">
+            <Box className="mt-4" sx={{padding: '10px',}}>
               <Button variant="contained" color="primary" className="rounded-pill px-4 me-3" href="https://skillsafrica.org/" target="_blank" rel="noopener noreferrer" sx={{ borderRadius: '9999px', marginRight: '20px' }}>
                 Read More
               </Button>
@@ -159,7 +157,6 @@ const Sifa = () => {
                 padding: '10px', 
                 width: '58px', 
                 height: '58px', 
-                padding: '10px', 
                 marginRight: '10px',
                 '&:hover': {
                     backgroundColor: '#0077B5',
@@ -174,8 +171,7 @@ const Sifa = () => {
                 borderRadius: '50%', 
                 padding: '10px', 
                 width: '58px', 
-                height: '58px', 
-                padding: '10px', 
+                height: '58px',  
                 marginRight: '10px',
                 '&:hover': {
                     backgroundColor: '#0077B5',
@@ -190,8 +186,7 @@ const Sifa = () => {
                 borderRadius: '50%', 
                 padding: '10px', 
                 width: '58px', 
-                height: '58px', 
-                padding: '10px', 
+                height: '58px',  
                 marginRight: '10px',
                 '&:hover': {
                     backgroundColor: '#0077B5',
@@ -206,8 +201,7 @@ const Sifa = () => {
                 borderRadius: '50%', 
                 padding: '10px', 
                 width: '58px',
-                height: '58px', 
-                padding: '10px', 
+                height: '58px',  
                 marginRight: '10px',
                 '&:hover': {
                     backgroundColor: '#0077B5',
@@ -596,10 +590,8 @@ const FeatureList = () => (
                       borderRadius: '50%', 
                       width: 32, 
                       height: 32, 
-                      alignItems:'justify',
                       marginLeft:'18px',
-                      display: 'flex', 
-                      alignItems: 'center', 
+                      display: 'flex',  
                       justifyContent: 'center', 
                       mr: 3 // Margin right for spacing between icon and text
                   }}

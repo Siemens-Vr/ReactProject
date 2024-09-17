@@ -1,9 +1,10 @@
+
 import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import {Toolbar} from '@mui/material';
-import { Tooltip } from '@mui/material';
+import Toolbar from '@mui/material/Toolbar';
+import Tooltip from '@mui/material/Tooltip';
 import Grid from '@mui/material/Grid';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -150,6 +151,19 @@ const accordionItemsRight2 = [
 ];
 const accordionItemsRight3 = [
     {
+        title: 'Augmented Reality (AR) Integration',
+        content: (
+            <>
+                <Typography variant="h6" fontWeight="500">AR for Maintenance and Training:</Typography>
+                <p> Combine AR with virtual mechatronics to enhance maintenance and training processes. AR can overlay virtual information onto physical systems, providing real-time guidance and interactive training experiences.</p>
+                    <Typography variant="h6" fontWeight="500">AR Visualization of Virtual Models:</Typography>
+                <p>Use AR to visualize virtual models and simulations in the context of the physical environment. This can help in understanding how virtual designs translate into real-world applications.</p>
+           </>
+        ),
+    },
+];
+const accordionItemsRight4 = [
+    {
         title: 'Scalability and Adaptability',
         content: (
             <>
@@ -166,6 +180,7 @@ const accordionItemsRight3 = [
 ];
 
 
+
 const VirtualMechatronicsLab = () => {
     return (
         <div className="content">
@@ -178,17 +193,6 @@ const VirtualMechatronicsLab = () => {
                     textAlign: 'center',  // Center the content
                 }}
             >
-                <Button 
-                        variant="outlined" 
-                        sx={{ 
-                            borderColor: 'grey.400', // Set border color to grey
-                            borderRadius: '9999px', // Make the button fully rounded
-                            color: 'primary.main',
-                        }} 
-                        className="px-6 py-2 mb-8"
-                    >
-                        HOME
-                    </Button>
                     <Grid container spacing={5} alignItems="center">
                         <Grid item xs={12} md={6}>
                             <Box className="about-img" >
@@ -217,59 +221,32 @@ const VirtualMechatronicsLab = () => {
                                 marginTop: '10px',
                                 textAlign:'justify',
                                 fontFamily:'Open Sans,sans-serif',
-                                color:'black)',
-                                fontWeight:'bold',}}>
+                                color:'#14183e',
+                                fontWeight:'bold'}}>
                                 Virtual Mechatronics Lab
                             </Typography>
                             <Typography className="mb-4"
-                             sx={{ 
-                                marginTop: '10px',
-                                textAlign:'justify',
-                                fontSize:'16px',
-                                fontFamily:'Open Sans,sans-serif',
-                                color:'rgb(85,85,85)',
-                                fontWeight:'400',
-                                padding:'0 20px',
-                                lineHeight:'24px'}}>
+                             sx={{
+                                marginTop: '10px', textAlign: 'justify', fontSize: '18px', color: 'rgb(85,85,85)',
+                                fontWeight: 'normal', padding: '0 20px', lineHeight: '1.5', fontFamily: 'sans-serif',
+                              }}>
                                 Our lab leverages the latest technologies to create highly detailed and interactive simulations of mechatronic systems.
                             </Typography>
                             <Typography
-                             sx={{ 
-                                marginTop: '10px',
-                                textAlign:'justify',
-                                fontSize:'16px',
-                                fontFamily:'Open Sans,sans-serif',
-                                color:'rgb(85,85,85)',
-                                fontWeight:'400',
-                                padding:'0 20px',
-                                lineHeight:'24px'}}>
+                             sx={{
+                                marginTop: '10px', textAlign: 'justify', fontSize: '18px', color: 'rgb(85,85,85)',
+                                fontWeight: 'normal', padding: '0 20px', lineHeight: '1.5', fontFamily: 'sans-serif',
+                              }}>
                                 This innovative approach significantly enhances the design, development, and deployment processes, resulting in more efficient, effective, and groundbreaking solutions in the field of mechatronics.
                             </Typography>
                             <Typography className="mt-4 mb-4"
-                             sx={{ 
-                                marginTop: '10px',
-                                textAlign:'justify',
-                                fontSize:'16px',
-                                fontFamily:'Open Sans,sans-serif',
-                                color:'rgb(85,85,85)',
-                                fontWeight:'400',
-                                padding:'0 20px',
-                                lineHeight:'24px'}}>
+                             sx={{
+                                marginTop: '10px', textAlign: 'justify', fontSize: '18px', color: 'rgb(85,85,85)',
+                                fontWeight: 'normal', padding: '0 20px', lineHeight: '1.5', fontFamily: 'sans-serif',
+                              }}>
                             The lab embodies the cutting edge of technological 
                         integration, pushing the boundaries of what is possible in mechatronic 
-                        system design and
-                            </Typography>
-                            <Typography className="mt-4 mb-4"
-                             sx={{ 
-                                marginTop: '10px',
-                                textAlign:'justify',
-                                fontSize:'16px',
-                                fontFamily:'Open Sans,sans-serif',
-                                color:'rgb(85,85,85)',
-                                fontWeight:'400',
-                                padding:'0 20px',
-                                lineHeight:'24px'}}>
-                                Integration of Virtual Reality and Digital Technologies
+                        system design and Integration of Virtual Reality and Digital Technologies.
                             </Typography>
                         </Grid>
                     </Grid>
@@ -300,6 +277,7 @@ const VirtualMechatronicsLab = () => {
                             <AccordionComponent items={accordionItemsRight1} />
                             <AccordionComponent items={accordionItemsRight2} />
                             <AccordionComponent items={accordionItemsRight3} />
+                            <AccordionComponent items={accordionItemsRight4} />
                         </Grid>
                     </Grid>
                 </Box>
@@ -315,64 +293,43 @@ const VirtualMechatronicsLab = () => {
                 }}>
                     <Grid container spacing={5} alignItems="center">
                         <Grid item xs={12} md={6} sx={{position:'relative'}}>
-                        <Button 
-                        variant="outlined" 
-                        sx={{ 
-                            position:'absolute',
-                            top:'0px',
-                            borderColor: 'grey.400', // Set border color to grey
-                            borderRadius: '9999px', // Make the button fully rounded
-                            color: 'primary.main',
-                            marginTop:'0px',
-                        }} 
-                        className="px-6 py-2 mb-8"
-                    >
+                        <Typography variant="h3" className="mb-4" sx={{color:'#14183e', fontWeight:'bold'}}>
                         Virtual Reality
-                    </Button>
+                        </Typography>
                             <Typography className="mb-4"
-                            sx={{ 
-                                marginTop: '10px',
-                                textAlign:'justify',
-                                fontSize:'16px',
-                                fontFamily:'Open Sans,sans-serif',
-                                color:'rgb(85,85,85)',
-                                fontWeight:'400',
-                                padding:'0 20px',
-                                lineHeight:'24px'}} >
+                            sx={{
+                                marginTop: '10px', textAlign: 'justify', fontSize: '18px', color: 'rgb(85,85,85)',
+                                fontWeight: 'normal', padding: '0 20px', lineHeight: '1.5', fontFamily: 'sans-serif',
+                              }}>
                                Virtual Reality immerses you in computer-generated environments, seamlessly blending the physical and digital worlds.
                                 Explore and interact with 3D worlds through advanced simulations, opening new possibilities for education, entertainment,
                                  and innovation.
                             </Typography>
                             <Typography className="mb-4"
-                            sx={{ 
-                                marginTop: '10px',
-                                textAlign:'justify',
-                                fontSize:'16px',
-                                fontFamily:'Open Sans,sans-serif',
-                                color:'rgb(85,85,85)',
-                                fontWeight:'400',
-                                padding:'0 20px',
-                                lineHeight:'24px'}}>
+                            sx={{
+                                marginTop: '10px', textAlign: 'justify', fontSize: '18px', color: 'rgb(85,85,85)',
+                                fontWeight: 'normal', padding: '0 20px', lineHeight: '1.5', fontFamily: 'sans-serif',
+                              }}>
                                 Why Study Virtual Reality in Dekut?
                             </Typography>
                             <Grid container spacing={3}>
                                 <Grid item xs={6}>
-                                    <Typography className="flex items-center"sx={{ color: '#14183e', fontWeight:'bold',fontFamily:'Font Awesome 5 Free'}}>
+                                    <Typography className="flex items-center"sx={{ color: '#14183e', fontWeight:'bold',fontFamily:'Font Awesome 5 Free', fontSize:'20px'}}>
                                         <i className="fa fa-check text-primary mr-2"style={{ color: 'blue', fontWeight:'900' }}></i>
                                         Accessibility for students
                                     </Typography>
-                                    <Typography className="flex items-center mt-2" sx={{ color: '#14183e', fontWeight:'bold' }}>
+                                    <Typography className="flex items-center mt-2" sx={{ color: '#14183e', fontWeight:'bold', fontSize:'20px' }}>
                                         <i className="fa fa-check mr-2" style={{ color: 'blue' , fontWeight:'900'}}></i> 
                                         Enhance STEM Education
                                         </Typography>
 
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <Typography className="flex items-center"sx={{ color: '#14183e', fontWeight:'bold' }}>
+                                    <Typography className="flex items-center"sx={{ color: '#14183e', fontWeight:'bold', fontSize:'20px' }}>
                                         <i className="fa fa-check text-primary mr-2"style={{ color: 'blue', fontWeight:'900' }}></i>
                                         Enhanced Training
                                     </Typography>
-                                    <Typography className="flex items-center mt-2"sx={{ color: '#14183e', fontWeight:'bold ' }}>
+                                    <Typography className="flex items-center mt-2"sx={{ color: '#14183e', fontWeight:'bold ', fontSize:'20px' }}>
                                         <i className="fa fa-check text-primary mr-2"style={{ color: 'blue', fontWeight:'900' }}></i>
                                         Personalized Learning
                                     </Typography>
@@ -414,28 +371,29 @@ const VirtualMechatronicsLab = () => {
             }}>
                 <Grid container spacing={5}>
                 <Grid item xs={12} md={6} className="mb-8" sx={{backgroundColor:'transparent',textDecoration:'#FFFFFF',position:'relative'}} >
-                    <Button 
+                    <Typography 
                     variant="outlined" 
                     sx={{ 
+                        fontFamily:'16px',
                         position: 'absolute',
                         top: '0px',
-                        borderColor: '#ffffff', // Set border color to grey
+                        borderInline: '#ffffff', // Set border color to grey
                         borderRadius: '9999px', // Make the button fully rounded
-                        color: '#ffffff' // Set button text color
+                        color: '#ffffff', // Set button text color
+                        marginLeft:'10px'
                     }} 
                     className="px-6 py-2 mb-8"
                     >
                     Why choose Us
-                    </Button>
-                    <Typography variant="h3" className="mb-4" sx={{textDecoration:'#FFFFFF'}}>
+                    </Typography>
+                    <Typography variant="h3" className="mb-4" sx={{textDecoration:'#ffffff'}}>
                     Experience Mechatronics Excellence
                     </Typography>
                     <Typography className="mb-4"
-                    sx={{
-                        textDecoration:'#FFFFFF',
-                        textAlign:'justify', // Justify text
-                        padding:'0px 20px' // Add horizontal padding
-                    }}>
+                   sx={{
+                    marginTop: '10px', textAlign: 'justify', fontSize: '18px', color: '#ffffff',
+                    fontWeight: 'normal', padding: '0 20px', lineHeight: '1.5', fontFamily: 'sans-serif'
+                  }}>
                     We lead in virtual mechatronics solutions, blending VR, robotics, and automation with unparalleled expertise. Choose us for seamless experiences, optimized processes, and transformative solutions, propelling your business into the future. tempor
                     </Typography>
 
@@ -476,7 +434,8 @@ const VirtualMechatronicsLab = () => {
                         sx={{ 
                             background: 'rgba(256, 256, 256, 0.1)', 
                             flexDirection: 'row', 
-                            alignItems: 'center'
+                            alignItems: 'center',
+                            alignContent:'Justify'
                         }}
                         >
                         <i className="fa fa-check text-white" style={{ fontSize: '24px', marginRight: '16px' }}></i>
@@ -509,23 +468,12 @@ const VirtualMechatronicsLab = () => {
                     backgroundColor: 'light grey',  // Background color
                     textAlign: 'center',  // Center the content
                 }}>
-                <Button 
-                        variant="outlined" 
-                        sx={{ 
-                            borderColor: 'grey.400', // Set border color to grey
-                            borderRadius: '9999px', // Make the button fully rounded
-                            color: 'primary.main',
-                        }} 
-                        className="px-6 py-2 mb-8"
-                    >
-                    Projects
-                    </Button>
                     <Typography variant="h4" className="mb-8" sx={{ color: '#14183e', fontWeight:'bold' }}>
                         Explore Our Recent 
                         <br></br>Projects
                     </Typography>
                     <Grid container spacing={4}>
-                        <ProjectItem
+                        <ProjectItem sx={{padding:'50px,0'}}
                         imgSrc={pic1}
                          title="Robotic Automation"
                          description="Management of software robots that emulate human actions interacting with digital systems and software."
@@ -547,110 +495,132 @@ const VirtualMechatronicsLab = () => {
 
             {/* Testimonial Section */}
             <Box className="container-xxl py-12">
-                <Box className="container mx-auto"
-                sx={{ 
-                    padding: '50px 0',  // Padding around the section
-                    backgroundColor: 'white',  // Background color
-                    textAlign: 'center',  // Center the content
-                }}>
-                    <Grid container spacing={5}>
-                        <Grid item xs={12} md={5}>
-                        <Button 
-                        variant="outlined" 
-                        sx={{ 
-                            borderColor: 'grey.400', // Set border color to grey
-                            borderRadius: '9999px', // Make the button fully rounded
-                            color: 'primary.main',
-                            padding:'0 20px'
-                        }} 
-                        className="px-6 py-2 mb-8"
+            <Box
+                className="container mx-auto"
+                sx={{
+                padding: '50px 0', // Padding around the section
+                backgroundColor: 'white', // Background color
+                textAlign: 'center', // Center the content
+                }}
+            >
+                <Grid container spacing={5}>
+                {/* Left Grid (Text) */}
+                <Grid
+                    item
+                    xs={12}
+                    md={5}
+                    sx={{
+                    borderRight: { md: '2px solid #ddd' }, // Add border on the right of the left grid for larger screens
+                    paddingRight: '20px', // Add padding to the right to give space before the border
+                    }}
+                >
+                    <Typography
+                    variant="h4"
+                    className="mb-4"
+                    sx={{ color: '#14183e', fontWeight: 'bold' }}
                     >
-                       Testimonials
+                    What Our Sponsors & <br />
+                    Partners Say!
+                    </Typography>
+                    <Typography
+                    className="mb-4"
+                    sx={{
+                        marginTop: '10px',
+                        textAlign: 'justify',
+                        fontSize: '18px',
+                        color: 'rgb(85,85,85)',
+                        fontWeight: 'normal',
+                        padding: '0 20px',
+                        lineHeight: '1.5',
+                        fontFamily: 'sans-serif',
+                    }}
+                    >
+                    The virtual mechatronics lab has had the great pleasure of engaging with sponsors and partners. Here are the words they have to say.
+                    </Typography>
+                    <Button
+                    variant="contained"
+                    color="primary"
+                    className="rounded-full px-6 py-2"
+                    sx={{ borderRadius: '9999px', marginRight: '10px' }}
+                    >
+                    Read More
                     </Button>
-                            <Typography variant="h4" className="mb-4"sx={{ color: '#14183e', fontWeight:'bold' }}>
-                                What Our Sponsors &
-                                <br></br>
-                                 Partners Say!
-                            </Typography>
-                            <Typography className="mb-4"
-                             sx={{ 
-                                marginTop: '10px',
-                                textAlign:'justify',
-                                fontSize:'18px',
-                                fontFamily:'Open Sans,sans-serif',
-                                color:'rgb(85,85,85)',
-                                fontWeight:'400',
-                                padding:'0 20px',
-                                lineHeight:'24px'}}>
-                                The virtual mechatronics lab has had the great pleasure of engaging with sponsors and partners. Here are the words they have to say.
-                            </Typography>
-                            <Button variant="contained" color="primary" className="rounded-full px-6 py-2" sx={{borderRadius: '9999px',marginRight:'10px'}}>
-                                Read More
-                            </Button>
-                        </Grid>
-                        <Grid item xs={12} md={7}>
-                        <Grid item xs={12} md={7}>
-                            <Box
-                                className="border-l-4 border-primary pl-4"
-                                sx={{ 
-                                    padding: '50px 0',  // Padding around the section
-                                    backgroundColor: 'white',  // Background color
-                                    textAlign: 'left',  // Align text to the left
-                                }}
-                            >
-                                {/* Quotation Icon */}
-                                <i
-                                    className="fa fa-quote-left fa-2x text-primary mb-3"
-                                    style={{ color: '#1363c6', float: 'left', marginRight: '10px' }}  // Move the icon to the left and make it blue
-                                ></i>
+                </Grid>
 
-                                {/* Quotation Text */}
-                                <Typography 
-                                    variant="h5" 
-                                    className="italic text-gray-700"
-                                    sx={{ 
-                                        marginTop: '10px',
-                                        textAlign: 'justify',
-                                        fontFamily: 'Open Sans, sans-serif',
-                                        color: 'rgb(85, 85, 85)',
-                                        fontWeight: 'normal',
-                                        padding: '0 20px',
-                                    }}
-                                >
-                                    Partnering with a Virtual Mechatronics Lab can be a powerful way to achieve various business goals.
-                                </Typography>
+                {/* Right Grid (Testimonial) */}
+                <Grid item xs={12} md={7}>
+                <Grid item xs={12} md={7}>
+                    <Box
+                    className="border-l-4 border-primary pl-4"
+                    sx={{
+                        padding: '50px 0', // Padding around the section
+                        backgroundColor: 'white', // Background color
+                        textAlign: 'left', // Align text to the left
+                    }}
+                    >
+                    {/* Quotation Icon */}
+                    <i
+                        className="fa fa-quote-left fa-2x text-primary mb-3"
+                        style={{
+                        color: '#1363c6',
+                        float: 'left',
+                        marginRight: '10px',
+                        }} // Move the icon to the left and make it blue
+                    ></i>
 
-                                {/* Profile Picture and Details */}
-                                <Box 
-                                    className="flex items-center mt-4"
-                                    sx={{
-                                        display: 'flex',  // Use flexbox to align items horizontally
-                                        alignItems: 'center',  // Vertically align items in the center
-                                    }}
-                                >
-                                    <img
-                                        className="w-16 h-16"
-                                        src={prof}
-                                        alt="Prof. Eng. Jean Bosco"
-                                        style={{
-                                            borderRadius: '50%',
-                                            width: '64px', 
-                                            height: '64px',  
-                                            objectFit: 'cover',  
-                                            marginRight: '10px',  
-                                        }}
-                                    />
-                                    <Box>
-                                        <Typography variant="h6" sx={{ color: '#14183e', fontWeight:'bold' }}>Prof. Eng. Jean Bosco</Typography>
-                                        <Typography variant="body1">University Professor</Typography>
-                                    </Box>
-                                </Box>
-                            </Box>
-                        </Grid>
-                    </Grid>
-                    </Grid>
-                </Box>
+                    {/* Quotation Text */}
+                    <Typography
+                        variant="h5"
+                        className="italic text-gray-700"
+                        sx={{
+                        marginTop: '10px',
+                        textAlign: 'justify',
+                        fontFamily: 'Open Sans, sans-serif',
+                        color: 'rgb(85, 85, 85)',
+                        fontWeight: 'normal',
+                        padding: '0 20px',
+                        }}
+                    >
+                        Partnering with a Virtual Mechatronics Lab can be a powerful way to achieve various business goals.
+                    </Typography>
+
+                    {/* Profile Picture and Details */}
+                    <Box
+                        className="flex items-center mt-4"
+                        sx={{
+                        display: 'flex', // Use flexbox to align items horizontally
+                        alignItems: 'center', // Vertically align items in the center
+                        }}
+                    >
+                        <img
+                        className="w-20 h-20" // Increase size here
+                        src={prof}
+                        alt="Prof. Eng. Jean Bosco"
+                        style={{
+                            borderRadius: '50%',
+                            width: '80px', // Increase width
+                            height: '80px', // Increase height
+                            objectFit: 'cover',
+                            marginRight: '10px',
+                        }}
+                        />
+                        <Box>
+                        <Typography
+                            variant="h6"
+                            sx={{ color: '#14183e', fontWeight: 'bold' }}
+                        >
+                            Prof. Eng. Jean Bosco
+                        </Typography>
+                        <Typography variant="body1">University Professor</Typography>
+                        </Box>
+                    </Box>
+                    </Box>
+                </Grid>
+                </Grid>
+                </Grid>
             </Box>
+            </Box>
+
         </div>
     );
 };
@@ -711,7 +681,11 @@ const FeatureList = () => (
             'Immersive learning experiences through innovative integration',
             'Streamlined processes for enhanced educational efficiency',
         ].map((feature, index) => (
-            <Typography key={index} variant="body1" sx={{ display: 'flex', alignItems: 'center', mb: 2, justifyContent: 'flex-start' }}>
+            <Typography 
+                key={index} 
+                variant="body1" 
+                sx={{ display: 'flex', alignItems: 'center', mb: 2, justifyContent: 'flex-start' }}
+            >
                 <Box 
                     sx={{ 
                         bgcolor: 'white', 
@@ -722,18 +696,19 @@ const FeatureList = () => (
                         display: 'flex', 
                         alignItems: 'center', 
                         justifyContent: 'center', 
-                        mr: 3 // Increase margin right for more spacing between icon and text
+                        marginRight: 0.5, // Slight margin to keep a small gap
                     }}
                 >
                     <i className="fa fa-check"></i>
                 </Box>
-                <Box sx={{ flex: 1 }}>
+                <Box sx={{ flex: 1, marginLeft: 0.5 }}> {/* Decreased marginLeft to reduce space */}
                   {feature}
                 </Box>
             </Typography>
         ))}
     </>
-  );
+);
+
   
   
 const AnimatedNumber = ({ endNumber }) => {
@@ -806,8 +781,9 @@ const ProjectItem = ({ imgSrc, title, description }) => (
                         borderRadius: '4px',  // Curved margins
                         display: 'inline-block',  // Ensure the background fits the text
                         marginBottom: '8px',
-                        marginLeft:'0px',
+                        marginLeft:'-40px',
                         textAlign:'justify',  // Space below the title
+
                     }}
                 >
                     {title}
@@ -821,7 +797,9 @@ const ProjectItem = ({ imgSrc, title, description }) => (
                         marginBottom: '18px',
                         fontWeight:'700',
                         textAlign:'justify',
-                        marginLeft:'0px'
+                        marginLeft:'20px',
+                        alignText:'center',
+                        marginRight:'20px',
                     }}
                 >
                     {description}
@@ -834,7 +812,7 @@ const ProjectItem = ({ imgSrc, title, description }) => (
                         borderRadius: '50%',  // Make the button circular
                         minWidth: '50px',  // Minimum width to keep it circular
                         height: '50px',  // Height to match the width
-                        marginLeft: '0px',  // Move the button to the left a little
+                        marginLeft: '20px',  // Move the button to the left a little
                         marginRight: 'auto',
                         display: 'flex',
                         justifyContent: 'center',
