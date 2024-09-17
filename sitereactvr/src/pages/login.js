@@ -21,30 +21,18 @@ const Login = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }} // Start state: Hidden and slightly below
         animate={{ opacity: 1, y: 0 }} // End state: Fully visible and in position
-        transition={{ duration: 0.6 }} // Animation duration
+        transition={{ duration: 2.0 }} // Animation duration
         style={{ width: '100%', maxWidth: '400px' }}
       >
-        <Box sx={{ p: 4, boxShadow: 20, borderRadius: 2, backgroundColor: 'rgba(244,247,258,260)' }}>
+        <Box sx={{ p: 4, boxShadow: 20, borderRadius: 2, backgroundColor: 'rgba(244,247,260,262)' }}>
           
           {/* Form Heading */}
-          <Button 
-            variant="outlined" 
-            sx={{ 
-                borderColor: 'grey.400', // Set border color to grey
-                borderRadius: '9999px', // Make the button fully rounded
-                color: 'primary.main',
-                marginTop:'0px',
-                marginBottom:'20px'
-            }} 
-            className="mb-2"
-        >
-        log in
-        </Button>
+          <Typography variant='h5'sx={{fontWeight:'bold',color:'#14183e'}}>Log in</Typography>
 
           {/* Email/Username Input */}
           <TextField
             fullWidth
-            label="Email/Username"
+            label="Email"
             variant="outlined"
             sx={{ mb: 2 }}
             InputProps={{
