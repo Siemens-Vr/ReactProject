@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,9 +11,10 @@ import MenuItem from '@mui/material/MenuItem';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { Tooltip } from '@mui/material';
-import AccountCircle from '@mui/icons-material/AccountCircle'; 
+import AccountCircle from '@mui/icons-material/AccountCircle';
 import logo from '../../assets/Virtual Mechatronics Lab Logo V2-01.png';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom'; // Import NavLink from react-router-dom
+import { BiBorderRadius } from 'react-icons/bi';
 
 const pages = [
   { name: 'Home', path: '/' },
@@ -27,7 +28,8 @@ const pages = [
 
 export default function Header() {
   const [anchorElNav, setAnchorElNav] = useState(null);
-  const [anchorElUser, setAnchorElUser] = useState(null); 
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track if user is logged in
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
@@ -43,10 +45,24 @@ export default function Header() {
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
-  
+
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false); // Set login state to false
+    setAnchorElUser(null); // Close user menu
+    // Logic to handle logout (e.g., clear auth tokens)
+    alert('Logged out successfully');
+  };
+
+  useEffect(() => {
+    const user = localStorage.getItem('user'); // Check if user is logged in (placeholder logic)
+    if (user) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   return (
     <AppBar position="static">
@@ -104,52 +120,70 @@ export default function Header() {
           <Box sx={{ display: 'flex' }}>
             {pages.map((page) => (
               <Button key={page.name} color="inherit">
-                <Link to={page.path} style={{ textDecoration: 'none', color: 'inherit' }}>
+                <NavLink
+                  to={page.path}
+                  style={({ isActive }) => ({
+                    textDecoration: isActive ? 'underline' : 'none', // Underline if the route is active
+                    color: 'inherit', // Keep the text color
+                  })}
+                >
                   {page.name}
-                </Link>
+                </NavLink>
               </Button>
             ))}
           </Box>
         )}
 
-        {/* User Account Section */}
+        {/* Account and logout when user is logged in */}
         <Box>
-          <IconButton
-            size="large"
-            edge="end"
-            aria-label="account"
-            aria-controls="user-menu-appbar"
-            aria-haspopup="true"
-            onClick={handleOpenUserMenu}
-            color="inherit"
-          >
-            <AccountCircle />
-          </IconButton>
+          {!isLoggedIn ? (
+            <>
+              <Button color="inherit">
+                <NavLink
+                  to="/login"
+                  style={({ isActive }) => ({
+                    textDecoration: isActive ? 'underline' : 'none',
+                    color: 'inherit',
+                                    })}
+                >
+                  Login
+                </NavLink>
+              </Button>
+              <Button color="inherit">
+                <NavLink
+                  to="/signup"
+                  style={({ isActive }) => ({
+                    textDecoration: isActive ? 'underline' : 'none',
+                    color: 'inherit',
+                  })}
+                >
+                  Signup
+                </NavLink>
+              </Button>
+            </>
+          ) : (
+            <IconButton onClick={handleOpenUserMenu} color="inherit">
+              <AccountCircle />
+            </IconButton>
+          )}
+
           <Menu
-            id="user-menu-appbar"
-            anchorEl={anchorElUser} // Use the correct state for the anchor element
-            anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-            open={Boolean(anchorElUser)} // Check if the user menu is open
-            onClose={handleCloseUserMenu} // Handle closing the user menu
+            anchorEl={anchorElUser}
+            open={Boolean(anchorElUser)}
+            onClose={handleCloseUserMenu}
           >
             <MenuItem onClick={handleCloseUserMenu}>
-              <Link to="/login" style={{ textDecoration: 'none', color: 'inherit' }}>
-                Login
-              </Link>
+              <NavLink
+                to="/profile"
+                style={({ isActive }) => ({
+                  textDecoration: isActive ? 'underline' : 'none',
+                  color: 'inherit',
+                })}
+              >
+                Profile
+              </NavLink>
             </MenuItem>
-            {/* <MenuItem onClick={handleCloseUserMenu}>
-              <Link to="/signup" style={{ textDecoration: 'none', color: 'inherit' }}>
-                Signup
-              </Link>
-            </MenuItem> */}
+            <MenuItem onClick={handleLogout}>Logout</MenuItem> {/* Logout option */}
           </Menu>
         </Box>
       </Toolbar>
