@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Button, Container, Typography } from "@mui/material";
-import { Icon } from '@mui/material';
+import Icon from '@mui/material/Icon';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';

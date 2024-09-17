@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button,Typography, Grid, Box,  } from '@mui/material';
+import { Button,Typography, Grid, Box } from '@mui/material';
 // import { FaCheck } from 'react-icons/fa';
 import Pic1 from '../assets/img/pic1.png'
 import pic2 from '../assets/img/project1.png';

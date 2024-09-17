@@ -11,7 +11,6 @@ import Login from '../login';
 import SignUp from '../Signup';
 import Footer from '../../components/Footer/Footer';
 import Partners from '../../components/Partners/Partners';
-// import { Home } from '@mui/icons-material';
 
 function App() {
   return (
