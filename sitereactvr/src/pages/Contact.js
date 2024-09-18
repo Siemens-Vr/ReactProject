@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Box, Container, Typography } from "@mui/material";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -16,9 +15,7 @@ const Contact = () => {
             textAlign: 'center',
             alignContent:'center'
          }}>
-            <Typography variant='h4'sx={{fontWeight:'bold',color:'#14183e'}}>CONTACT US</Typography>
-          <Typography variant="h5" className="mb-4"
-            <Typography variant='h4'sx={{fontWeight:'bold',color:'#14183e'}}>CONTACT US</Typography>
+          <Typography variant='h4'sx={{fontWeight:'bold',color:'#14183e'}}>CONTACT US</Typography>
           <Typography variant="h5" className="mb-4"
           sx={{ 
             marginTop: '10px',
@@ -29,7 +26,6 @@ const Contact = () => {
             alignContent:'center',}}>
             If You Have Any Query, 
           </Typography>
-          <Typography variant="h5" className="mb-4"
           <Typography variant="h5" className="mb-4"
           sx={{ 
             marginTop: '10px',
