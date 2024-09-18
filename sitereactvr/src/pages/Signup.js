@@ -3,6 +3,7 @@ import { Box, Button, TextField, Typography, IconButton, MenuItem } from '@mui/m
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { motion } from 'framer-motion'; // For smooth form slide-in animation
 import { useNavigate, Link } from 'react-router-dom';
+import SendLoginForm from '../components/sendForm/SendFormLogin';
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,6 +15,9 @@ const Signup = () => {
   const [emailError, setEmailError] = useState(''); // New state to handle email error
   const [passwordError, setPasswordError] = useState(''); // New state for password error
   const [confirmPasswordError, setConfirmPasswordError] = useState(''); // New state for confirm password error
+  const [formData, setFormData] = useState({ name: '', LastName: '', gender: '', age: 0, company: '', password: ''});
+  const { submitForm, loading, error, success } = SendLoginForm('http://localhost:5002/users');
+
 
   const handleClickShowPassword = () => setShowPassword(!showPassword);
   const handleClickShowConfirmPassword = () => setShowConfirmPassword(!showConfirmPassword);
@@ -81,6 +85,18 @@ const Signup = () => {
     setErrorMessage('');
     alert('Signup successful!');
     navigate('/login'); // Redirect after signup
+  };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    submitForm(formData);
   };
 
   return (
@@ -217,7 +233,10 @@ const Signup = () => {
             }}
           >
             Sign Up
+            {loading ? 'Submitting...' : 'Submit'}
           </Button>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+          {success && <p style={{ color: 'green' }}>{success}</p>}
 
           {/* Already Have an Account? */}
           <Typography variant="h6" sx={{ textAlign: 'center', mt: 2 }}>
