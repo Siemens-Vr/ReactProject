@@ -64,7 +64,30 @@ const Signup = () => {
     }
   };
 
-  const handleSignup = async () => {
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleChangePwd = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+    setPassword(e.target.value);
+  };
+
+  const handleChangeEmail = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+    setEmail(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
     if (!validateEmail(email)) {
       setEmailError('Please enter a valid email address.');
       return;
@@ -81,22 +104,13 @@ const Signup = () => {
       setConfirmPasswordError('Passwords do not match.');
       return;
     }
+    
+    e.preventDefault();
+    submitForm(formData);
 
     setErrorMessage('');
     alert('Signup successful!');
     navigate('/login'); // Redirect after signup
-  };
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    submitForm(formData);
   };
 
   return (
@@ -116,6 +130,7 @@ const Signup = () => {
             fullWidth
             label="First Name"
             variant="outlined"
+            onChange={handleChange}
             sx={{ mb: 2, backgroundColor: '#ffffff' }}
           />
 
@@ -124,6 +139,7 @@ const Signup = () => {
             fullWidth
             label="Last Name"
             variant="outlined"
+            onChange={handleChange}
             sx={{ mb: 2, backgroundColor: '#ffffff' }}
           />
 
@@ -134,26 +150,27 @@ const Signup = () => {
             variant="outlined"
             sx={{ mb: 2, backgroundColor: '#ffffff' }}
             value={email}
-            onChange={(e) => setEmail(e.target.value)} // Update email state as user types
+            onChange={handleChangeEmail} // Update email state as user types
             onBlur={handleEmailBlur} // Validate when the user moves to the next field
             error={Boolean(emailError)} // Show error if email is invalid
             helperText={emailError} // Display error message
           />
 
           {/* Gender */}
-          <TextField select label="Gender" fullWidth variant="outlined" required sx={{ mb: 2, backgroundColor: '#ffffff' }}>
+          <TextField select label="Gender" fullWidth variant="outlined" required sx={{ mb: 2, backgroundColor: '#ffffff' }} onChange={handleChange}>
             <MenuItem value="Male">Male</MenuItem>
             <MenuItem value="Female">Female</MenuItem>
           </TextField>
 
           {/* Age */}
-          <TextField label="Age" variant="outlined" fullWidth required type="number" sx={{ mb: 2, backgroundColor: '#ffffff' }} />
+          <TextField label="Age" variant="outlined" fullWidth required type="number" sx={{ mb: 2, backgroundColor: '#ffffff' }} onChange={handleChange} />
 
           {/* Company */}
           <TextField
             fullWidth
             label="Company"
             variant="outlined"
+            onChange={handleChange}
             sx={{ mb: 2, backgroundColor: '#ffffff' }}
           />
 
@@ -165,7 +182,7 @@ const Signup = () => {
             variant="outlined"
             sx={{ mb: 2, backgroundColor: '#ffffff' }}
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handleChangePwd}
             onBlur={handlePasswordBlur} // Validate password when moving to confirm password field
             error={Boolean(passwordError)} // Show error if password is invalid
             helperText={passwordError} // Display password error message
@@ -222,7 +239,7 @@ const Signup = () => {
 
           {/* Submit Button */}
           <Button
-            onClick={handleSignup}
+            onClick={handleSubmit}
             fullWidth
             variant="contained"
             color="primary"
