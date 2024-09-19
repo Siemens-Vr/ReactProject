@@ -553,7 +553,7 @@ const Sifa = () => {
                   padding: '50px 0',  // Padding around the section
                 }}>
             
-                    <Button variant="contained" backgroundColorcolor="#1363c6" className="rounded-fulls text-white px-6 py-2 mb-8" sx={{ borderRadius: '9999px', fontSize:'24px'}}>
+                    <Button variant="contained"  className="rounded-fulls text-white px-6 py-2 mb-8" sx={{ borderRadius: '9999px', fontSize:'24px', backgroundColorcolor:'#1363c6'}}>
                         INTEGRATION AND IMPACT
                     </Button>
                     <Grid container spacing={5}sx={{padding:'20px', backgroundColor: 'white', 

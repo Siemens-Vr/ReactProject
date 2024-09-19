@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -261,7 +260,7 @@ const VirtualMechatronicsLab = () => {
                     backgroundColor: 'rgba(244,247,254,255)',  // Background color
                     textAlign: 'center',  // Center the content
                 }}>
-                    <Button variant="contained" backgroundColorcolor="#1363c6" className="rounded-fulls text-white px-6 py-2 mb-8" sx={{ borderRadius: '9999px',}}>
+                    <Button variant="contained" backgroundColor="#1363c6" className="rounded-fulls text-white px-6 py-2 mb-8" sx={{ borderRadius: '9999px',}}>
                         Here is a deep dive into the aspects of our virtual mechatronics Lab
                     </Button>
                     <Grid container spacing={5}sx={{padding:'20px'}}>

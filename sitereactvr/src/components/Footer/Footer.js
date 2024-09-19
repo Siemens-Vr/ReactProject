@@ -27,7 +27,7 @@ const Footer = () => {
           </Tooltip>
           <Typography mb={0} sx={{ color: 'rgba(255,255,255,.5)' }}>Unlocking the potential: Virtually</Typography>
         </Grid>
-        <Grid item md={6} lg={3} space-y-5 sx={{alignContent:'justify'}}>
+        <Grid item md={6} lg={3} className='space-y-5' sx={{alignContent:'justify'}}>
           <Typography variant="h4" sx={{ color: '#FFFFFF' }} fontFamily={'Font Awesome 5 Free'} className="mb-4 ">Get in touch</Typography>
           <Typography  sx={{color:'rgba(255,255,255,.5)'}}>
             <i  className="fa fa-map-marker-alt me-3"></i>
