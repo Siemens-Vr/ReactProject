@@ -3,7 +3,8 @@ import { Box, Button, TextField, Typography, IconButton, MenuItem } from '@mui/m
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { motion } from 'framer-motion'; 
 import { useNavigate, Link } from 'react-router-dom';
-import SendLoginForm from '../components/sendForm/sendFormLogin';
+import SendFormLogin from '../components/sendForm/SendFormLogin';
+
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,7 +26,7 @@ const Signup = () => {
   const [genderError, setGenderError] = useState('');
   const [ageError, setAgeError] = useState('');
   const [companyError, setCompanyError] = useState('');
-  const { submitForm, loading, error, success } = SendLoginForm('http://localhost:5002/users');
+  const { submitForm, loading, error, success } = SendFormLogin('http://localhost:5002/users');
 
   const handleClickShowPassword = () => setShowPassword(!showPassword);
   const handleClickShowConfirmPassword = () => setShowConfirmPassword(!showConfirmPassword);

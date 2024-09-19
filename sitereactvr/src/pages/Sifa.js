@@ -47,15 +47,23 @@ const services = [
 ];
 const accordionItems = [
   {
-      title: 'Comprehensive Skills Development',
-      content: (
-          <>
-              <Typography variant="h6" fontWeight="500">SIFA Framework:</Typography>
-              <p>Provides the overarching structure and support for vocational and technical training across Africa.</p>
-              <Typography variant="h6" fontWeight="500">Siemens Centre:</Typography>
-              <p>Delivers high-quality mechatronics training and Certification, ensuring that students gain relevant, industry-standard skills.</p>
-          </>
-      ),
+    title: 'Comprehensive Skills Development',
+    content: (
+      <Box>
+        <Box mb={2}>
+          <Typography variant="body1" fontWeight="500">SIFA Framework:</Typography>
+          <Typography variant="body1">
+            Provides the overarching structure and support for vocational and technical training across Africa.
+          </Typography>
+        </Box>
+        <Box>
+          <Typography variant="body1" fontWeight="500">Siemens Centre:</Typography>
+          <Typography variant="body1">
+            Delivers high-quality mechatronics training and Certification, ensuring that students gain relevant, industry-standard skills.
+          </Typography>
+        </Box>
+      </Box>
+    ),
   },
 ];
 const accordionItems1 = [
@@ -63,8 +71,10 @@ const accordionItems1 = [
       title: 'Industry-Related Training',
       content: (
           <>
-              <Typography variant="h6" fontWeight="500">Alignment with Market Needs:</Typography>
-              <p>Ensures that training programs meet the current and future needs of the job market, improving graduatesâ€™ employability and readiness for modern roles.</p>
+              <Typography variant="body1" fontWeight="500">Alignment with Market Needs:</Typography>
+              <Typography variant="body1">
+                Ensures that training programs meet the current and future needs of the job market, improving graduatesâ€™ employability and readiness for modern roles.
+                </Typography>
           </>
       ),
   },
@@ -74,8 +84,10 @@ const accordionItems2 = [
       title: 'Enhanced Learning Experience',
       content: (
           <>
-              <Typography variant="h6" fontWeight="500">Integration of Technology:</Typography>
-              <p>Combines traditional hands-on training with innovative virtual reality experiences, providing a well-rounded education that prepares students for the evolving technological landscape.</p>
+              <Typography variant="body1" fontWeight="500">Integration of Technology:</Typography>
+              <Typography variant="body1">
+                Combines traditional hands-on training with innovative virtual reality experiences, providing a well-rounded education that prepares students for the evolving technological landscape.
+              </Typography>
           </>
       ),
   },
@@ -85,10 +97,14 @@ const accordionItems3 = [
       title: 'Economic and Regional Development',
       content: (
           <>
-              <Typography variant="h6" fontWeight="500">Boosting Employability:</Typography>
-              <p>By equipping young people with relevant skills, the initiative contributes to economic growth and addresses unemployment challenges in the region.</p>
-              <Typography variant="h6" fontWeight="500">Setting Standards:</Typography>
-              <p>Demonstrates how integrating advanced technologies and international standards into educational programs can enhance their quality and impact..</p>
+              <Typography variant="body1" fontWeight="500">Boosting Employability:</Typography>
+              <Typography variant="body1">
+                By equipping young people with relevant skills, the initiative contributes to economic growth and addresses unemployment challenges in the region.
+                </Typography>
+              <Typography variant="body1" fontWeight="500">Setting Standards:</Typography>
+              <Typography variant="body1">
+                Demonstrates how integrating advanced technologies and international standards into educational programs can enhance their quality and impact.
+                </Typography>
           </>
       ),
   },
@@ -556,8 +572,8 @@ const Sifa = () => {
                     <Button variant="contained"  className="rounded-fulls text-white px-6 py-2 mb-8" sx={{ borderRadius: '9999px', fontSize:'24px', backgroundColorcolor:'#1363c6'}}>
                         INTEGRATION AND IMPACT
                     </Button>
-                    <Grid container spacing={5}sx={{padding:'20px', backgroundColor: 'white', 
-                        // padding: '10px', 
+                    <Grid container spacing={5}sx={{padding:'20px', 
+                        backgroundColor: 'white', 
                         justifyContent: 'center',  // Center the grid items horizontally
                         alignItems: 'center',  // Center the grid items vertically
                      
@@ -575,37 +591,48 @@ const Sifa = () => {
     </div>
   );
 };
+
 const FeatureList = () => (
   <>
-      {[
-          'Immersive Simulations: Uses virtual reality to create interactive and immersive simmulations of mechatronics systems and processes.',
-          'Hands-0n Training: Provides practical, experiental learning opportunities without the need for physical equipment.',
-          'Innovative Learning: Incorprates advanced VR technology into education, preparing students for future roles in industries.',
-      ].map((feature, index) => (
-          <Typography key={index} variant="body1" sx={{ display: 'flex', alignItems: 'center', mb: 2 ,marginLeft:'50px', justifyContent: 'flex-start'}}>
-              <Box 
-                  sx={{ 
-                      bgcolor: 'white', 
-                      color: '#1363C6', 
-                      borderRadius: '50%', 
-                      width: 32, 
-                      height: 32, 
-                      marginLeft:'18px',
-                      display: 'flex',  
-                      justifyContent: 'center', 
-                      mr: 3 // Margin right for spacing between icon and text
-                  }}
-              >
-                  <i className="fa fa-check"></i>
-              </Box>
-              <Box sx={{ flex: 1 }}>
-              {feature}
-              </Box>
-          </Typography>
-          
-      ))}
+    {[
+      'Immersive Simulations: Uses virtual reality to create interactive and immersive simulations of mechatronics systems and processes.',
+      'Hands-on Training: Provides practical, experiential learning opportunities without the need for physical equipment.',
+      'Innovative Learning: Incorporates advanced VR technology into education, preparing students for future roles in industries.',
+    ].map((feature, index) => (
+      <Box
+        key={index}
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          mb: 2,
+          marginLeft: '50px',
+          justifyContent: 'flex-start',
+        }}
+      >
+        <Box 
+          sx={{ 
+            bgcolor: 'white', 
+            color: '#1363C6', 
+            borderRadius: '50%', 
+            width: 32, 
+            height: 32, 
+            marginLeft: '18px',
+            display: 'flex',  
+            alignItems: 'center',
+            justifyContent: 'center', 
+            mr: 3 // Margin right for spacing between icon and text
+          }}
+        >
+          <i className="fa fa-check"></i>
+        </Box>
+        <Typography variant="body1" sx={{ flex: 1 }}>
+          {feature}
+        </Typography>
+      </Box>
+    ))}
   </>
 );
+
 const AnimatedNumber = ({ endNumber }) => {
   const { number } = useSpring({
     from: { number: 0 },
@@ -621,52 +648,56 @@ const AnimatedNumber = ({ endNumber }) => {
 };
 
 const AccordionComponent = ({ items }) => (
-  <div>
-      {items.map((item, index) => (
-          <Accordion 
-              key={index} 
-              sx={{
-                  boxShadow: 'none', // Remove box shadow
-                  border: 'none',  // Remove border
-                  backgroundColor: 'white',  // Background color
-                  '&.Mui-expanded': {
-                      backgroundColor: 'rgba(244,247,254,255)',  // Background color when expanded
-                  },
-                  // Increase accordion size
-                  width: '100%',  // Set to full width
-                  marginBottom: '20px',  // Add spacing between accordions
-              }}
-          >
-              <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  sx={{
-                      backgroundColor: 'rgba(244,247,254,255)',  // Background color for the title
-                      fontSize: '1.25rem',  // Increase font size
-                      '& .MuiAccordionSummary-content': {
-                          marginBottom: 0,  // Adjust content spacing
-                      },
-                      // Increase accordion title size
-                      padding: '20px',  // Increase padding for a larger clickable area
-                      '&.Mui-expanded': {
-                          bgcolor: '#1363c6',  // Background color when expanded
-                          color: 'white',  // Change text color to white when expanded
-                      },
-                  }}
-              >
-                  <Typography sx={{ fontWeight: 'bold', textAlign: 'justify' }}>{item.title}</Typography>
-              </AccordionSummary>
-              <AccordionDetails
-                  sx={{
-                      padding: '20px',  // Adjust padding for larger details area
-                      backgroundColor: 'white',  // Background color for details
-                      textAlign: 'justify',  // Ensure text is justified
-                  }}
-              >
-                  <Typography>{item.content}</Typography>
-              </AccordionDetails>
-          </Accordion>
-      ))}
-  </div>
+  <>
+    {items.map((item, index) => (
+      <Accordion 
+        key={index} 
+        sx={{
+          boxShadow: 'none',
+          border: 'none',
+          backgroundColor: 'white',
+          '&.Mui-expanded': {
+            backgroundColor: 'rgba(244,247,254,255)',
+          },
+          width: '100%',
+          marginBottom: '20px',
+        }}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          sx={{
+            backgroundColor: 'rgba(244,247,254,255)',
+            fontSize: '1.25rem',
+            '& .MuiAccordionSummary-content': {
+              marginBottom: 0,
+            },
+            padding: '20px',
+            '&.Mui-expanded': {
+              bgcolor: '#1363c6',
+              color: 'white',
+            },
+          }}
+        >
+          <Typography variant="h6" sx={{ fontWeight: 'bold', textAlign: 'justify' }}>
+            {item.title}
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails
+          sx={{
+            padding: '20px',
+            backgroundColor: 'white',
+            textAlign: 'justify',
+          }}
+        >
+          <Box component="div">
+            <Typography variant="body1" component="div">
+              {item.content}
+            </Typography>
+          </Box>
+        </AccordionDetails>
+      </Accordion>
+    ))}
+  </>
 );
 
 

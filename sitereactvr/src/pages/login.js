@@ -3,7 +3,7 @@ import { Box, Button, TextField, Typography, IconButton, Link as MuiLink } from 
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { motion } from 'framer-motion'; 
 import { useNavigate, Link } from 'react-router-dom';
-import SendLoginForm from '../components/sendForm/sendFormLogin';
+import SendLoginForm from '../components/sendForm/SendFormLogin';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
