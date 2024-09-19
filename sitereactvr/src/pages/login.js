@@ -1,100 +1,151 @@
 import React, { useState } from 'react';
-import { Box, Button, TextField, Typography, IconButton } from '@mui/material';
+import { Box, Button, TextField, Typography, IconButton, Link as MuiLink } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { motion } from 'framer-motion'; // For smooth form slide-in animation
+import { motion } from 'framer-motion'; 
+import { useNavigate, Link } from 'react-router-dom';
+import SendLoginForm from '../components/sendForm/sendFormLogin';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const { submitForm, loading, error, success } = SendLoginForm('http://localhost:5002/users/login');
 
-  const handleClickShowPassword = () => {
-    setShowPassword(!showPassword);
+  const navigate = useNavigate();
+
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
+  const handleMouseDownPassword = (event) => event.preventDefault();
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
   };
 
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
+  const validateFields = () => {
+    let isValid = true;
+
+    if (!email) {
+      setEmailError('Email is required.');
+      isValid = false;
+    } else if (!validateEmail(email)) {
+      setEmailError('Please enter a valid email address.');
+      isValid = false;
+    } else {
+      setEmailError('');
+    }
+
+    if (!password) {
+      setPasswordError('Password is required.');
+      isValid = false;
+    } else {
+      setPasswordError('');
+    }
+
+    return isValid;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (validateFields()) {
+      submitForm({ email, password });
+      console.log({ email, password });
+
+      // Handle successful login here
+      // For example, you might want to redirect the user or update the app state
+      if (success) {
+        navigate('/dashboard');
+      }
+    }
   };
 
   return (
-    <Box className="login-page" sx={{ minHeight: '70vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      
-      {/* Smooth Slide-In Animation */}
+    <Box className="login-page" sx={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <motion.div
-        initial={{ opacity: 0, y: 20 }} // Start state: Hidden and slightly below
-        animate={{ opacity: 1, y: 0 }} // End state: Fully visible and in position
-        transition={{ duration: 2.0 }} // Animation duration
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 2.0 }}
         style={{ width: '100%', maxWidth: '400px' }}
       >
         <Box sx={{ p: 4, boxShadow: 20, borderRadius: 2, backgroundColor: 'rgba(244,247,260,262)' }}>
-          
-          {/* Form Heading */}
-          <Typography variant='h5'sx={{fontWeight:'bold',color:'#14183e'}}>Log in</Typography>
+          <Typography variant="h5" sx={{ fontWeight: 'bold', color: '#14183e', mb: 2 }}>Log In</Typography>
 
-          {/* Email/Username Input */}
-          <TextField
-            fullWidth
-            label="Email"
-            variant="outlined"
-            sx={{ mb: 2 }}
-            InputProps={{
-              sx: {
-                backgroundColor:'#ffffff',
-                transition: 'border-color 0.3s ease', // Focus animation (Form Field Focus Animation)
-                '&:focus-within': { borderColor: 'primary.main', boxShadow: '0 0 5px rgba(0, 123, 255, 0.5)' },
-              },
-            }}
-          />
+          {/* <form onSubmit={handleSubmit}> */}
+            <TextField
+              fullWidth
+              label="Email"
+              variant="outlined"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              error={Boolean(emailError)}
+              helperText={emailError}
+              sx={{ mb: 2, backgroundColor: '#ffffff' }}
+            />
 
-          {/* Password Input with Toggle Animation */}
-          <TextField
-            fullWidth
-            label="Password"
-            type={showPassword ? 'text' : 'password'}
-            variant="outlined"
-            sx={{ mb: 2,backgroundColor:'#ffffff', }}
-            InputProps={{
-              endAdornment: (
-                <IconButton
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  sx={{
-                    transition: 'transform 0.3s ease', // Password Toggle Animation (Rotation)
-                    '&:hover': { transform: 'rotate(180deg)' },
-                  }}
-                >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              ),
-              sx: {
-                transition: 'border-color 0.3s ease',
-                '&:focus-within': { borderColor: 'primary.main', boxShadow: '0 0 5px rgba(0, 123, 255, 0.5)' },
-              },
-            }}
-          />
+            <TextField
+              fullWidth
+              label="Password"
+              type={showPassword ? 'text' : 'password'}
+              variant="outlined"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              error={Boolean(passwordError)}
+              helperText={passwordError}
+              sx={{ mb: 2, backgroundColor: '#ffffff' }}
+              InputProps={{
+                endAdornment: (
+                  <IconButton
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    sx={{
+                      transition: 'transform 0.3s ease',
+                      '&:hover': { transform: 'rotate(180deg)' },
+                    }}
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                ),
+              }}
+            />
 
-          {/* Forgot Password Link */}
-          <Typography variant="h6" sx={{ textAlign: 'right', mb: 2 }}>
-            <a href="/forgot-password" style={{ textDecoration: 'none', color: '#007BFF' }}>Forgot Password?</a>
-          </Typography>
+            <Button
+              variant="contained"
+              type="submit"
+              color="primary"
+              fullWidth
+              sx={{ mt: 2, py: 1.5, fontWeight: 'bold', fontSize: '1rem' }}
+            >
+              Log In
+            </Button>
+          {/* </form> */}
 
-          {/* Submit Button with Hover Effects */}
-          <Button
-            fullWidth
-            variant="contained"
-            color="primary"
-            sx={{
-              py: 1.5,
-              transition: 'transform 0.3s ease, box-shadow 0.3s ease', // Button Hover Effect (Scaling and Shadow)
-              '&:hover': { transform: 'scale(1.05)', boxShadow: '0 5px 15px rgba(0, 123, 255, 0.4)' },
-              backgroundcolor:'#1363c6'
-            }}
-          >
-            Log In
-          </Button>
+          {error && (
+            <Typography color="error" sx={{ mt: 2 }}>
+              {error}
+            </Typography>
+          )}
 
-          {/* Don't Have an Account? */}
-          <Typography variant="h6" sx={{ textAlign: 'center', mt: 2 }}>
-            Don’t have an account? <a href="/signup" style={{ textDecoration: 'none', color: '#007BFF' }}>Sign Up</a>
-          </Typography>
+          <Box sx={{ mt: 3 }}>
+          <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
+              <MuiLink
+                component={Link}
+                to="/ForgetPassword"
+                sx={{fontSize:'h6', mt:2, color: '#007BFF', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}
+              >
+                Forgot Password?
+              </MuiLink>
+            </Box>
+            <Typography variant="h6" sx={{ align: 'center', mt: 2 }}>
+              Don't have an account?{' '}
+              <Link to="/signup" style={{ textDecoration: 'none', color: '#007BFF' }}>
+                Sign up
+              </Link>
+            </Typography>
+          </Box>
         </Box>
       </motion.div>
     </Box>
