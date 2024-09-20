@@ -41,7 +41,7 @@ const DigitalTwin =() => {
                             </Box>
                         </Grid>
                         <Grid item xs={12} md={6}>
-                            <Typography variant="h3" className="mb-4"
+                            <Typography variant="h4" className="mb-4"
                              sx={{ 
                                 marginTop: '10px',
                                 textAlign:'justify',
