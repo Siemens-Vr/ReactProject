@@ -4,7 +4,6 @@ import Header from '../../components/appBar/AppBar';
 import VideoCard from '../../components/VideoSolution/VideoCard';
 import HomePage from '../Home';
 import Products from '../Product';
-import DigitalTwin from '../Products/DigitalTwins';
 import Worldskills from '../Worldskill';
 import Sifa from '../Sifa';
 import Blog from '../Blog';
@@ -35,7 +34,6 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/product" element={<Products />} />
-        <Route path="/product/DigitalTwins" element={<DigitalTwin />} />
         <Route path="/worldskills" element={<Worldskills />} />
         <Route path="/sifa" element={<Sifa />} />
         <Route path="/contact" element={<Contact />} />

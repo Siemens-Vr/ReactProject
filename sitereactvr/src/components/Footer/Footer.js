@@ -21,14 +21,14 @@ const Footer = () => {
       <Grid container spacing={5}>
         <Grid item md={6} lg={3}>
           <Tooltip title="Logo">
-            <Typography variant="h3" sx={{ color: '#FFFFFF' }}className="mb-3 text-white">
+            <Typography variant="h3" sx={{ color: '#FFFFFF', alignContent:'justify' }}className="mb-3 text-white">
               Virtual Mechatronics
             </Typography>
           </Tooltip>
           <Typography mb={0} sx={{ color: 'rgba(255,255,255,.5)' }}>Unlocking the potential: Virtually</Typography>
         </Grid>
         <Grid item md={6} lg={3} className='space-y-5' sx={{alignContent:'justify'}}>
-          <Typography variant="h4" sx={{ color: '#FFFFFF' }} fontFamily={'Font Awesome 5 Free'} className="mb-4 ">Get in touch</Typography>
+          <Typography variant="h5" sx={{ color: '#FFFFFF' }} fontFamily={'Font Awesome 5 Free'} className="mb-4 ">Get in touch</Typography>
           <Typography  sx={{color:'rgba(255,255,255,.5)'}}>
             <i  className="fa fa-map-marker-alt me-3"></i>
             <a href="map:Nyeri-Kenya" style={{color: 'rgba(255,255,255,.5'}}>Nyeri,Kenya</a>
@@ -50,7 +50,7 @@ const Footer = () => {
                 sx={{
                   color: 'rgba(255,255,255,.5)',
                   border: '1px solid rgba(255,255,255,.1)',
-                  borderRadius: '40px',
+                  borderRadius: '50%',
                   width: '40px',
                   height: '40px',
                   display: 'flex',
@@ -58,6 +58,7 @@ const Footer = () => {
                   justifyContent: 'center',
                   transition: '.3s',
                   backgroundColor: 'transparent',
+                  mr:'10px',
                   '&:hover': {
                     backgroundColor: '#FFFFFF',
                     color: '#1DA1F2', // Twitter blue color
@@ -75,7 +76,7 @@ const Footer = () => {
                 sx={{
                   color: 'rgba(255,255,255,.5)',
                   border: '1px solid rgba(255,255,255,.1)',
-                  borderRadius: '40px',
+                  borderRadius: '50%',
                   width: '40px',
                   height: '40px',
                   display: 'flex',
@@ -83,6 +84,7 @@ const Footer = () => {
                   justifyContent: 'center',
                   transition: '.3s',
                   backgroundColor: 'transparent',
+                  mr:'10px',
                   '&:hover': {
                     backgroundColor: '#FFFFFF',
                     color: '#4267B2', // Facebook blue color
@@ -100,7 +102,7 @@ const Footer = () => {
                 sx={{
                   color: 'rgba(255,255,255,.5)',
                   border: '1px solid rgba(255,255,255,.1)',
-                  borderRadius: '40px',
+                  borderRadius: '50%',
                   width: '40px',
                   height: '40px',
                   display: 'flex',
@@ -108,6 +110,7 @@ const Footer = () => {
                   justifyContent: 'center',
                   transition: '.3s',
                   backgroundColor: 'transparent',
+                  mr:'10px',
                   '&:hover': {
                     backgroundColor: '#FFFFFF',
                     color: 'rgba(255, 0, 0, 1)' // youtube color
@@ -125,7 +128,7 @@ const Footer = () => {
                 sx={{
                   color: 'rgba(255,255,255,.5)',
                   border: '1px solid rgba(255,255,255,.1)',
-                  borderRadius: '40px',
+                  borderRadius: '50%',
                   width: '40px',
                   height: '40px',
                   display: 'flex',
@@ -133,6 +136,7 @@ const Footer = () => {
                   justifyContent: 'center',
                   transition: '.3s',
                   backgroundColor: 'transparent',
+                  mr:'10px',
                   '&:hover': {
                     backgroundColor: '#FFFFFF',
                     color: '#C13584', // Instagram blue color
@@ -150,7 +154,7 @@ const Footer = () => {
                 sx={{
                   color: 'rgba(255,255,255,.5)',
                   border: '1px solid rgba(255,255,255,.1)',
-                  borderRadius: '40px',
+                  borderRadius: '50%',
                   width: '40px',
                   height: '40px',
                   display: 'flex',
@@ -158,6 +162,7 @@ const Footer = () => {
                   justifyContent: 'center',
                   transition: '.3s',
                   backgroundColor: 'transparent',
+                  mr:'2',
                   '&:hover': {
                     backgroundColor: '#FFFFFF',
                     color: '#0077B5', // LinkedIn blue color
@@ -172,7 +177,7 @@ const Footer = () => {
           </Box>
         </Grid>
         <Grid item md={6} lg={3}>
-  <Typography variant="h4" sx={{ color: '#FFFFFF', textTransform: 'none', }} className="mb-4">
+  <Typography variant="h5" sx={{ color: '#FFFFFF', textTransform: 'none', }} className="mb-4">
     Popular Links
   </Typography>
   {[
@@ -211,7 +216,7 @@ const Footer = () => {
   ))}
 </Grid>
         <Grid item md={6} lg={3}>
-          <Typography variant="h4"sx={{ color: '#FFFFFF', textTransform: 'none', }} className="mb-4 ">Our Projects</Typography>
+          <Typography variant="h5"sx={{ color: '#FFFFFF', textTransform: 'none', }} className="mb-4 ">Our Projects</Typography>
             {[
                { label: 'Virtual Reality', url: '/projects/vr' },
                { label: 'Virtual Mechatronics', url: '/projects/mechatronics' },

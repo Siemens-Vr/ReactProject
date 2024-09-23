@@ -51,12 +51,10 @@ const Login = () => {
 
     if (validateFields()) {
       submitForm({ email, password });
-      console.log({ email, password });
+      console.log({ email});
 
-      // Handle successful login here
-      // For example, you might want to redirect the user or update the app state
       if (success) {
-        navigate('/dashboard');
+        navigate('/product');
       }
     }
   };
@@ -72,7 +70,7 @@ const Login = () => {
         <Box sx={{ p: 4, boxShadow: 20, borderRadius: 2, backgroundColor: 'rgba(244,247,260,262)' }}>
           <Typography variant="h5" sx={{ fontWeight: 'bold', color: '#14183e', mb: 2 }}>Log In</Typography>
 
-          {/* <form onSubmit={handleSubmit}> */}
+          <form onSubmit={handleSubmit}>
             <TextField
               fullWidth
               label="Email"
@@ -121,7 +119,7 @@ const Login = () => {
             >
               Log In
             </Button>
-          {/* </form> */}
+          </form>
 
           {error && (
             <Typography color="error" sx={{ mt: 2 }}>

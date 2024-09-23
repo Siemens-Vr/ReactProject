@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
+import { motion } from 'framer-motion';
 import Grid from '@mui/material/Grid';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -12,6 +13,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import imgAbout from '../assets/video/WhatsApp Video 2024-05-17 at 04.36.08_7d9da5de.mp4';
 import imgHome from '../assets/video/WhatsApp Video 2024-05-17 at 03.45.14_e18a017b.mp4';
 import choose from '../assets/img/sifa/IMG-20240519-WA0010.jpg';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import pic1 from '../assets/img/pic1.png'
 import pic2 from '../assets/img/project1.png';
 import pic3 from '../assets/img/project2.png';
@@ -20,17 +22,18 @@ import { useSpring, animated } from '@react-spring/web';
 
 
 
+
 const accordionItemsLeft = [
     {
         title: 'Integration of Advanced Simulation Technologies',
         content: (
             <>
-                <Typography variant="h6" fontWeight="500">High-Fidelity Simulations:</Typography>
-                <p>Utilize advanced simulation techniques to model complex physical phenomena with high accuracy.
-                    This includes multi-physics and fluid dynamics aspects.</p>
-                <Typography variant="h6" fontWeight="500">Real-Time Simulations:</Typography>
-                <p>Implement real-time simulation capabilities for dynamic testing of mechatronic systems.
-                    Real-Time simulationallows immediate design and control strategy development.</p>
+                <Typography variant="body1" fontWeight="bold">High-Fidelity Simulations:</Typography>
+                <Typography variant="body1" >Utilize advanced simulation techniques to model complex physical phenomena with high accuracy.
+                    This includes multi-physics and fluid dynamics aspects.</Typography>
+                <Typography variant="body1" fontWeight="bold">Real-Time Simulations:</Typography>
+                <Typography variant="body1" >Implement real-time simulation capabilities for dynamic testing of mechatronic systems.
+                    Real-Time simulationallows immediate design and control strategy development.</Typography>
             </>
         ),
     },
@@ -40,14 +43,14 @@ const accordionItemsLeft1 =[
         title: 'Digital Twin Technology',
         content: (
             <>
-                <Typography variant="h6" fontWeight="500">Dynamic Digital Twins:</Typography>
-                <p>Create dynamic digital twins that reflect real-time data from physical systems.
+                <Typography variant="body1" fontWeight="bold">Dynamic Digital Twins:</Typography>
+                <Typography variant='body1'>Create dynamic digital twins that reflect real-time data from physical systems.
                 These virtual models continuously update based on sensor inputs, providing a real-time representation of
-                system performance and behavior.</p>
-                <Typography variant="h6" fontWeight="500">Predictive Analytics:</Typography>
-                <p>Use digital twins combined with predictive analytics to forecast system performance
+                system performance and behavior.</Typography>
+                <Typography variant="body1" fontWeight="bold">Predictive Analytics:</Typography>
+                <Typography variant='body1'>Use digital twins combined with predictive analytics to forecast system performance
                  and maintenance needs. This enables proactive adjustments and optimizations based on predicted future
-                 states</p>
+                 states</Typography>
             </>
         ),
     },
@@ -57,14 +60,14 @@ const accordionItemsLeft2 =[
         title: 'Advanced Virtual Reality (VR) Integration',
         content: (
             <>
-                <Typography variant="h6" fontWeight="500">Immersive Design Environments:</Typography>
-                <p>Develop advanced VR environments where engineers and designers can
+                <Typography variant="body1" fontWeight="bold">Immersive Design Environments:</Typography>
+                <Typography variant='body1'>Develop advanced VR environments where engineers and designers can
                     interact with high-fidelity virtual models of mechatronic systems. These environments offer detailed
-                    visualizations and simulations of complex interactions.</p>
-                <Typography variant="h6" fontWeight="500">Haptic Feedback:</Typography>
-                <p>Incorporate haptic feedback into VR simulations to provide tactile sensations that mimic
+                    visualizations and simulations of complex interactions.</Typography>
+                <Typography variant="body1" fontWeight="bold">Haptic Feedback:</Typography>
+                <Typography variant='body1'>Incorporate haptic feedback into VR simulations to provide tactile sensations that mimic
                     real-world interactions. This enhances the realism of virtual interactions with mechanical components and
-                    systems.</p>
+                    systems.</Typography>
             </>
         ),
     },
@@ -74,11 +77,11 @@ const accordionItemsLeft3 =[
         title: 'Artificial Intelligence (AI) and Machine Learning',
         content: (
             <>
-                <Typography variant="h6" fontWeight="500">AI-Driven Design Optimization:</Typography>
+                <Typography variant="h6" fontWeight="bold">AI-Driven Design Optimization:</Typography>
                 <p>Use AI algorithms to automatically optimize designs based on predefined
                     criteria. Machine learning models can analyze vast amounts of data to identify design improvements and
                     predict system behavior.</p>
-                <Typography variant="h6" fontWeight="500">Intelligent Control Systems:</Typography>
+                <Typography variant="h6" fontWeight="bold">Intelligent Control Systems:</Typography>
                 <p>Implement AI-based control strategies within virtual simulations to refine and
                     optimize control algorithms for mechatronic systems. AI can help in developing adaptive controls that
                     respond to varying operational conditions.</p>
@@ -91,11 +94,11 @@ const accordionItemsLeft4 =[
         title: 'Enhanced System Integration and Testing',
         content: (
             <>
-                <Typography variant="h6" fontWeight="500">Multi-Domain Integration:</Typography>
+                <Typography variant="h6" fontWeight="bold">Multi-Domain Integration:</Typography>
                 <p>Simulate and test the integration of mechatronic systems across multiple
                     domains (mechanical, electrical, software) in a unified virtual environment. This approach helps in
                     identifying integration issues and ensuring seamless operation.</p>
-                <Typography variant="h6" fontWeight="500">Automated Testing and Validation:</Typography>
+                <Typography variant="h6" fontWeight="bold">Automated Testing and Validation:</Typography>
                 <p>Develop automated testing frameworks within virtual environments
                 to systematically evaluate system performance and validate compliance with specifications.</p>
             </>
@@ -107,10 +110,10 @@ const accordionItemsRight = [
         title: 'Collaborative Virtual Workspaces',
         content: (
             <>
-                <Typography variant="h6" fontWeight="500">Virtual Collaboration Platforms:</Typography>
-                <p>Use collaborative VR platforms to enable real-time interaction among distributed teams.</p>
-                <Typography variant="h6" fontWeight="500">Cross-Disciplinary Collaboration:</Typography>
-                <p>Facilitate collaboration between experts from different fields in integrated virtual environments.</p>
+                <Typography variant="body1" fontWeight="bold">Virtual Collaboration Platforms:</Typography>
+                <Typography variant='body1'>Use collaborative VR platforms to enable real-time interaction among distributed teams.</Typography>
+                <Typography variant="body1" fontWeight="bold">Cross-Disciplinary Collaboration:</Typography>
+                <Typography variant='body1'>Facilitate collaboration between experts from different fields in integrated virtual environments</Typography>
             </>
         ),
     },
@@ -120,13 +123,13 @@ const accordionItemsRight1 = [
         title: 'Advanced Human-Machine Interaction (HMI) Testing',
         content: (
             <>
-                <Typography variant="h6" fontWeight="500">Advanced Human-Machine Interaction (HMI) Testing:</Typography>
-                <p>Conduct detailed simulations of human-machine interactions to evaluate
+                <Typography variant="body" fontWeight="bold">Advanced Human-Machine Interaction (HMI) Testing:</Typography>
+                <Typography variant='body1'>Conduct detailed simulations of human-machine interactions to evaluate
                     user experience and ergonomics. Advanced VR environments allow for the testing of various user
-                    interfaces and control systems.</p>
-                    <Typography variant="h6" fontWeight="500">Behavioral Analysis:</Typography>
-                <p>Analyze user behavior and interactions within virtual environments to identify areas
-                    for improvement in system design and usability.</p>
+                    interfaces and control systems.</Typography>
+                    <Typography variant="h6" fontWeight="bold">Behavioral Analysis:</Typography>
+                <Typography variant='body1'>Analyze user behavior and interactions within virtual environments to identify areas
+                    for improvement in system design and usability.</Typography>
            </>
         ),
     },
@@ -136,14 +139,14 @@ const accordionItemsRight2 = [
         title: 'Integration with Internet of Things (IoT)',
         content: (
             <>
-                <Typography variant="h6" fontWeight="500">IoT-Enhanced Simulations:</Typography>
-                <p>Incorporate IoT data into virtual simulations to simulate real-world interactions
+                <Typography variant="body1" fontWeight="bold">IoT-Enhanced Simulations:</Typography>
+                <Typography variant='body1'>Incorporate IoT data into virtual simulations to simulate real-world interactions
                     between mechatronic systems and their environment. This allows for more accurate testing of systems
-                    that rely on networked sensors and devices</p>
-                    <Typography variant="h6" fontWeight="500">Remote Monitoring and Control:</Typography>
-                <p>Use virtual environments to monitor and control IoT-enabled
+                    that rely on networked sensors and devices</Typography>
+                    <Typography variant="body1" fontWeight="bold">Remote Monitoring and Control:</Typography>
+                <Typography variant='body1'>Use virtual environments to monitor and control IoT-enabled
                     mechatronic systems remotely. This provides a way to interact with and manage systems in real-time from
-                    any location.</p>
+                    any location.</Typography>
            </>
         ),
     },
@@ -153,10 +156,10 @@ const accordionItemsRight3 = [
         title: 'Augmented Reality (AR) Integration',
         content: (
             <>
-                <Typography variant="h6" fontWeight="500">AR for Maintenance and Training:</Typography>
-                <p> Combine AR with virtual mechatronics to enhance maintenance and training processes. AR can overlay virtual information onto physical systems, providing real-time guidance and interactive training experiences.</p>
-                    <Typography variant="h6" fontWeight="500">AR Visualization of Virtual Models:</Typography>
-                <p>Use AR to visualize virtual models and simulations in the context of the physical environment. This can help in understanding how virtual designs translate into real-world applications.</p>
+                <Typography variant="body1" fontWeight="bold">AR for Maintenance and Training:</Typography>
+                <Typography variant='body1'> Combine AR with virtual mechatronics to enhance maintenance and training processes. AR can overlay virtual information onto physical systems, providing real-time guidance and interactive training experiences.</Typography>
+                    <Typography variant="body1" fontWeight="bold">AR Visualization of Virtual Models:</Typography>
+                <Typography variant='body1'>Use AR to visualize virtual models and simulations in the context of the physical environment. This can help in understanding how virtual designs translate into real-world applications.</Typography>
            </>
         ),
     },
@@ -166,13 +169,13 @@ const accordionItemsRight4 = [
         title: 'Scalability and Adaptability',
         content: (
             <>
-                <Typography variant="h6" fontWeight="500">Modular Simulation Frameworks:</Typography>
-                <p> Develop modular simulation frameworks that can be easily scaled and
+                <Typography variant="body1" fontWeight="bold">Modular Simulation Frameworks:</Typography>
+                <Typography variant='body1'> Develop modular simulation frameworks that can be easily scaled and
                     adapted to different types of mechatronic systems and applications. This approach allows for flexibility
-                    and efficiency in simulation and testing.</p>
-                    <Typography variant="h6" fontWeight="500">Customizable Virtual Environments:</Typography>
-                <p>Create customizable virtual environments that can be tailored to
-                specific project requirements, allowing for more focused and relevant simulations.</p>
+                    and efficiency in simulation and testing.</Typography>
+                    <Typography variant="body1" fontWeight="bold">Customizable Virtual Environments:</Typography>
+                <Typography variant='body1'>Create customizable virtual environments that can be tailored to
+                specific project requirements, allowing for more focused and relevant simulations.</Typography>
            </>
         ),
     },
@@ -182,8 +185,13 @@ const accordionItemsRight4 = [
 
 const VirtualMechatronicsLab = () => {
     return (
-        <div className="content">
+        <div className='flex items-center justify-center h-screen bg-primary text-white text-center p-4'>
             {/* Home Section */}
+            <motion.div
+      initial={{y: 20 }} // Initial state: hidden
+      animate={{ y: 0  }} // Animated state: visible
+      transition={{ duration: 1 }} // Animation duration
+    >
             <Box className="container-fluid mt-8">
                 <Box  className="home-section"
                 sx={{ 
@@ -251,8 +259,13 @@ const VirtualMechatronicsLab = () => {
                     </Grid>
                 </Box>
             </Box>
-
+            </motion.div>
             {/* More About Section */}
+            <motion.div
+      initial={{ y: 30}} // Initial state: hidden
+      animate={{ y: 0 }} // Animated state: visible
+      transition={{ duration: 3 }} // Animation duration
+    >
             <Box className="container-fluid bg-gray-100 py-12">
                 <Box className="container mx-auto text-center"
                 sx={{ 
@@ -281,8 +294,13 @@ const VirtualMechatronicsLab = () => {
                     </Grid>
                 </Box>
             </Box>
-
+            </motion.div>
             {/* Virtual Reality Section */}
+            <motion.div
+      initial={{ y: 40 }} // Initial state: hidden
+      animate={{ y: 0 }} // Animated state: visible
+      transition={{ duration: 5 }} // Animation duration
+    >
             <Box className="container-fluid py-12">
                 <Box className="container mx-auto"
                 sx={{ 
@@ -359,107 +377,180 @@ const VirtualMechatronicsLab = () => {
                     </Grid>
                 </Box>
             </Box> 
-
+           </motion.div>
            {/* Features */}
-            <Box className="container-fluid bg-primary text-white py-12">
-            <Box className="container mx-auto" sx={{ 
-                padding: '50px 20px',  // Add horizontal padding to move content away from margin
-                backgroundColor: '#1363c6',  // Background color
-                textAlign: 'center',
-                color:'#FFFFFF'
-            }}>
-                <Grid container spacing={5}>
-                <Grid item xs={12} md={6} className="mb-8" sx={{backgroundColor:'transparent',textDecoration:'#FFFFFF',position:'relative'}} >
-                    <Typography 
-                    variant="outlined" 
-                    sx={{ 
-                        fontFamily:'16px',
-                        position: 'absolute',
-                        top: '0px',
-                        borderInline: '#ffffff', // Set border color to grey
-                        borderRadius: '9999px', // Make the button fully rounded
-                        color: '#ffffff', // Set button text color
-                        marginLeft:'10px'
-                    }} 
-                    className="px-6 py-2 mb-8"
-                    >
-                    Why choose Us
-                    </Typography>
-                    <Typography variant="h3" className="mb-4" sx={{textDecoration:'#ffffff'}}>
-                    Experience Mechatronics Excellence
-                    </Typography>
-                    <Typography className="mb-4"
-                   sx={{
-                    marginTop: '10px', textAlign: 'justify', fontSize: '18px', color: '#ffffff',
-                    fontWeight: 'normal', padding: '0 20px', lineHeight: '1.5', fontFamily: 'sans-serif'
-                  }}>
-                    We lead in virtual mechatronics solutions, blending VR, robotics, and automation with unparalleled expertise. Choose us for seamless experiences, optimized processes, and transformative solutions, propelling your business into the future. tempor
-                    </Typography>
+           <motion.div
+      initial={{ y: 50 }} // Initial state: hidden
+      animate={{ y: 0  }} // Animated state: visible
+      transition={{ duration: 7 }} // Animation duration
+    >
+           <Box className="container-fluid bg-primary text-white py-12">
+      <Box className="container mx-auto" 
+        sx={{ 
+          padding: '50px 20px',  
+          backgroundColor: '#1363c6',  
+          textAlign: 'center',
+          color:'#FFFFFF'
+      }}>
+        <Grid container spacing={5}>
+          <Grid item xs={12} md={6} className="mb-8">
+            <Typography 
+              variant="button" 
+              className="btn btn-sm border rounded-pill text-white px-3 mb-3"
+              sx={{ 
+                position: 'relative',
+                top: '0px',
+                color: '#FFFFFF', 
+                fontWeight: 'bold'
+              }}
+            >
+              Why Choose Us
+            </Typography>
+            <Typography variant="h3" className="mb-4" sx={{ textDecoration:'#ffffff' }}>
+              Experience Mechatronics Excellence
+            </Typography>
+            <Typography className="mb-4"
+              sx={{
+                marginTop: '10px', 
+                textAlign: 'justify', 
+                fontSize: '18px', 
+                color: '#FFFFFF',
+                fontWeight: 'normal', 
+                padding: '0 20px', 
+                lineHeight: '1.5', 
+                fontFamily: 'sans-serif'
+              }}
+            >
+              We lead in virtual mechatronics solutions, blending VR, robotics, and automation with unparalleled expertise. Choose us for seamless experiences, optimized processes, and transformative solutions, propelling your business into the future.
+            </Typography>
 
-                    <FeatureList />
-                    
-                    <Grid container spacing={4} pt={3}>
-                    <Grid item xs={12} sm={6}>
-                        <Box className="d-flex align-items-center rounded p-3"
-                        sx={{
-                            background: 'rgba(256, 256, 256, 0.1)',
-                            flexDirection: 'row',
-                            gap: 2, // Space between icon and text
-                            justifyContent: 'flex-start' // Align items to start of row
-                        }}
-                        >
-                        <i className="fa fa-users text-white"
-                            style={{
-                            fontSize: '24px',
-                            marginRight: '16px', // Ensure space between icon and text
-                            color: '#ffffff',
-                            fontWeight: 'bold'
-                            }}
-                        ></i>
-                        <Box className="ms-3">
-                            <Typography variant="h2" className="text-white mb-0" data-toggle="counter-up">
-                            <AnimatedNumber endNumber={9999} /> {/* Animated number here */}
-                            </Typography>
-                            <Typography className="text-white mb-0">
-                            Happy students
-                            </Typography>
-                        </Box>
-                        </Box>
-                    </Grid>
-
-                    <Grid item xs={12} sm={6}>
-                        <Box
-                        className="d-flex align-items-center rounded p-3"
-                        sx={{ 
-                            background: 'rgba(256, 256, 256, 0.1)', 
-                            flexDirection: 'row', 
-                            alignItems: 'center',
-                            alignContent:'Justify'
-                        }}
-                        >
-                        <i className="fa fa-check text-white" style={{ fontSize: '24px', marginRight: '16px' }}></i>
-                        <Box>
-                            <Typography variant="h2" className="text-white mb-0" data-toggle="counter-up">
-                            <AnimatedNumber endNumber={9999} /> {/* Animated number here */}
-                            </Typography>
-                            <Typography className="text-white mb-0">
-                            Project Complete
-                            </Typography>
-                        </Box>
-                        </Box>
-                    </Grid>
-
-                    </Grid>
-                </Grid>
-                <Grid item xs={12} md={6} className="text-center md:text-right">
-                    <img className="img-fluid rounded-lg shadow-lg" src={choose} alt="img" />
-                </Grid>
-                </Grid>
-            </Box>
+            {/* Feature List Integrated Directly */}
+            <Box className="d-flex align-items-center mb-3">
+                <Typography variant="body1" sx={{ flex: 1, color: '#FFFFFF' }}>
+              <i className="fa fa-check btn-sm-square bg-white text-primary rounded-circle me-3"
+              sx={{ 
+                bgcolor: 'white', 
+                color: 'primary.main', 
+                borderRadius: '50%', 
+                width: 32, 
+                height: 32, 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center', 
+                marginRight: 1, 
+              }}></i>
+                Unmatched expertise in virtual mechatronics education
+              </Typography>
             </Box>
 
+            <Box className="d-flex align-items-center mb-3">
+              <Box 
+                className="btn-sm-square bg-white text-primary rounded-circle me-3" 
+                sx={{ 
+                  bgcolor: 'white', 
+                  color: 'primary.main', 
+                  borderRadius: '50%', 
+                  width: 32, 
+                  height: 32, 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center', 
+                  marginRight: 1, 
+                }}
+              >
+              </Box>
+              <Typography variant="body1" sx={{ flex: 1, color: '#FFFFFF' }}>
+              <i className="fa fa-check"></i>
+                Immersive learning experiences through innovative integration
+              </Typography>
+            </Box>
 
+            <Box className="d-flex align-items-center mb-3">
+              <Box 
+                className="btn-sm-square bg-white text-primary rounded-circle me-3" 
+                sx={{ 
+                  bgcolor: 'white', 
+                  color: 'primary.main', 
+                  borderRadius: '50%', 
+                  width: 32, 
+                  height: 32, 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center', 
+                  marginRight: 1, 
+                }}
+              >
+              </Box>
+              <Typography variant="body1" sx={{ flex: 1, color: '#FFFFFF' }}>
+              <i className="fa fa-check"></i>
+                Streamlined processes for enhanced educational efficiency
+              </Typography>
+            </Box>
+
+            <Grid container spacing={4} pt={3}>
+              <Grid item xs={12} sm={6}>
+                <Box className="d-flex align-items-center rounded p-3"
+                  sx={{
+                    background: 'rgba(256, 256, 256, 0.1)',
+                    flexDirection: 'row',
+                    gap: 2, 
+                    justifyContent: 'flex-start' 
+                  }}
+                >
+                  <i className="fa fa-users text-white"
+                    style={{
+                      fontSize: '24px',
+                      marginRight: '16px', 
+                      color: '#FFFFFF',
+                      fontWeight: 'bold'
+                    }}
+                  ></i>
+                  <Box className="ms-3">
+                    <Typography variant="h2" className="text-white mb-0" data-toggle="counter-up">
+                      <AnimatedNumber endNumber={9999} /> 
+                    </Typography>
+                    <Typography className="text-white mb-0">
+                      Happy students
+                    </Typography>
+                  </Box>
+                </Box>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <Box className="d-flex align-items-center rounded p-3"
+                  sx={{ 
+                    background: 'rgba(256, 256, 256, 0.1)', 
+                    flexDirection: 'row', 
+                    alignItems: 'center',
+                    justifyContent: 'start'
+                  }}
+                >
+                  <i className="fa fa-check text-white" style={{ fontSize: '24px', marginRight: '16px' }}></i>
+                  <Box>
+                    <Typography variant="h2" className="text-white mb-0" data-toggle="counter-up">
+                      <AnimatedNumber endNumber={9999} /> 
+                    </Typography>
+                    <Typography className="text-white mb-0">
+                      Project Complete
+                    </Typography>
+                  </Box>
+                </Box>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid item xs={12} md={6} className="text-center md:text-right">
+            <img className="img-fluid rounded-lg shadow-lg" src={choose} alt="Mechatronics" />
+          </Grid>
+        </Grid>
+      </Box>
+    </Box>
+    </motion.div>
+    
             {/* Projects Section */}
+            <motion.div
+      initial={{ y:60 }} // Initial state: hidden
+      animate={{ y: 0  }} // Animated state: visible
+      transition={{ duration: 9 }} // Animation duration
+    >
             <Box className="container-fluid bg-gray-100 py-12">
                 <Box className="container mx-auto text-center"
                 sx={{ 
@@ -492,8 +583,14 @@ const VirtualMechatronicsLab = () => {
                 </Box>
             </Box>
 
+        </motion.div>
             {/* Testimonial Section */}
-            <Box className="container-xxl py-12">
+            <motion.div
+      initial={{ y: 70 }} // Initial state: hidden
+      animate={{ y:0 }} // Animated state: visible
+      transition={{ duration: 11 }} // Animation duration
+    >
+            <Box className="container-xxl py-12" alignContent={'center'}>
             <Box
                 className="container mx-auto"
                 sx={{
@@ -619,8 +716,10 @@ const VirtualMechatronicsLab = () => {
                 </Grid>
             </Box>
             </Box>
+            </motion.div>
 
         </div>
+        
     );
 };
 
@@ -630,30 +729,30 @@ const AccordionComponent = ({ items }) => (
             <Accordion 
                 key={index} 
                 sx={{
-                    boxShadow: 'none', // Remove box shadow
+                    boxShadow: 'none', 
                     '&:before': {
                         display: 'none',
-                        textAlign:'justify' // Remove the default divider line at the top
+                        textAlign:'justify' 
                     },
-                    border: 'none', // Remove border
-                    backgroundColor: 'rgba(244,247,254,255)', // Background color to match the parent Box
+                    border: 'none', 
+                    backgroundColor: 'rgba(244,247,254,255)', 
                     '&.Mui-expanded': {
                         backgroundColor: 'rgba(244,247,254,255)', 
-                        textAlign:'justify'// Ensure expanded background matches
+                        textAlign:'justify'
                     }
                 }}
             >
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     sx={{
-                        borderBottom: 'none', // Remove border from summary
+                        borderBottom: 'none', 
                         '& .MuiAccordionSummary-content': {
-                            marginBottom: 0, // Adjust content spacing if needed
+                            marginBottom: 0, 
                         },
-                        bgcolor: 'transparent', // Default background color
+                        bgcolor: 'transparent', 
                         '&.Mui-expanded': {
-                            bgcolor: '#1363c6', // Background color when expanded
-                            color: 'white', // Optional: change text color to white when expanded
+                            bgcolor: '#1363c6', 
+                            color: 'white', 
                         },
                     }}
                 >
@@ -661,8 +760,8 @@ const AccordionComponent = ({ items }) => (
                 </AccordionSummary>
                 <AccordionDetails
                     sx={{
-                        padding: '0 16px 16px', // Adjust padding if needed
-                        backgroundColor: 'rgba(244,247,254,255)', // Background color for the details section
+                        padding: '0 16px 16px', 
+                        backgroundColor: '#ffffff',
                     }}
                 >
                     {item.content}
@@ -673,45 +772,46 @@ const AccordionComponent = ({ items }) => (
 );
 
 
-const FeatureList = () => (
-    <>
-        {[
-            'Unmatched expertise in virtual mechatronics education',
-            'Immersive learning experiences through innovative integration',
-            'Streamlined processes for enhanced educational efficiency',
-        ].map((feature, index) => (
-            <Box 
-                key={index} 
-                sx={{ 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    mb: 2, 
-                    justifyContent: 'flex-start' 
-                }}
-            >
-                <Box 
-                    sx={{ 
-                        bgcolor: 'white', 
-                        color: 'primary.main', 
-                        borderRadius: '50%', 
-                        width: 32, 
-                        height: 32, 
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        justifyContent: 'center', 
-                        marginRight: 1, 
-                    }}
-                >
-                    <i className="fa fa-check"></i>
-                </Box>
-                <Typography variant="body1" sx={{ flex: 1 }}>
-                    {feature}
-                </Typography>
-            </Box>
-        ))}
-    </>
-);
-
+// const FeatureList = () => (
+//     <>
+//       {[
+//         'Unmatched expertise in virtual mechatronics education',
+//         'Immersive learning experiences through innovative integration',
+//         'Streamlined processes for enhanced educational efficiency',
+//       ].map((feature, index) => (
+//         <Box 
+//           key={index} 
+//           className="d-flex align-items-center mb-3"
+//           sx={{ 
+//             display: 'flex', 
+//             alignItems: 'center', 
+//             mb: 2, 
+//             justifyContent: 'flex-start' 
+//           }}
+//         >
+//           <Box 
+//             className="btn-sm-square bg-white text-primary rounded-circle me-3" 
+//             sx={{ 
+//               bgcolor: 'white', 
+//               color: 'primary.main', 
+//               borderRadius: '50%', 
+//               width: 32, 
+//               height: 32, 
+//               display: 'flex', 
+//               alignItems: 'center', 
+//               justifyContent: 'center', 
+//               marginRight: 1, 
+//             }}
+//           >
+//             <i className="fa fa-check"></i>
+//           </Box>
+//           <Typography variant="body1" sx={{ flex: 1, color: '#FFFFFF' }}>
+//             {feature}
+//           </Typography>
+//         </Box>
+//       ))}
+//     </>
+//   );
   
   
 const AnimatedNumber = ({ endNumber }) => {
