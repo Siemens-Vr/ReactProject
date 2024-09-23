@@ -19,8 +19,8 @@ import logo from '../../assets/Virtual Mechatronics Lab Logo V2-01.png';
 // List of constant pages
 const pages = [
   { name: 'Home', path: '/' },
-  { name: 'Product', path: '/product' },
   { name: 'About', path: '/about' },
+  { name: 'Product', path: '/product' },
   { name: 'Worldskills', path: '/worldskills' },
   { name: 'Sifa', path: '/sifa' },
   { name: 'Blog', path: '/blog' },

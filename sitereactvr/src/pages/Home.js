@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -261,7 +260,7 @@ const VirtualMechatronicsLab = () => {
                     backgroundColor: 'rgba(244,247,254,255)',  // Background color
                     textAlign: 'center',  // Center the content
                 }}>
-                    <Button variant="contained" backgroundColorcolor="#1363c6" className="rounded-fulls text-white px-6 py-2 mb-8" sx={{ borderRadius: '9999px',}}>
+                    <Button variant="contained"  className="rounded-fulls text-white px-6 py-2 mb-8" sx={{ borderRadius: '9999px',backgroundColor:'#1363c6'}}>
                         Here is a deep dive into the aspects of our virtual mechatronics Lab
                     </Button>
                     <Grid container spacing={5}sx={{padding:'20px'}}>
@@ -681,10 +680,14 @@ const FeatureList = () => (
             'Immersive learning experiences through innovative integration',
             'Streamlined processes for enhanced educational efficiency',
         ].map((feature, index) => (
-            <Typography 
+            <Box 
                 key={index} 
-                variant="body1" 
-                sx={{ display: 'flex', alignItems: 'center', mb: 2, justifyContent: 'flex-start' }}
+                sx={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    mb: 2, 
+                    justifyContent: 'flex-start' 
+                }}
             >
                 <Box 
                     sx={{ 
@@ -696,15 +699,15 @@ const FeatureList = () => (
                         display: 'flex', 
                         alignItems: 'center', 
                         justifyContent: 'center', 
-                        marginRight: 0.5, // Slight margin to keep a small gap
+                        marginRight: 1, 
                     }}
                 >
                     <i className="fa fa-check"></i>
                 </Box>
-                <Box sx={{ flex: 1, marginLeft: 0.5 }}> {/* Decreased marginLeft to reduce space */}
-                  {feature}
-                </Box>
-            </Typography>
+                <Typography variant="body1" sx={{ flex: 1 }}>
+                    {feature}
+                </Typography>
+            </Box>
         ))}
     </>
 );

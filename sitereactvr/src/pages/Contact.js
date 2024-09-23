@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Box, Container, Typography } from "@mui/material";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -18,8 +17,6 @@ const Contact = () => {
          }}>
             <Typography variant='h4'sx={{fontWeight:'bold',color:'#14183e'}}>CONTACT US</Typography>
           <Typography variant="h5" className="mb-4"
-            <Typography variant='h4'sx={{fontWeight:'bold',color:'#14183e'}}>CONTACT US</Typography>
-          <Typography variant="h5" className="mb-4"
           sx={{ 
             marginTop: '10px',
             textAlign:'justify',
@@ -29,7 +26,6 @@ const Contact = () => {
             alignContent:'center',}}>
             If You Have Any Query, 
           </Typography>
-          <Typography variant="h5" className="mb-4"
           <Typography variant="h5" className="mb-4"
           sx={{ 
             marginTop: '10px',
@@ -45,14 +41,12 @@ const Contact = () => {
         {/* Contact Information Section */}
         <Box className="row justify-center mb-5"x={{alignItems:'center'}}>
           <Box className="col-lg-7x={{alignItems:'center'}}">
-            <Box className="text-center" data-wow-delay="0.2s"x={{alignItems:'center'}}>
+            <Box className="text-center" data-wow-delay="0.2s"x={{alignItems:'center',color:'blue'}}>
               <Typography variant="h4" className="mb-1 flex items-center justify-center"
               sx={{ 
                 marginTop: '10px',
                 textAlign:'justify',
                 fontFamily:'Open Sans,sans-serif',
-                color:'blue',
-                color:'blue',
                 fontWeight:'bolder',
                 alignItems:'center',}}>
                 <LocationOnIcon className="mr-2" /> Nyeri, Kenya
@@ -62,8 +56,6 @@ const Contact = () => {
                 marginTop: '10px',
                 textAlign:'justify',
                 fontFamily:'Open Sans,sans-serif',
-                color:'blue',
-                color:'blue',
                 fontWeight:'bolder',
                 alignItems:'center'}}>
                 <PhoneIcon className="mr-2" /> +254716150627
@@ -73,8 +65,6 @@ const Contact = () => {
                 marginTop: '10px',
                 textAlign:'justify',
                 fontFamily:'Open Sans,sans-serif',
-                color:'blue',
-                color:'blue',
                 fontWeight:'bolder',
                 alignItems:'center',}}>
                 <EmailIcon className="mr-2" /> vr.africa@dkut.ac.ke

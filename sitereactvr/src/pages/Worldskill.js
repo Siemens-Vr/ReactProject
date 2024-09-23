@@ -219,7 +219,7 @@ const WorldSkills = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 color="primary"
-                SX={{borderRadius: '9999px'}}
+                sx={{borderRadius: '9999px'}}
                 
               >
                 Read More
