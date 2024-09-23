@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const SendLoginForm = (url) => {
+const SendLoginForm = (data) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
@@ -11,7 +11,7 @@ const SendLoginForm = (url) => {
     setSuccess(null);
 
     try {
-      const response = await fetch(url, {
+      const response = await fetch('http://localhost:5002/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

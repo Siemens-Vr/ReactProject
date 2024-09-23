@@ -16,7 +16,7 @@ const Signup = () => {
   const [passwordError, setPasswordError] = useState(''); // New state for password error
   const [confirmPasswordError, setConfirmPasswordError] = useState(''); // New state for confirm password error
   const [formData, setFormData] = useState({ name: '', LastName: '', gender: '', age: 0, company: '', password: ''});
-  const { submitForm, loading, error, success } = SendLoginForm('http://localhost:5002/users');
+  const { submitForm, loading, error, success } = SendLoginForm(formData);
 
 
   const handleClickShowPassword = () => setShowPassword(!showPassword);
