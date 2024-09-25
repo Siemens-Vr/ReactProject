@@ -3,7 +3,7 @@ import { Box, Button, TextField, Typography, IconButton, MenuItem } from '@mui/m
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { motion } from 'framer-motion'; 
 import { useNavigate, Link } from 'react-router-dom';
-import SendFormLogin from '../components/sendForm/SendFormLogin';
+import useSignUp from '../services/DB/users/RegisterService';
 
 
 const Signup = () => {
@@ -26,7 +26,7 @@ const Signup = () => {
   const [genderError, setGenderError] = useState('');
   const [ageError, setAgeError] = useState('');
   const [companyError, setCompanyError] = useState('');
-  const { submitForm, loading, error, success } = SendFormLogin('http://localhost:5002/users');
+  const { handleSubmit, loading, error, success } = useSignUp();
 
   const handleClickShowPassword = () => setShowPassword(!showPassword);
   const handleClickShowConfirmPassword = () => setShowConfirmPassword(!showConfirmPassword);
@@ -118,20 +118,18 @@ const Signup = () => {
     return isValid;
   };
 
-  const handleSubmit = (e) => {
+  // Updated handleSubmit function
+  const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    // Validate fields and submit form if all are valid
     if (validateFields()) {
-      submitForm({ name, lastName, email, gender, age, company, password });
-      console.log({ name, lastName, email, gender, age, company, password });
-
+      handleSubmit(e);
       alert('Signup successful!');
-      navigate('/login'); // Redirect after signup
-    } else {
-      setErrorMessage('Please fix the errors above.');
+      if (success) {
+        navigate('/login'); // Redirect after signup
+      }
     }
-  };
+  }
 
   return (
     <Box className="signup-page" sx={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -144,7 +142,7 @@ const Signup = () => {
         <Box sx={{ p: 4, boxShadow: 20, borderRadius: 2, backgroundColor: 'rgba(244,247,260,262)' }}>
           <Typography variant="h5" sx={{ fontWeight: 'bold', color: '#14183e' }}>Sign Up</Typography>
 
-          <form onSubmit={handleSubmit}>
+          <form method="POST" action="#" onSubmit = {(e) => handleFormSubmit(e)}>
             <TextField
               fullWidth
               label="First Name"
@@ -205,6 +203,7 @@ const Signup = () => {
               fullWidth
               required
               type="number"
+              name='age'
               value={age}
               onChange={(e) => setAge(e.target.value)}
               error={Boolean(ageError)}
