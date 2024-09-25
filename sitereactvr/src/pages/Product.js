@@ -2,7 +2,10 @@ import React, { useState,useEffect } from 'react';
 import { Button, Typography, Grid, Box, Dialog, DialogTitle, DialogContent, DialogActions, Divider, TextField, Rating } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Pic1 from '../assets/img/vr/VRMultiLab - MainScene - Android - Unity 2022.3.9f1 _DX11_ 11_30_2023 6_21_58 PM.png';
-import { CloudDownload } from "@mui/icons-material";
+import { CloudDownload, AccountCircle, AccessTime, CreditCard, Lock, Support, Update } from "@mui/icons-material";
+import visa from '../assets/img/logos/visa.jpeg';
+import mastercard from '../assets/img/logos/mastercard.png';
+import paypal from '../assets/img/logos/paypal.png';
 
 const Products = () => {
     const [open, setOpen] = useState(false);
@@ -11,13 +14,13 @@ const Products = () => {
     const [comment, setComment] = useState(''); // State for new comment
     const [rating, setRating] = useState(0); // State for user rating
     const [download, setDownload]= useState('');//state for downloading
-    // const [userEmail, setUserEmail] = useState('');
+    const [userEmail, setUserEmail] = useState('');
     const navigate = useNavigate(); // Initialize the navigate function
 
-    // useEffect(() => {
-    //     setIsLoggedIn(true);
-    //     setUserEmail(''); // Set this to the actual logged-in user's email
-    // }, []);
+    useEffect(() => {
+        setIsLoggedIn(true);
+        setUserEmail(''); // Set this to the actual logged-in user's email
+    }, []);
 
     // Handler function for opening the dialog
     const handleClickOpen = (product) => {
@@ -40,11 +43,11 @@ const Products = () => {
             return;
         }
 
-        // const newComment = {
-        //     user: userEmail,
-        //     text: comment,
-        //     timestamp: new Date().toISOString()
-        // };
+        const newComment = {
+            user: userEmail,
+            text: comment,
+            timestamp: new Date().toISOString()
+        };
 
         setSelectedProduct((prevProduct) => ({
             ...prevProduct,
@@ -75,10 +78,10 @@ const Products = () => {
             // Redirect to login page if user is not logged in
             navigate('/login');
         }
-        //  /else {
-        //     // Proceed with download if user is logged in
-        //     window.open(event.currentTarget.href, '_blank');
-        // }
+         else {
+            // Proceed with download if user is logged in
+            window.open(event.currentTarget.href, '_blank');
+        }
     };
 
     // Calculate the average rating for the product
@@ -88,18 +91,22 @@ const Products = () => {
         return (total / reviews.length).toFixed(1);
     };
 
-    // Sample product data
     const products = [
         {
             imgSrc: Pic1,
-            title: "xArm7 VR Digital Twin Control System",
+            title: "Digital Twin Control System",
             description: "The app creates a fully synchronized digital twin of the physical robot, allowing users to interact with it directly from a virtual control panel.",
             longDescription: "This VR application is designed for Meta Quest headsets and offers an immersive experience in controlling a UFactory xArm7 robot. The app creates a fully synchronized digital twin of the physical robot, allowing users to interact with it directly from a virtual control panel.Users can either control the robot by manipulating individual joints in VR or by setting target positions, with the physical robot's inverse kinematics handled by a ROS system running on a computer. Whether controlling the robot from the VR environment or through the physical set movements are seamlessly mirrored in both realms, providing real-time feedback and a comprehensive, intuitive control experience.",
             price: "Free",
             owner: "Virtual Mechatronic Lab",
+            published:"2 weeks ago",
             reviews: [],
             model: "xArm7-2023",
             comments: [],
+            licence: "Editorial  Learn more",
+            downloadSize:"256MB",
+            textures:"0",
+
         },
         {
             imgSrc: Pic1,
@@ -117,15 +124,17 @@ const Products = () => {
     const downloadUrl = `https://drive.google.com/file/d/19TrMC2r_qBeYUtUYNIIZhFWW1rJXyCEP/view?usp=drive_link=${fileId}`;
 
     return (
-        <Box className="container-fluid bg-gray-100 py-12">
+        <Box className="container-fluid bg-gray-100 py-12" sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginLeft:'20px'}}>
             <Box
-                className="container mx-auto text-center"
-                sx={{
-                    padding: '50px 0',
-                    backgroundColor: 'light grey',
-                    textAlign: 'center',
-                }}
-            >
+            className="container mx-auto text-center"
+            sx={{
+                padding: '50px 0',
+                backgroundColor: 'light grey',
+                textAlign: 'center',
+                width: '80%', 
+                maxWidth: '1200px', 
+            }}
+        >
                 <Typography variant="h4" className="mb-8" sx={{ color: '#14183e', fontWeight: 'bold' }}>
                     Explore Our Products
                 </Typography>
@@ -149,13 +158,59 @@ const Products = () => {
                     <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }} gap={3}>
                         <Box flexBasis="50%">
                             <img src={selectedProduct.imgSrc} alt={selectedProduct.title} style={{ width: '100%', borderRadius: '8px' }} />
-                            <Typography variant="h7" sx={{ marginBottom: 1, fontWeight:'bold'}}>Owner: {selectedProduct.owner}</Typography>
-                            <Typography variant="body1" sx={{ marginBottom: 2, textAlign:'justify'}}>{selectedProduct.longDescription}</Typography>
+                            <Box display="flex" alignItems="center" gap={1} mt={1}>
+                                <AccountCircle />
+                                <Typography variant="body2" sx={{ fontWeight:'bold'}}>{selectedProduct.owner}</Typography>
+                            </Box>
+                            <Box display="flex" alignItems="center" gap={1} mt={1}>
+                                <AccessTime />
+                                <Typography variant="body2" sx={{ fontWeight:'bold'}}>{selectedProduct.published}</Typography>
+                            </Box>
+                            <Typography variant="body1" sx={{ marginTop: 2, marginBottom: 2, textAlign:'justify'}}>{selectedProduct.longDescription}</Typography>
                             <a href={downloadUrl} download target="_blank" rel="noopener noreferrer">
-                                    <Button onClick={handleDownload}
+                                <Button onClick={handleDownload}
+                                    variant="contained"
+                                    color="primary"
+                                    startIcon={<CloudDownload />} 
+                                    sx={{
+                                        borderRadius:'9999px',
+                                        backgroundColor: '#1976d2',
+                                        '&:hover': {
+                                            backgroundColor: '#1565c0',
+                                        },
+                                    }}
+                                >
+                                    {isLoggedIn ? 'Download Digital Twin' : 'Login to Download'}
+                                </Button>
+                            </a>
+                        </Box>
+                        <Box flexBasis="50%" sx={{backgroundColor:'rgba(244,247,260,262)'}}>
+                            <Box borderRadius='9999px'>
+                            <Typography variant="h5" component="span" sx={{ color: 'black', fontWeight: 'bold', mr: 1 }}>
+                                Price:
+                            </Typography>
+                            <Typography variant="h5" component="span" sx={{ color: 'red', fontWeight: 'bold' }}>
+                                {selectedProduct.price}
+                            </Typography>
+
+                            {/* Additional info */}
+                            <Box>
+                                <Box display="flex" alignItems="center" gap={1} mb={1}>
+                                    <Lock fontSize="small" />
+                                    <Typography variant="body2">Secure Payment</Typography>
+                                </Box>
+                                <Box display="flex" alignItems="center" gap={1} mb={1}>
+                                    <Support fontSize="small" />
+                                    <Typography variant="body2">Support from Sellers</Typography>
+                                </Box>
+                                <Box display="flex" alignItems="center" gap={1} mb={1}>
+                                    <Update fontSize="small" />
+                                    <Typography variant="body2">Access to Future Versions</Typography>
+                                </Box>
+                            </Box>
+                            <Button onClick={handleDownload}
                                         variant="contained"
                                         color="primary"
-                                        startIcon={<CloudDownload />} 
                                         sx={{
                                             borderRadius:'9999px',
                                             backgroundColor: '#1976d2',
@@ -164,29 +219,44 @@ const Products = () => {
                                             },
                                         }}
                                     >
-                                        {isLoggedIn ? 'Download Digital Twin' : 'Login to Download'}
+                                        {isLoggedIn ? 'addCart' : 'Login to purchase'}
                                     </Button>
-                                </a>
-                        </Box>
-                        <Box flexBasis="50%" sx={{backgroundColor:'rgba(244,247,260,262)'}}>
-                            <Typography variant="h6" sx={{ marginBottom: 1, color:'red' }}>Price: {selectedProduct.price}</Typography>
-                            <Typography variant="h6" sx={{ marginBottom: 1 ,fontWeight:'bold'}}>Model: {selectedProduct.model}</Typography>
+                                     {/* Payment methods */}
+                            <Box  display="flex" justifyContent="center" alignItems="center" gap={2} mb={2}
+                                sx={{
+                                    backgroundColor: '#f5f5f5',
+                                    borderRadius: '8px',
+                                    padding: '10px',
+                                }}>
+                                <img src={visa} alt="Visa" style={{width: '40px', height: '32px', objectFit: 'contain', mr:'0'}}/>
+                                <img src={mastercard} alt="Mastercard" style={{width: '40px', height: '32px', objectFit: 'contain',mr:'0'}} />
+                                <img src={paypal} alt="PayPal" style={{width: '40px', height: '32px', objectFit: 'contain', mr:'0'}} />
+                            </Box>
+                                    </Box>    
+
+                            <Divider sx={{ my: 2 }} /> 
                             
-                            {/* Average Rating */}
-                            <Typography variant="h6" sx={{ marginTop: 2 }}>Average Rating: {getAverageRating(selectedProduct.reviews)}</Typography>
-                            {/* Reviews Section */}
-                            <Typography variant="h6" sx={{ marginTop: 2 }}>Reviews:</Typography>
+                            <Typography variant="h7" sx={{ marginBottom: 1}}>Model: {selectedProduct.model}</Typography>
+                            <Divider sx={{ my: 2 }} />
+                            <Typography variant="h7" sx={{ marginBottom: 1}}>Licence: {selectedProduct.licence}</Typography>
+                            <Divider sx={{ my: 2 }} />
+                            <Typography variant="h7" sx={{ marginBottom: 1}}>Texture: {selectedProduct.textures}</Typography>
+                             <Divider sx={{ my: 2 }} />
+                            <Typography variant="h7" sx={{ marginTop: 2 }}>Average Rating: {getAverageRating(selectedProduct.reviews)}</Typography>
+                            <Divider sx={{ my: 2 }} />
+                            <Typography variant="h7" sx={{ marginTop: 2 }}>Reviews:</Typography>
                             {selectedProduct.reviews && selectedProduct.reviews.map((review, index) => (
                                 <Box key={index} sx={{ marginBottom: 1 }}>
-                                    <Typography variant="body2" sx={{ fontWeight: 'bold' }}>{review.user}</Typography>
-                                    <Typography variant="body2">Rating: {review.rating} / 5</Typography>
-                                    <Typography variant="body2">{review.comment}</Typography>
+                                    <Typography variant="h7" sx={{ fontWeight: 'bold' }}>{review.user}</Typography>
+                                    <Typography variant="h7">Rating: {review.rating} / 5</Typography>
+                                    <Typography variant="h7">{review.comment}</Typography>
                                     <Divider sx={{ marginY: 1 }} />
                                 </Box>
                             ))}
-
+                             <Divider sx={{ my: 2 }} />
                             {/* Add Star Rating Section */}
-                            <Typography variant="h6" sx={{ marginTop: 2 }}>Rate this Product:</Typography>
+                            <Box>
+                            <Typography variant="h7" sx={{ marginTop: 2 }}>Rate Product:</Typography>
                             <Rating
                                 name="user-rating"
                                 value={rating}
@@ -196,22 +266,22 @@ const Products = () => {
                                 }}
                             />
                             <Divider sx={{ marginY: 1 }} />
-
+                            </Box>
                             {/* Comments Section */}
-                            <Typography variant="h6" sx={{ marginTop: 2 }}>Comments:</Typography>
+                            <Typography variant="h7" sx={{ marginTop: 2 }}>Comments:</Typography>
                             {selectedProduct.comments && selectedProduct.comments.map((comment, index) => (
                                 <Box key={index} sx={{ marginBottom: 1 }}>
-                                    <Typography variant="body2" sx={{ fontWeight: 'bold' }}>{comment.user}</Typography>
-                                    <Typography variant="body2">{comment.text}</Typography>
+                                    <Typography variant="h7" sx={{ fontWeight: 'bold' }}>{comment.user}</Typography>
+                                    <Typography variant="h7">{comment.text}</Typography>
                                     <Typography variant="caption" sx={{ color: 'text.secondary' }}>
                                         {new Date(comment.timestamp).toLocaleString()}
                                     </Typography>
                                     <Divider sx={{ marginY: 1 }} />
                                 </Box>
                             ))}
-
+                              <Divider sx={{ my: 2 }} />
                             {/* Add Comment Section */}
-                            <Typography variant="h6" sx={{ marginTop: 2 }}>Add a Comment:</Typography>
+                            <Typography variant="h7" sx={{ marginTop: 2 }}>Add a Comment:</Typography>
                             <TextField
                                 fullWidth
                                 variant="outlined"
