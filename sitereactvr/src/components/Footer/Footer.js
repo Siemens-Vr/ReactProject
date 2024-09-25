@@ -259,7 +259,7 @@ const Footer = () => {
           <a href="#" style={{ color: 'rgba(255,255,255,.5)', textDecoration: 'none' }} className="border-bottom">  All Rights Reserved.</a> 
         </Typography>
         <Box className="footer-menu" sx={{ display: 'flex', justifyContent: 'right', mt: 2 }}>
-          {['Home', 'Cookies', 'Help'].map((item, index) => (
+          {['Home', 'Cookies', 'Help','FAQs'].map((item, index) => (
             <Button 
               key={index} 
               href="#" 

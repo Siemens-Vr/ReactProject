@@ -185,14 +185,14 @@ const accordionItemsRight4 = [
 
 const VirtualMechatronicsLab = () => {
     return (
-        <div className='flex items-center justify-center h-screen bg-primary text-white text-center p-4'>
+        <div className='flex flex-col items-center justify-center min-h-screen bg-primary text-white text-center p-4'>
             {/* Home Section */}
             <motion.div
       initial={{y: 20 }} // Initial state: hidden
       animate={{ y: 0  }} // Animated state: visible
       transition={{ duration: 1 }} // Animation duration
     >
-            <Box className="container-fluid mt-8">
+            <Box className="container-fluid mt-8" sx={{textAlign: 'center',}}>
                 <Box  className="home-section"
                 sx={{ 
                     padding: '50px 0',  // Padding around the section
