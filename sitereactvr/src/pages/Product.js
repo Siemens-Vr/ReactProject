@@ -14,13 +14,13 @@ const Products = () => {
     const [comment, setComment] = useState(''); // State for new comment
     const [rating, setRating] = useState(0); // State for user rating
     const [download, setDownload]= useState('');//state for downloading
-    // const [userEmail, setUserEmail] = useState('');
+    const [userEmail, setUserEmail] = useState('');
     const navigate = useNavigate(); // Initialize the navigate function
 
-    // useEffect(() => {
-    //     setIsLoggedIn(true);
-    //     setUserEmail(''); // Set this to the actual logged-in user's email
-    // }, []);
+    useEffect(() => {
+        setIsLoggedIn(true);
+        setUserEmail(''); // Set this to the actual logged-in user's email
+    }, []);
 
     // Handler function for opening the dialog
     const handleClickOpen = (product) => {
@@ -43,11 +43,11 @@ const Products = () => {
             return;
         }
 
-        // const newComment = {
-        //     user: userEmail,
-        //     text: comment,
-        //     timestamp: new Date().toISOString()
-        // };
+        const newComment = {
+            user: userEmail,
+            text: comment,
+            timestamp: new Date().toISOString()
+        };
 
         setSelectedProduct((prevProduct) => ({
             ...prevProduct,
@@ -91,7 +91,6 @@ const Products = () => {
         return (total / reviews.length).toFixed(1);
     };
 
-    // Sample product data
     const products = [
         {
             imgSrc: Pic1,
@@ -132,8 +131,8 @@ const Products = () => {
                 padding: '50px 0',
                 backgroundColor: 'light grey',
                 textAlign: 'center',
-                width: '80%', // Adjust this width as needed
-                maxWidth: '1200px', // Optional max width
+                width: '80%', 
+                maxWidth: '1200px', 
             }}
         >
                 <Typography variant="h4" className="mb-8" sx={{ color: '#14183e', fontWeight: 'bold' }}>
