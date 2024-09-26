@@ -27,7 +27,6 @@ const useSignUp = () => {
         password: e.target.elements.password.value,
         email: e.target.elements.email.value,
       };
-      console.log(formData)
 
         try {
             const response = await axios.post('http://localhost:5002/api-database/register', formData);

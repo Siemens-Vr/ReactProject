@@ -51,7 +51,6 @@ const Login = () => {
 
     if (validateFields()) {
       handleSubmit(e);
-      console.log({ email});
       if (!error) {
         navigate('/');
       }

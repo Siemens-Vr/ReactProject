@@ -91,9 +91,23 @@ export const post = async (endpoint, data = {}) => {
       },
     })
     return response.data;
-  } catch (error) {
-    handleError(error);
-    throw error; // Assurez-vous de lancer l'erreur pour la gérer ailleurs si nécessaire
+  }  catch (error) {
+    if (error.response && error.response.status === 401) {
+        // Refresh the access token
+        accessToken = await refreshAccessToken();
+
+        if (accessToken) {
+          // Retry the original request with the new access token
+          const retryResponse = await axios.post(endpoint, data, {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          });
+        console.log('Retry response:', retryResponse.data);
+        }else{
+          logout();
+        }
+    }
   }
 };
 
@@ -107,7 +121,23 @@ export const put = async (endpoint, data = {}) => {
     })
     return response.data;
   } catch (error) {
-    handleError(error);
+    if (error.response && error.response.status === 401) {
+        // Refresh the access token
+        accessToken = await refreshAccessToken();
+
+        if (accessToken) {
+          // Retry the original request with the new access token
+          const retryResponse = await axios.put(endpoint, data,{
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            }
+          }
+        );
+        console.log('Retry response:', retryResponse.data);
+        }else{
+          logout();
+        }
+    }
   }
 };
 
@@ -121,7 +151,22 @@ export const del = async (endpoint, data = {}) => {
     })
     return response.data;
   } catch (error) {
-    handleError(error);
+    if (error.response && error.response.status === 401) {
+        // Refresh the access token
+        accessToken = await refreshAccessToken();
+
+        if (accessToken) {
+          // Retry the original request with the new access token
+          const retryResponse = await axios.delete(endpoint,{ data, 
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          })
+        console.log('Retry response:', retryResponse.data);
+        }else{
+          logout();
+        }
+    }
   }
 };
 

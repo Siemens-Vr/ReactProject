@@ -6,6 +6,7 @@ import { CloudDownload, AccountCircle, AccessTime, CreditCard, Lock, Support, Up
 import visa from '../assets/img/logos/visa.jpeg';
 import mastercard from '../assets/img/logos/mastercard.png';
 import paypal from '../assets/img/logos/paypal.png';
+import useDownload from '../services/DataVr/DownloadVr';
 
 const Products = () => {
     const [open, setOpen] = useState(false);
@@ -15,10 +16,14 @@ const Products = () => {
     const [rating, setRating] = useState(0); // State for user rating
     const [download, setDownload]= useState('');//state for downloading
     const [userEmail, setUserEmail] = useState('');
+    const { handleUseDownload, loading, error, success } = useDownload();
+
     const navigate = useNavigate(); // Initialize the navigate function
 
     useEffect(() => {
-        setIsLoggedIn(true);
+        if(sessionStorage.getItem('accessToken')){
+            setIsLoggedIn(true);
+        }
         setUserEmail(''); // Set this to the actual logged-in user's email
     }, []);
 
@@ -79,8 +84,9 @@ const Products = () => {
             navigate('/login');
         }
          else {
+            console.log(isLoggedIn)
             // Proceed with download if user is logged in
-            window.open(event.currentTarget.href, '_blank');
+            handleUseDownload(event);
         }
     };
 
@@ -106,7 +112,6 @@ const Products = () => {
             licence: "Editorial  Learn more",
             downloadSize:"256MB",
             textures:"0",
-
         },
         {
             imgSrc: Pic1,
@@ -168,7 +173,7 @@ const Products = () => {
                             </Box>
                             <Typography variant="body1" sx={{ marginTop: 2, marginBottom: 2, textAlign:'justify'}}>{selectedProduct.longDescription}</Typography>
                             <a href={downloadUrl} download target="_blank" rel="noopener noreferrer">
-                                <Button onClick={handleDownload}
+                                <Button onClick = {(e) => handleDownload(e)}
                                     variant="contained"
                                     color="primary"
                                     startIcon={<CloudDownload />} 
@@ -208,7 +213,7 @@ const Products = () => {
                                     <Typography variant="body2">Access to Future Versions</Typography>
                                 </Box>
                             </Box>
-                            <Button onClick={handleDownload}
+                            <Button onClick = {(e) => handleDownload(e)}
                                         variant="contained"
                                         color="primary"
                                         sx={{

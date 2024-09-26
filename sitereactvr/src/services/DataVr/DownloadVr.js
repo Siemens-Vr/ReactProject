@@ -1,36 +1,60 @@
-// DownloadButton.js
-import React from 'react';
+import { useState } from "react";
+import axios from "axios";
 
-export default function DownloadButton() {
+/**
+ * Hook for downloading a product.
+ *
+ * @typedef useDownload
+ * @kind hook
+ *
+ * @returns {object} handleUseDownload and isLoading status.
+ */
+const useDownload = () => {
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleDownload = () => {
-    fetch('http://localhost:5001/api-dwl')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok ' + response.statusText);
-        }
-        return response.blob(); // Convertir la réponse en Blob
-      })
-      .then(blob => {
-        // Créer un lien temporaire pour déclencher le téléchargement
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'EV 70 FPS.apk'; // Nom du fichier à télécharger
-        document.body.appendChild(a);
-        a.click(); // Simuler le clic sur le lien pour déclencher le téléchargement
-        document.body.removeChild(a); // Retirer le lien temporaire
-        window.URL.revokeObjectURL(url); // Libérer la mémoire
-      })
-      .catch(error => {
-        console.error('Error during download:', error);
-        alert('Failed to download file: ' + error.message); // Afficher un message d'erreur
+  const handleUseDownload = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      const response = await axios.get("http://localhost:5004/product", {
+        params: { email: "esteban.lavaux2@plop.fr", productName: "plop" },
+        responseType: "blob", // This is important for downloading binary data
       });
+
+      if (response) {
+        setIsLoading(false);
+
+        // Create a Blob from the response
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const a = document.createElement("a");
+        a.href = url;
+
+        // Attempt to extract filename from response headers, or fallback to default
+        const contentDisposition = response.headers['content-disposition'];
+        let fileName = "downloaded_file.txt"; // Default filename
+
+        // If the filename is provided in the Content-Disposition header, extract it
+        if (contentDisposition) {
+          const matches = /filename="(.+)"/.exec(contentDisposition);
+          if (matches != null && matches[1]) {
+            fileName = matches[1];
+          }
+        }
+
+        a.download = fileName; // Set the file name for download
+        document.body.appendChild(a);
+        a.click(); // Simulate a click on the anchor to trigger the download
+        document.body.removeChild(a); // Clean up
+        window.URL.revokeObjectURL(url); // Release the memory
+      }
+    } catch (error) {
+      console.error("Download failed:", error);
+      setIsLoading(false);
+    }
   };
 
-  return (
-    <div>
-      <button onClick={handleDownload}>Download File</button>
-    </div>
-  );
-}
+  return { handleUseDownload, isLoading };
+};
+
+export default useDownload;

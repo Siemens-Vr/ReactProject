@@ -23,11 +23,9 @@ const useLogin = ( ) => {
         email: e.target.elements.email.value,
         password: e.target.elements.password.value,
       };
-      console.log(formData)
 
         try {
             const response = await axios.post('http://localhost:5002/api-database/login', formData);
-            console.log(response);
             if (response) {
                 setIsLoading(false);
                 storeTokens(response.data.token, response.data.refreshToken)
