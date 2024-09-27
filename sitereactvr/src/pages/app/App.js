@@ -13,6 +13,7 @@ import SignUp from '../Signup';
 import Forget from '../ForgetPassword';
 import Footer from '../../components/Footer/Footer';
 import Partners from '../../components/Partners/Partners';
+import Add from '../AddProduct';
 
 // Move useLocation inside the App function
 function App() {
@@ -41,6 +42,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/ForgetPassword" element={<Forget />} />
+        <Route path="/addProduct" element={<Add />} />
       </Routes>
 
       {/* Conditionally render Footer */}

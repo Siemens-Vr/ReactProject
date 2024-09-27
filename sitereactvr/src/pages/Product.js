@@ -1,45 +1,53 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Typography, Grid, Box, Dialog, DialogTitle, DialogContent, DialogActions, Divider, TextField, Rating } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import Pic1 from '../assets/img/vr/VRMultiLab - MainScene - Android - Unity 2022.3.9f1 _DX11_ 11_30_2023 6_21_58 PM.png';
 import { CloudDownload, AccountCircle, AccessTime, CreditCard, Lock, Support, Update } from "@mui/icons-material";
 import visa from '../assets/img/logos/visa.jpeg';
 import mastercard from '../assets/img/logos/mastercard.png';
 import paypal from '../assets/img/logos/paypal.png';
 import useDownload from '../services/DataVr/DownloadVr';
+import Pic1 from '../assets/img/vr/VRMultiLab - MainScene - Android - Unity 2022.3.9f1 _DX11_ 11_30_2023 6_21_58 PM.png';
+import axios from 'axios'; 
 
 const Products = () => {
     const [open, setOpen] = useState(false);
+    const [products, setProducts] = useState([]); // State to store the fetched products
     const [selectedProduct, setSelectedProduct] = useState({});
-    const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
-    const [comment, setComment] = useState(''); // State for new comment
-    const [rating, setRating] = useState(0); // State for user rating
-    const [download, setDownload]= useState('');//state for downloading
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [comment, setComment] = useState('');
+    const [rating, setRating] = useState(0);
     const [userEmail, setUserEmail] = useState('');
-    const { handleUseDownload, loading, error, success } = useDownload();
+    const { handleUseDownload } = useDownload();
 
-    const navigate = useNavigate(); // Initialize the navigate function
-
+    const navigate = useNavigate();
     useEffect(() => {
-        if(sessionStorage.getItem('accessToken')){
+        if (sessionStorage.getItem('accessToken')) {
             setIsLoggedIn(true);
         }
-        setUserEmail(''); // Set this to the actual logged-in user's email
+        setUserEmail(''); 
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get('http://localhost:5002/product'); // Use GET to fetch products
+                setProducts(response.data); 
+                console.log(response.data)
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        };
+    
+        fetchProducts(); // Call the fetch function
     }, []);
 
-    // Handler function for opening the dialog
     const handleClickOpen = (product) => {
         setSelectedProduct(product);
         setOpen(true);
     };
 
-    // Handler function for closing the dialog
     const handleClose = () => {
         setOpen(false);
         setSelectedProduct({});
         setComment('');
         setRating(0);
-        setDownload('');
     };
 
     const handleAddComment = () => {
@@ -56,77 +64,38 @@ const Products = () => {
 
         setSelectedProduct((prevProduct) => ({
             ...prevProduct,
-            comments: [...(prevProduct.comments || []), Comment]
+            comments: [...(prevProduct.comments || []), newComment]
         }));
 
         setComment(''); // Clear the comment input
     };
 
-    // Handler function for adding a rating
     const handleAddRating = (newRating) => {
         if (!isLoggedIn) {
-            // Redirect to login page if user is not logged in
             navigate('/login');
             return;
         }
 
-        // Add the rating to the product's reviews array
         setSelectedProduct((prevProduct) => ({
             ...prevProduct,
-            reviews: [...prevProduct.reviews, { user: 'CurrentUser', rating: newRating }]
+            reviews: [...(prevProduct.reviews || []), { user: 'CurrentUser', rating: newRating }]
         }));
     };
-    //Handler function for downloadinf Product
+
     const handleDownload = (event) => {
-        event.preventDefault(); // Prevent default anchor behavior
+        event.preventDefault();
         if (!isLoggedIn) {
-            // Redirect to login page if user is not logged in
             navigate('/login');
-        }
-         else {
-            console.log(isLoggedIn)
-            // Proceed with download if user is logged in
+        } else {
             handleUseDownload(event);
         }
     };
 
-    // Calculate the average rating for the product
     const getAverageRating = (reviews) => {
         if (!reviews || reviews.length === 0) return 0;
         const total = reviews.reduce((sum, review) => sum + review.rating, 0);
         return (total / reviews.length).toFixed(1);
     };
-
-    const products = [
-        {
-            imgSrc: Pic1,
-            title: "Digital Twin Control System",
-            description: "The app creates a fully synchronized digital twin of the physical robot, allowing users to interact with it directly from a virtual control panel.",
-            longDescription: "This VR application is designed for Meta Quest headsets and offers an immersive experience in controlling a UFactory xArm7 robot. The app creates a fully synchronized digital twin of the physical robot, allowing users to interact with it directly from a virtual control panel.Users can either control the robot by manipulating individual joints in VR or by setting target positions, with the physical robot's inverse kinematics handled by a ROS system running on a computer. Whether controlling the robot from the VR environment or through the physical set movements are seamlessly mirrored in both realms, providing real-time feedback and a comprehensive, intuitive control experience.",
-            price: "Free",
-            owner: "Virtual Mechatronic Lab",
-            published:"2 weeks ago",
-            reviews: [],
-            model: "xArm7-2023",
-            comments: [],
-            licence: "Editorial  Learn more",
-            downloadSize:"256MB",
-            textures:"0",
-        },
-        {
-            imgSrc: Pic1,
-            title: "Robotic Automation",
-            description: "Management of software robots that emulate human actions interacting with digital systems and software.",
-            longDescription: "In-depth details about Robotic Automation include various applications in industry, features, and benefits such as cost reduction, increased efficiency...",
-            price: "$1500",
-            owner: "RoboTech Inc.",
-            reviews: [],
-            model: "RoboAuto-2022",
-            comments: [],
-        }
-    ];
-    const fileId = 'FILE_ID';
-    const downloadUrl = `https://drive.google.com/file/d/19TrMC2r_qBeYUtUYNIIZhFWW1rJXyCEP/view?usp=drive_link=${fileId}`;
 
     return (
         <Box className="container-fluid bg-gray-100 py-12" sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginLeft:'20px'}}>
@@ -147,9 +116,9 @@ const Products = () => {
                     {products.map((product, index) => (
                         <ProductItem1
                             key={index}
-                            imgSrc={product.imgSrc}
-                            title={product.title}
-                            description={product.description}
+                            imgSrc={Pic1} 
+                            title={product.productName}
+                            description={product.longDescription}
                             onClick={() => handleClickOpen(product)}
                         />
                     ))}
@@ -158,21 +127,21 @@ const Products = () => {
 
             {/* Dialog for showing more product details */}
             <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
-                <DialogTitle sx={{fontWeight:'bold'}}>{selectedProduct.title}</DialogTitle>
+                <DialogTitle sx={{fontWeight:'bold'}}>{selectedProduct.productName}</DialogTitle>
                 <DialogContent>
                     <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }} gap={3}>
                         <Box flexBasis="50%">
-                            <img src={selectedProduct.imgSrc} alt={selectedProduct.title} style={{ width: '100%', borderRadius: '8px' }} />
+                            <img src={Pic1} alt={selectedProduct.productName} style={{ width: '100%', borderRadius: '8px' }} />
                             <Box display="flex" alignItems="center" gap={1} mt={1}>
                                 <AccountCircle />
                                 <Typography variant="body2" sx={{ fontWeight:'bold'}}>{selectedProduct.owner}</Typography>
                             </Box>
                             <Box display="flex" alignItems="center" gap={1} mt={1}>
                                 <AccessTime />
-                                <Typography variant="body2" sx={{ fontWeight:'bold'}}>{selectedProduct.published}</Typography>
+                                <Typography variant="body2" sx={{ fontWeight:'bold'}}>Published date</Typography>
                             </Box>
                             <Typography variant="body1" sx={{ marginTop: 2, marginBottom: 2, textAlign:'justify'}}>{selectedProduct.longDescription}</Typography>
-                            <a href={downloadUrl} download target="_blank" rel="noopener noreferrer">
+                            <a href={selectedProduct.path} download target="_blank" rel="noopener noreferrer">
                                 <Button onClick = {(e) => handleDownload(e)}
                                     variant="contained"
                                     color="primary"
@@ -224,7 +193,7 @@ const Products = () => {
                                             },
                                         }}
                                     >
-                                        {isLoggedIn ? 'addCart' : 'Login to purchase'}
+                                        {isLoggedIn ? 'Add to Cart' : 'Login to purchase'}
                                     </Button>
                                      {/* Payment methods */}
                             <Box  display="flex" justifyContent="center" alignItems="center" gap={2} mb={2}
@@ -247,61 +216,39 @@ const Products = () => {
                             <Divider sx={{ my: 2 }} />
                             <Typography variant="h7" sx={{ marginBottom: 1}}>Texture: {selectedProduct.textures}</Typography>
                              <Divider sx={{ my: 2 }} />
-                            <Typography variant="h7" sx={{ marginTop: 2 }}>Average Rating: {getAverageRating(selectedProduct.reviews)}</Typography>
-                            <Divider sx={{ my: 2 }} />
-                            <Typography variant="h7" sx={{ marginTop: 2 }}>Reviews:</Typography>
-                            {selectedProduct.reviews && selectedProduct.reviews.map((review, index) => (
-                                <Box key={index} sx={{ marginBottom: 1 }}>
-                                    <Typography variant="h7" sx={{ fontWeight: 'bold' }}>{review.user}</Typography>
-                                    <Typography variant="h7">Rating: {review.rating} / 5</Typography>
-                                    <Typography variant="h7">{review.comment}</Typography>
-                                    <Divider sx={{ marginY: 1 }} />
-                                </Box>
-                            ))}
-                             <Divider sx={{ my: 2 }} />
-                            {/* Add Star Rating Section */}
-                            <Box>
-                            <Typography variant="h7" sx={{ marginTop: 2 }}>Rate Product:</Typography>
+                            <Typography variant="h7" sx={{ marginBottom: 1 }}>Average Rating: {getAverageRating(selectedProduct.reviews)}</Typography>
                             <Rating
-                                name="user-rating"
-                                value={rating}
-                                onChange={(event, newValue) => {
-                                    setRating(newValue);
-                                    handleAddRating(newValue);
-                                }}
+                                name="product-rating"
+                                value={getAverageRating(selectedProduct.reviews)}
+                                precision={0.1}
+                                readOnly
                             />
-                            <Divider sx={{ marginY: 1 }} />
-                            </Box>
-                            {/* Comments Section */}
-                            <Typography variant="h7" sx={{ marginTop: 2 }}>Comments:</Typography>
-                            {selectedProduct.comments && selectedProduct.comments.map((comment, index) => (
-                                <Box key={index} sx={{ marginBottom: 1 }}>
-                                    <Typography variant="h7" sx={{ fontWeight: 'bold' }}>{comment.user}</Typography>
-                                    <Typography variant="h7">{comment.text}</Typography>
-                                    <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-                                        {new Date(comment.timestamp).toLocaleString()}
-                                    </Typography>
-                                    <Divider sx={{ marginY: 1 }} />
+                            <Typography variant="h6" sx={{ marginTop: 2 }}>Comments</Typography>
+                            {selectedProduct.comments && selectedProduct.comments.length > 0 ? (
+                                <Box>
+                                    {selectedProduct.comments.map((comment, index) => (
+                                        <Box key={index} mt={1}>
+                                            <Typography variant="body1" fontWeight="bold">{comment.user}</Typography>
+                                            <Typography variant="body2" color="textSecondary">{new Date(comment.timestamp).toLocaleString()}</Typography>
+                                            <Typography variant="body2" mt={1} mb={2}>{comment.text}</Typography>
+                                            <Divider />
+                                        </Box>
+                                    ))}
                                 </Box>
-                            ))}
-                              <Divider sx={{ my: 2 }} />
-                            {/* Add Comment Section */}
-                            <Typography variant="h7" sx={{ marginTop: 2 }}>Add a Comment:</Typography>
+                            ) : (
+                                <Typography variant="body2" color="textSecondary">No comments yet.</Typography>
+                            )}
                             <TextField
+                                label="Add a comment"
                                 fullWidth
-                                variant="outlined"
-                                label="Your Comment"
                                 value={comment}
                                 onChange={(e) => setComment(e.target.value)}
-                                sx={{ marginBottom: 2 }}
+                                multiline
+                                rows={3}
+                                sx={{ marginTop: 2 }}
                             />
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                onClick={handleAddComment}
-                                disabled={!isLoggedIn}
-                            >
-                                Submit Comment
+                            <Button variant="contained" color="primary" onClick={handleAddComment} sx={{ marginTop: 1 }}>
+                                Add Comment
                             </Button>
                         </Box>
                     </Box>
@@ -315,7 +262,6 @@ const Products = () => {
         </Box>
     );
 };
-
 // Product Item Component
 const ProductItem1 = ({ imgSrc, title, description, onClick }) => (
     <Grid item xs={12} md={4}>
@@ -367,4 +313,6 @@ const ProductItem1 = ({ imgSrc, title, description, onClick }) => (
     </Grid>
 );
 
+
 export default Products;
+

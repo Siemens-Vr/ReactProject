@@ -24,7 +24,8 @@ const pages = [
   { name: 'Worldskills', path: '/worldskills' },
   { name: 'Sifa', path: '/sifa' },
   { name: 'Blog', path: '/blog' },
-  { name: 'Contact', path: '/contact' }
+  { name: 'Contact', path: '/contact' },
+  { name: 'Add', path: '/AddProduct' }
 ];
 
 export default function Header() {
