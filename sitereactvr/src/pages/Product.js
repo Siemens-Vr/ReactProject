@@ -165,8 +165,9 @@ const Products = () => {
             navigate('/login');
         }
          else {
+            console.log(isLoggedIn)
             // Proceed with download if user is logged in
-            window.open(event.currentTarget.href, '_blank');
+            handleUseDownload(event);
         }
     };
 
@@ -196,7 +197,6 @@ const Products = () => {
             licence: "Editorial  Learn more",
             downloadSize:"256MB",
             textures:"0",
-
         },
         {
             imgSrc: Pic1,
@@ -267,7 +267,7 @@ const Products = () => {
                             </Box>
                             <Typography variant="body1" sx={{ marginTop: 2, marginBottom: 2, textAlign:'justify'}}>{selectedProduct.longDescription}</Typography>
                             <a href={downloadUrl} download target="_blank" rel="noopener noreferrer">
-                                <Button onClick={handleDownload}
+                                <Button onClick = {(e) => handleDownload(e)}
                                     variant="contained"
                                     color="primary"
                                     startIcon={<CloudDownload />} 
@@ -307,7 +307,7 @@ const Products = () => {
                                     <Typography variant="body2">Access to Future Versions</Typography>
                                 </Box>
                             </Box>
-                            <Button onClick={handleDownload}
+                            <Button onClick = {(e) => handleDownload(e)}
                                         variant="contained"
                                         color="primary"
                                         sx={{

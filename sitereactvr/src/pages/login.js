@@ -3,7 +3,7 @@ import { Box, Button, TextField, Typography, IconButton, Link as MuiLink } from 
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { motion } from 'framer-motion'; 
 import { useNavigate, Link } from 'react-router-dom';
-import SendLoginForm from '../components/sendForm/SendFormLogin';
+import useLogin from '../services/DB/users/LoginService';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -11,7 +11,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const { submitForm, loading, error, success } = SendLoginForm('http://localhost:5002/users/login');
+  const { handleSubmit, loading, error, success } = useLogin();
 
   const navigate = useNavigate();
 
@@ -46,15 +46,13 @@ const Login = () => {
     return isValid;
   };
 
-  const handleSubmit = (e) => {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
 
     if (validateFields()) {
-      submitForm({ email, password });
-      console.log({ email});
-
-      if (success) {
-        navigate('/product');
+      handleSubmit(e);
+      if (!error) {
+        navigate('/');
       }
     }
   };
@@ -70,7 +68,7 @@ const Login = () => {
         <Box sx={{ p: 4, boxShadow: 20, borderRadius: 2, backgroundColor: 'rgba(244,247,260,262)' }}>
           <Typography variant="h5" sx={{ fontWeight: 'bold', color: '#14183e', mb: 2 }}>Log In</Typography>
 
-          <form onSubmit={handleSubmit}>
+          <form method="POST" action="#" onSubmit = {(e) => handleFormSubmit(e)}>
             <TextField
               fullWidth
               label="Email"
