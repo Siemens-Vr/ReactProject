@@ -9,10 +9,15 @@ const Blog = () => {
     return (
     <Box className="container-fluid bg-gray-100 py-12">
     <Box className="container mx-auto text-center"
-    sx={{ 
-        padding: '50px 0',  // Padding around the section
-        backgroundColor: 'light grey',  // Background color
-        textAlign: 'center',  // Center the content
+    sx={{
+        padding: '50px 0',
+        backgroundColor: 'light grey',
+        textAlign: 'center',
+        width: '80%', 
+        maxWidth: '1200px',
+        marginLeft:'120px',
+        margin: '0 auto'
+
     }}>
         <Typography variant="h4" className="mb-8" sx={{ color: '#14183e', fontWeight:'bold' }}>
             Explore Our Blogs

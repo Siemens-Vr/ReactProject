@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-route
 import Header from '../../components/appBar/AppBar';
 import VideoCard from '../../components/VideoSolution/VideoCard';
 import HomePage from '../Home';
+import About from '../About';
 import Products from '../Product';
 import Worldskills from '../Worldskill';
 import Sifa from '../Sifa';
@@ -33,6 +34,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path='/about' element={<About/>}/>
         <Route path="/product" element={<Products />} />
         <Route path="/worldskills" element={<Worldskills />} />
         <Route path="/sifa" element={<Sifa />} />

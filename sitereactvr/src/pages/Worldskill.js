@@ -129,10 +129,10 @@ const WorldSkills = () => {
           </Grid>
 
             <Box className="flex items-center mt-4">
-              <Button variant="contained" color="primary" className="rounded-full px-4 mr-3" component="a" href="https://sites.google.com/view/worldskills-fair/home" target="_blank" rel="noopener noreferrer" sx={{borderRadius: '9999px',marginRight:'10px'}}>
+              <Button variant="contained" color="primary" className="rounded-full px-4 mr-3" component="a" href="https://sites.google.com/view/worldskills-fair/home" target="_blank" rel="noopener noreferrer" sx={{borderRadius: '9999px',marginRight:'10px',marginBottom:'10px',mr:2}}>
                 Read More
               </Button>
-              <Button variant="contained" color="primary" className="rounded-full px-4 mr-3" component="a" href="https://worldskills.org/" target="_blank" rel="noopener noreferrer" sx={{borderRadius: '9999px',marginRight:'10px'}}>
+              <Button variant="contained" color="primary" className="rounded-full px-4 mr-3" component="a" href="https://worldskills.org/" target="_blank" rel="noopener noreferrer" sx={{borderRadius: '9999px',marginRight:'10px', marginBottom:'10px',mr:2}}>
                 Visit Worldskills
               </Button>
             </Box>
@@ -219,7 +219,7 @@ const WorldSkills = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 color="primary"
-                sx={{borderRadius: '9999px'}}
+                sx={{borderRadius: '9999px', marginBottom:'20px'}}
                 
               >
                 Read More
@@ -297,13 +297,19 @@ const WorldSkills = () => {
 
       </Container>
       
-        <Box className="bg-light mt-5 py-5"
-              sx={{ 
-                padding: '50px 0',  // Padding around the section
-                backgroundColor: 'rgba(244,247,254,255)',  // Background color
-                textAlign: 'center',  // Center the content
-              }}>
-                <Typography variant='h4'sx={{fontWeight:'bold',color:'#14183e'}}>Services</Typography>
+      <Box className="bg-" sx={{backgroundColor:'rgba(244,247,254,255)'}}>
+           <Box className="container mx-auto text-center"
+            sx={{
+                padding: '50px 0',
+                backgroundColor: 'rgba(244,247,254,255)',
+                textAlign: 'center',
+                width: '80%', 
+                maxWidth: '1200px',
+                marginLeft:'120px',
+                margin: '0 auto'
+
+            }}
+        >    <Typography variant='h4'sx={{fontWeight:'bold',color:'#14183e'}}>Services</Typography>
               <Grid container spacing={5} alignItems="center">
                 <Grid item lg={12}>
                   <Grid container spacing={4}>
@@ -350,6 +356,7 @@ const WorldSkills = () => {
                             {/* Increased font size */}
                             <Typography variant="h5" className="mb-3"
                               sx={{
+                                marginTop:'20px',
                                 fontSize: '1.5rem',  // Increased font size
                                 zIndex: 1, 
                                 color:'#14183e', 
@@ -417,16 +424,24 @@ const WorldSkills = () => {
                 </Grid>
               </Grid>
             </Box>
+            </Box>
 
 
        {/* Projects Section */}
        <Box className="container-fluid bg-gray-100 py-12">
-                <Box className="container mx-auto text-center"
-                sx={{ 
-                    padding: '50px 0',  // Padding around the section
-                    backgroundColor: 'light grey',  // Background color
-                    textAlign: 'center',  // Center the content
-                }}>
+            <Box
+                  className="container mx-auto text-center"
+                  sx={{
+                      padding: '50px 0',
+                      backgroundColor: 'light grey',
+                      textAlign: 'center',
+                      width: '80%', 
+                      maxWidth: '1200px',
+                      marginLeft:'120px',
+                      margin: '0 auto'
+
+                  }}
+              >
                     <Typography variant="h4" className="mb-8" sx={{ color: '#14183e', fontWeight:'bold' }}>
                         Explore Our Recent 
                         <br></br>Projects

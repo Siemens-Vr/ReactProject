@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import { Button, Typography, Grid, Box, Dialog, DialogTitle, DialogContent, DialogActions, Divider, TextField, Rating } from '@mui/material';
+import { Button, Typography, Grid, Box, Dialog, DialogTitle, DialogContent, DialogActions, Divider, TextField, Rating,Pagination } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Pic1 from '../assets/img/vr/VRMultiLab - MainScene - Android - Unity 2022.3.9f1 _DX11_ 11_30_2023 6_21_58 PM.png';
 import { CloudDownload, AccountCircle, AccessTime, CreditCard, Lock, Support, Update } from "@mui/icons-material";
@@ -7,20 +7,74 @@ import visa from '../assets/img/logos/visa.jpeg';
 import mastercard from '../assets/img/logos/mastercard.png';
 import paypal from '../assets/img/logos/paypal.png';
 
+
+
 const Products = () => {
     const [open, setOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState({});
-    const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
-    const [comment, setComment] = useState(''); // State for new comment
-    const [rating, setRating] = useState(0); // State for user rating
-    const [download, setDownload]= useState('');//state for downloading
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [comment, setComment] = useState('');
+    const [rating, setRating] = useState(0);
     const [userEmail, setUserEmail] = useState('');
-    const navigate = useNavigate(); // Initialize the navigate function
+    const [download, setDownload]= useState('');//state for downloading
+    const [Product, setProducts] = useState([]);
+    const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);
+    const [loading, setLoading] = useState(false);
+    const [authToken, setAuthToken] = useState('');
+    const navigate = useNavigate();
+
+    const ITEMS_PER_PAGE = 12; 
 
     useEffect(() => {
-        setIsLoggedIn(true);
-        setUserEmail(''); // Set this to the actual logged-in user's email
+        // Simulating login status check and token retrieval
+        const checkLoginStatus = async () => {
+            // This should be replaced with your actual authentication logic
+            const token = localStorage.getItem('authToken');
+            if (token) {
+                setIsLoggedIn(true);
+                setAuthToken(token);
+                setUserEmail(localStorage.getItem('userEmail') || '');
+            } else {
+                setIsLoggedIn(false);
+            }
+        };
+
+        checkLoginStatus();
     }, []);
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            fetchProducts(page);
+        }
+    }, [isLoggedIn, page]);
+
+    const fetchProducts = async () => {
+        setLoading(true);
+        try {
+            const response = await fetch(`/api/products?page=${page}&limit=${ITEMS_PER_PAGE}`, {
+                headers: {
+                    'Authorization': `Bearer ${authToken}`
+                }
+            });
+            if (response.ok) {
+                const data = await response.json();
+                setProducts(data.products);
+                setTotalPages(data.totalPages);
+            } else {
+                console.error('Failed to fetch products');
+            }
+        } catch (error) {
+            console.error('Error fetching products:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handlePageChange = (event, value) => {
+        setPage(value);
+    };
+
 
     // Handler function for opening the dialog
     const handleClickOpen = (product) => {
@@ -37,39 +91,71 @@ const Products = () => {
         setDownload('');
     };
 
-    const handleAddComment = () => {
+    const handleAddComment = async () => {
         if (!isLoggedIn) {
             navigate('/login');
             return;
         }
 
+       
         const newComment = {
             user: userEmail,
             text: comment,
             timestamp: new Date().toISOString()
         };
 
-        setSelectedProduct((prevProduct) => ({
-            ...prevProduct,
-            comments: [...(prevProduct.comments || []), Comment]
-        }));
+        try {
+            const response = await fetch(`/api/products/${selectedProduct.id}/comments`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${authToken}`
+                },
+                body: JSON.stringify(newComment),
+            });
 
-        setComment(''); // Clear the comment input
+            if (response.ok) {
+                setSelectedProduct((prevProduct) => ({
+                    ...prevProduct,
+                    comments: [...(prevProduct.comments || []), newComment]
+                }));
+                setComment('');
+            } else {
+                console.error('Failed to add comment');
+            }
+        } catch (error) {
+            console.error('Error adding comment:', error);
+        }
     };
 
     // Handler function for adding a rating
-    const handleAddRating = (newRating) => {
+    const handleAddRating = async (newRating) => {
         if (!isLoggedIn) {
-            // Redirect to login page if user is not logged in
             navigate('/login');
             return;
         }
 
-        // Add the rating to the product's reviews array
-        setSelectedProduct((prevProduct) => ({
-            ...prevProduct,
-            reviews: [...prevProduct.reviews, { user: 'CurrentUser', rating: newRating }]
-        }));
+        try {
+            const response = await fetch(`/api/products/${selectedProduct.id}/ratings`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${authToken}`
+                },
+                body: JSON.stringify({ user: userEmail, rating: newRating }),
+            });
+
+            if (response.ok) {
+                setSelectedProduct((prevProduct) => ({
+                    ...prevProduct,
+                    reviews: [...prevProduct.reviews, { user: userEmail, rating: newRating }]
+                }));
+            } else {
+                console.error('Failed to add rating');
+            }
+        } catch (error) {
+            console.error('Error adding rating:', error);
+        }
     };
     //Handler function for downloadinf Product
     const handleDownload = (event) => {
@@ -90,6 +176,10 @@ const Products = () => {
         const total = reviews.reduce((sum, review) => sum + review.rating, 0);
         return (total / reviews.length).toFixed(1);
     };
+
+    if (loading) {
+        return <Typography>Loading...</Typography>;
+    }
 
     const products = [
         {
@@ -119,6 +209,7 @@ const Products = () => {
             model: "RoboAuto-2022",
             comments: [],
         }
+        
     ];
     const fileId = 'FILE_ID';
     const downloadUrl = `https://drive.google.com/file/d/19TrMC2r_qBeYUtUYNIIZhFWW1rJXyCEP/view?usp=drive_link=${fileId}`;
@@ -135,7 +226,7 @@ const Products = () => {
                 maxWidth: '1200px', 
             }}
         >
-                <Typography variant="h4" className="mb-8" sx={{ color: '#14183e', fontWeight: 'bold' }}>
+               <Typography variant="h4" className="mb-8" sx={{ color: '#14183e', fontWeight: 'bold' }}>
                     Explore Our Products
                 </Typography>
                 <Grid container spacing={1}>
@@ -150,6 +241,14 @@ const Products = () => {
                     ))}
                 </Grid>
             </Box>
+
+            <Pagination 
+                count={totalPages} 
+                page={page} 
+                onChange={handlePageChange}
+                color="primary"
+                sx={{ marginTop: 4, marginBottom: 4 }}
+            />
 
             {/* Dialog for showing more product details */}
             <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>

@@ -13,14 +13,11 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import imgAbout from '../assets/video/WhatsApp Video 2024-05-17 at 04.36.08_7d9da5de.mp4';
 import imgHome from '../assets/video/WhatsApp Video 2024-05-17 at 03.45.14_e18a017b.mp4';
 import choose from '../assets/img/sifa/IMG-20240519-WA0010.jpg';
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import pic1 from '../assets/img/pic1.png'
 import pic2 from '../assets/img/project1.png';
 import pic3 from '../assets/img/project2.png';
 import prof from '../assets/video/Prof.-Eng.-Jean-Bosco-Byiringiro.png'
 import { useSpring, animated } from '@react-spring/web';
-
-
 
 
 const accordionItemsLeft = [
@@ -181,366 +178,317 @@ const accordionItemsRight4 = [
     },
 ];
 
-
-
 const VirtualMechatronicsLab = () => {
     return (
-        <div className='flex flex-col items-center justify-center min-h-screen bg-primary text-white text-center p-4'>
+        <Box className='flex flex-col items-center justify-center min-h-screen bg-primary text-white p-4'
+        style={{alignContent:'center'}}>
             {/* Home Section */}
             <motion.div
-      initial={{y: 20 }} // Initial state: hidden
-      animate={{ y: 0  }} // Animated state: visible
-      transition={{ duration: 1 }} // Animation duration
-    >
-            <Box className="container-fluid mt-8" sx={{textAlign: 'center',}}>
-                <Box  className="home-section"
-                sx={{ 
-                    padding: '50px 0',  // Padding around the section
-                    backgroundColor: 'white',  // Background color
-                    textAlign: 'center',  // Center the content
-                }}
+                initial={{y: 20}}
+                animate={{y: 0}}
+                transition={{duration: 1}}
             >
-                    <Grid container spacing={5} alignItems="center">
-                        <Grid item xs={12} md={6}>
-                            <Box className="about-img" >
-                            <Toolbar>
-                                <Tooltip title="home" >
-                                    <video className='img-fluid rounded-lg shadow-lg' autoPlay loop muted playsInline 
-                                    src={imgHome}
-                                    alt="home"
-                                    style={{ 
-                                        width: '100%', 
-                                        height: '100%', 
-                                        marginRight: '10px',
-                                        objectFit:'contain',
-                                        overflowClipMargin:'content-box',
-                                        overflow:'clip',
-                                        pointerEvents: 'none'
-                                       }}/>
-                                     </Tooltip>
-                                     </Toolbar>
-
-                            </Box>
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                            <Typography variant="h3" className="mb-4"
-                             sx={{ 
-                                marginTop: '10px',
-                                textAlign:'justify',
-                                fontFamily:'Open Sans,sans-serif',
-                                color:'#14183e',
-                                fontWeight:'bold'}}>
-                                Virtual Mechatronics Lab
-                            </Typography>
-                            <Typography className="mb-4"
-                             sx={{
-                                marginTop: '10px', textAlign: 'justify', fontSize: '18px', color: 'rgb(85,85,85)',
-                                fontWeight: 'normal', padding: '0 20px', lineHeight: '1.5', fontFamily: 'sans-serif',
-                              }}>
-                                Our lab leverages the latest technologies to create highly detailed and interactive simulations of mechatronic systems.
-                            </Typography>
-                            <Typography
-                             sx={{
-                                marginTop: '10px', textAlign: 'justify', fontSize: '18px', color: 'rgb(85,85,85)',
-                                fontWeight: 'normal', padding: '0 20px', lineHeight: '1.5', fontFamily: 'sans-serif',
-                              }}>
-                                This innovative approach significantly enhances the design, development, and deployment processes, resulting in more efficient, effective, and groundbreaking solutions in the field of mechatronics.
-                            </Typography>
-                            <Typography className="mt-4 mb-4"
-                             sx={{
-                                marginTop: '10px', textAlign: 'justify', fontSize: '18px', color: 'rgb(85,85,85)',
-                                fontWeight: 'normal', padding: '0 20px', lineHeight: '1.5', fontFamily: 'sans-serif',
-                              }}>
-                            The lab embodies the cutting edge of technological 
-                        integration, pushing the boundaries of what is possible in mechatronic 
-                        system design and Integration of Virtual Reality and Digital Technologies.
-                            </Typography>
-                        </Grid>
-                    </Grid>
-                </Box>
-            </Box>
-            </motion.div>
-            {/* More About Section */}
-            <motion.div
-      initial={{ y: 30}} // Initial state: hidden
-      animate={{ y: 0 }} // Animated state: visible
-      transition={{ duration: 3 }} // Animation duration
-    >
-            <Box className="container-fluid bg-gray-100 py-12">
-                <Box className="container mx-auto text-center"
-                sx={{ 
-                    padding: '50px 0',  // Padding around the section
-                    backgroundColor: 'rgba(244,247,254,255)',  // Background color
-                    textAlign: 'center',  // Center the content
-                }}>
-                    <Button variant="contained"  className="rounded-fulls text-white px-6 py-2 mb-8" sx={{ borderRadius: '9999px',backgroundColor:'#1363c6'}}>
-                        Here is a deep dive into the aspects of our virtual mechatronics Lab
-                    </Button>
-                    <Grid container spacing={5}sx={{padding:'20px'}}>
-                        <Grid item xs={12} md={6}>
-                            <AccordionComponent items={accordionItemsLeft} />
-                            <AccordionComponent items={accordionItemsLeft1} />
-                            <AccordionComponent items={accordionItemsLeft2} />
-                            <AccordionComponent items={accordionItemsLeft3} />
-                            <AccordionComponent items={accordionItemsLeft4} />
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                            <AccordionComponent items={accordionItemsRight} />
-                            <AccordionComponent items={accordionItemsRight1} />
-                            <AccordionComponent items={accordionItemsRight2} />
-                            <AccordionComponent items={accordionItemsRight3} />
-                            <AccordionComponent items={accordionItemsRight4} />
-                        </Grid>
-                    </Grid>
-                </Box>
-            </Box>
-            </motion.div>
-            {/* Virtual Reality Section */}
-            <motion.div
-      initial={{ y: 40 }} // Initial state: hidden
-      animate={{ y: 0 }} // Animated state: visible
-      transition={{ duration: 5 }} // Animation duration
-    >
-            <Box className="container-fluid py-12">
-                <Box className="container mx-auto"
-                sx={{ 
-                    padding: '10px 0px',  // Padding around the section
-                    backgroundColor:'white',  // Background color
-                    // textAlign: 'center',  // Center the content
-                }}>
-                    <Grid container spacing={5} alignItems="center">
-                        <Grid item xs={12} md={6} sx={{position:'relative'}}>
-                        <Typography variant="h3" className="mb-4" sx={{color:'#14183e', fontWeight:'bold'}}>
-                        Virtual Reality
-                        </Typography>
-                            <Typography className="mb-4"
-                            sx={{
-                                marginTop: '10px', textAlign: 'justify', fontSize: '18px', color: 'rgb(85,85,85)',
-                                fontWeight: 'normal', padding: '0 20px', lineHeight: '1.5', fontFamily: 'sans-serif',
-                              }}>
-                               Virtual Reality immerses you in computer-generated environments, seamlessly blending the physical and digital worlds.
-                                Explore and interact with 3D worlds through advanced simulations, opening new possibilities for education, entertainment,
-                                 and innovation.
-                            </Typography>
-                            <Typography className="mb-4"
-                            sx={{
-                                marginTop: '10px', textAlign: 'justify', fontSize: '18px', color: 'rgb(85,85,85)',
-                                fontWeight: 'normal', padding: '0 20px', lineHeight: '1.5', fontFamily: 'sans-serif',
-                              }}>
-                                Why Study Virtual Reality in Dekut?
-                            </Typography>
-                            <Grid container spacing={3}>
-                                <Grid item xs={6}>
-                                    <Typography className="flex items-center"sx={{ color: '#14183e', fontWeight:'bold',fontFamily:'Font Awesome 5 Free', fontSize:'20px'}}>
-                                        <i className="fa fa-check text-primary mr-2"style={{ color: 'blue', fontWeight:'900' }}></i>
-                                        Accessibility for students
-                                    </Typography>
-                                    <Typography className="flex items-center mt-2" sx={{ color: '#14183e', fontWeight:'bold', fontSize:'20px' }}>
-                                        <i className="fa fa-check mr-2" style={{ color: 'blue' , fontWeight:'900'}}></i> 
-                                        Enhance STEM Education
-                                        </Typography>
-
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <Typography className="flex items-center"sx={{ color: '#14183e', fontWeight:'bold', fontSize:'20px' }}>
-                                        <i className="fa fa-check text-primary mr-2"style={{ color: 'blue', fontWeight:'900' }}></i>
-                                        Enhanced Training
-                                    </Typography>
-                                    <Typography className="flex items-center mt-2"sx={{ color: '#14183e', fontWeight:'bold ', fontSize:'20px' }}>
-                                        <i className="fa fa-check text-primary mr-2"style={{ color: 'blue', fontWeight:'900' }}></i>
-                                        Personalized Learning
-                                    </Typography>
-                                </Grid>
+                <Box className="container-fluid mt-8" sx={{textAlign: 'center', maxWidth: '1200px', margin: '0 auto'}}>
+                    <Box className="home-section"
+                        sx={{ 
+                            padding: '50px 0',
+                            backgroundColor: 'white',
+                            textAlign: 'center',
+                        }}
+                    >
+                        <Grid container spacing={2} alignItems="center" justifyContent="center" sx={{padding:'20px 0px'}}>
+                            <Grid item xs={12} md={6}>
+                                <Box className="about-img" sx={{display: 'flex', justifyContent: 'center'}}>
+                                    <Toolbar>
+                                        <Tooltip title="home">
+                                            <video className='img-fluid rounded-lg shadow-lg' autoPlay loop muted playsInline 
+                                                src={imgHome}
+                                                alt="home"
+                                                style={{ 
+                                                    width: '100%', 
+                                                    height: 'auto', 
+                                                    objectFit:'contain',
+                                                    pointerEvents: 'none'
+                                                }}
+                                            />
+                                        </Tooltip>
+                                    </Toolbar>
+                                </Box>
+                            </Grid>
+                            <Grid item xs={12} md={6}>
+                                <Typography variant="h3" className="mb-4"
+                                    sx={{ 
+                                        padding:'20px 0px',
+                                        textAlign:'center',
+                                        fontFamily:'Open Sans,sans-serif',
+                                        color:'#14183e',
+                                        fontWeight:'bold'
+                                    }}>
+                                    Virtual Mechatronics Lab
+                                </Typography>
+                                <Typography className="mb-4"
+                                    sx={{
+                                        textAlign: 'justify', 
+                                        fontSize: '18px', 
+                                        color: 'rgb(85,85,85)',
+                                        fontWeight: 'normal', 
+                                        lineHeight: '1.5', 
+                                        fontFamily: 'sans-serif',
+                                        justifyContent:'centre',
+                                    }}>
+                                    Our lab leverages the latest technologies to create highly detailed and interactive simulations of mechatronic systems.
+                                    This innovative approach significantly enhances the design, development, and deployment processes, resulting in more efficient, effective, and groundbreaking solutions in the field of mechatronics.
+                                    The lab embodies the cutting edge of technological integration, pushing the boundaries of what is possible in mechatronic system design and Integration of Virtual Reality and Digital Technologies.
+                                </Typography>
                             </Grid>
                         </Grid>
-                        <Grid item xs={12} md={6}>
-                            <Box className="about-img">
-                            <Toolbar>
-                                <Tooltip title="about" >
-                                    <video className='img-fluid rounded-lg shadow-lg' autoPlay loop muted playsInline 
-                                    src={imgAbout}
-                                    alt="about"
-                                    style={{ 
-                                        width: '100%', 
-                                        height: '100%', 
-                                        marginRight: '10px',
-                                        objectFit:'contain',
-                                        overflowClipMargin:'content-box',
-                                        overflow:'clip',
-                                        pointerEvents: 'none' 
-                                    }}/>
-                                     </Tooltip>
-                                     </Toolbar>
-                            </Box>
+                    </Box>
+                </Box>
+            </motion.div>
 
+            {/* More About Section */}
+            <motion.div
+                initial={{y: 30}}
+                animate={{y: 0}}
+                transition={{duration: 3}}
+            >
+                <Box className="container-fluid bg-gray-100 py-12" sx={{backgroundColor: 'rgba(244,247,254,255)'}}>
+                    <Box className="container mx-auto text-center"
+                        sx={{ 
+                            
+                            textAlign: 'center',
+                            maxWidth:'1200px',
+                            margin: '0 auto',
+                            marginleft:'120px',
+                        
+                        }}>
+                        <Button variant="contained" className="rounded-fulls text-white px-6 py-2 mb-8" 
+                            sx={{borderRadius: '9999px', backgroundColor:'#1363c6', textAlign: 'center',marginTop:'20px'}}>
+                            Here is a deep dive into the aspects of our virtual mechatronics Lab
+                        </Button>
+                        <Grid container spacing={5} sx={{marginBottom:'20px'}} alignItems="justify"justifyContent="center">
+                            <Grid item xs={12} md={6} sx={{marginBottom:'20px'}} >
+                                <AccordionComponent items={accordionItemsLeft} />
+                                <AccordionComponent items={accordionItemsLeft1} />
+                                <AccordionComponent items={accordionItemsLeft2} />
+                                <AccordionComponent items={accordionItemsLeft3} />
+                                <AccordionComponent items={accordionItemsLeft4} />
+                            </Grid>
+                            <Grid item xs={12} md={6}sx={{marginBottom:'20px'}} >
+                                <AccordionComponent items={accordionItemsRight} />
+                                <AccordionComponent items={accordionItemsRight1} />
+                                <AccordionComponent items={accordionItemsRight2} />
+                                <AccordionComponent items={accordionItemsRight3} />
+                                <AccordionComponent items={accordionItemsRight4} />
+                            </Grid>
                         </Grid>
-                    </Grid>
+                    </Box>
                 </Box>
-            </Box> 
-           </motion.div>
-           {/* Features */}
-           <motion.div
-      initial={{ y: 50 }} // Initial state: hidden
-      animate={{ y: 0  }} // Animated state: visible
-      transition={{ duration: 7 }} // Animation duration
-    >
-           <Box className="container-fluid bg-primary text-white py-12">
-      <Box className="container mx-auto" 
-        sx={{ 
-          padding: '50px 20px',  
-          backgroundColor: '#1363c6',  
-          textAlign: 'center',
-          color:'#FFFFFF'
-      }}>
-        <Grid container spacing={5}>
-          <Grid item xs={12} md={6} className="mb-8">
-            <Typography 
-              variant="button" 
-              className="btn btn-sm border rounded-pill text-white px-3 mb-3"
-              sx={{ 
-                position: 'relative',
-                top: '0px',
-                color: '#FFFFFF', 
-                fontWeight: 'bold'
-              }}
+            </motion.div>
+
+            {/* Virtual Reality Section */}
+            <motion.div
+                initial={{y: 40}}
+                animate={{y: 0}}
+                transition={{duration: 5}}
             >
-              Why Choose Us
-            </Typography>
-            <Typography variant="h3" className="mb-4" sx={{ textDecoration:'#ffffff' }}>
-              Experience Mechatronics Excellence
-            </Typography>
-            <Typography className="mb-4"
-              sx={{
-                marginTop: '10px', 
-                textAlign: 'justify', 
-                fontSize: '18px', 
-                color: '#FFFFFF',
-                fontWeight: 'normal', 
-                padding: '0 20px', 
-                lineHeight: '1.5', 
-                fontFamily: 'sans-serif'
-              }}
+                <Box className="container-fluid py-12">
+                    <Box className="container mx-auto"
+                        sx={{ 
+                            padding: '10px 0px',
+                            backgroundColor:'white',
+                            maxWidth: '1200px',
+                            margin: '0 auto'
+                        }}>
+                        <Grid container spacing={5} alignItems="center" justifyContent="center">
+                            <Grid item xs={12} md={6} sx={{position:'relative'}}>
+                                <Typography variant="h3" className="mb-4 mt-4" sx={{color:'#14183e', fontWeight:'bold', textAlign:'center'}}>
+                                    Virtual Reality
+                                </Typography>
+                                <Typography className="mb-4 mt-4"
+                                    sx={{
+                                        textAlign: 'justify', 
+                                        fontSize: '20px', 
+                                        color: 'rgb(85,85,85)',
+                                        fontWeight: 'normal', 
+                                        lineHeight: '1.5', 
+                                        justifyContent:'center',
+                                        fontFamily: 'sans-serif',
+                                        marginTop:'20px', marginBottom:'20px',
+                                    }}>
+                                    Virtual Reality immerses you in computer-generated environments, seamlessly blending the physical and digital worlds.
+                                    Explore and interact with 3D worlds through advanced simulations, opening new possibilities for education, entertainment,
+                                    and innovation.
+                                </Typography>
+                                <Typography className="mb-10 mt-10" sx={{textAlign: 'justify', color:'rgb(85,85,85)', fontSize:'20px', marginTop:'20px', marginBottom:'20px'}}>
+                                    Why Study Virtual Reality in Dekut?
+                                </Typography>
+                                <Grid className='mb-5 mt-5' container spacing={3}  textAlign="justify" justifyContent="center" sx={{marginTop:'20px', marginBottom:'20px'}}>
+                                    <Grid item xs={6}>
+                                        <Typography className="flex items-center justify-center" sx={{color: '#14183e', fontWeight:'bold', fontSize:'20px'}}>
+                                            <i className="fa fa-check text-primary mr-2" style={{color: 'blue', fontWeight:'900'}}></i>
+                                            Accessibility for students
+                                        </Typography>
+                                        <Typography className="flex items-center justify-center mt-2" sx={{color: '#14183e', fontWeight:'bold', fontSize:'20px'}}>
+                                            <i className="fa fa-check mr-2" style={{color: 'blue', fontWeight:'900'}}></i> 
+                                            Enhance STEM Education
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                        <Typography className="flex items-center justify-center" sx={{color: '#14183e', fontWeight:'bold', fontSize:'20px'}}>
+                                            <i className="fa fa-check text-primary mr-2" style={{color: 'blue', fontWeight:'900'}}></i>
+                                            Enhanced Training
+                                        </Typography>
+                                        <Typography className="flex items-center justify-center mt-2" sx={{color: '#14183e', fontWeight:'bold', fontSize:'20px'}}>
+                                            <i className="fa fa-check text-primary mr-2" style={{color: 'blue', fontWeight:'900'}}></i>
+                                            Personalized Learning
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                            <Grid item xs={12} md={6}>
+                                <Box className="about-img" sx={{display: 'flex', justifyContent: 'center'}}>
+                                    <Toolbar>
+                                        <Tooltip title="about">
+                                            <video className='img-fluid rounded-lg shadow-lg' autoPlay loop muted playsInline 
+                                                src={imgAbout}
+                                                alt="about"
+                                                style={{ 
+                                                    width: '100%', 
+                                                    height: 'auto', 
+                                                    objectFit:'contain',
+                                                    pointerEvents: 'none' 
+                                                }}
+                                            />
+                                        </Tooltip>
+                                    </Toolbar>
+                                </Box>
+                            </Grid>
+                        </Grid>
+                    </Box>
+                </Box> 
+            </motion.div>
+
+            {/* Features */}
+            <motion.div
+                initial={{y: 50}}
+                animate={{y: 0}}
+                transition={{duration: 7}}
             >
-              We lead in virtual mechatronics solutions, blending VR, robotics, and automation with unparalleled expertise. Choose us for seamless experiences, optimized processes, and transformative solutions, propelling your business into the future.
-            </Typography>
+                <Box className="container-fluid bg-primary text-white py-12" sx={{backgroundColor: '#1363c6',}}>
+                    <Box className="container mx-auto" 
+                        sx={{ 
+                            padding: '10px 0px',   
+                            textAlign: 'justify',
+                            color:'#FFFFFF',
+                            justifyContent:'center',
+                            maxWidth:'1200px',
+                            marginLeft:'120px'
+                        }}>
+                       <Grid container spacing={5} justifyContent="center" alignItems="center">
+                            <Grid item xs={12} md={6} className="mb-8" padding={"20px 0px"}>
+                                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                    <Typography 
+                                        variant="outlined" 
+                                        className="btn btn-sm border rounded-pill text-white px-3 mb-3"
+                                        sx={{ 
+                                            position: 'relative',
+                                            top: '0px',
+                                            color: '#FFFFFF', 
+                                            fontWeight: 'bold'
+                                        }}
+                                    >
+                                        Why Choose Us
+                                    </Typography>
+                                    <Typography variant="h3" className="mb-4" sx={{ textDecoration: '#ffffff', textAlign: 'justify', fontWeight:'bold' }}>
+                                        Experience Mechatronics Excellence
+                                    </Typography>
+                                    <Typography className="mb-4"
+                                        sx={{
+                                            textAlign: 'justify', 
+                                            fontSize: '20px', 
+                                            color: '#FFFFFF',
+                                            fontWeight: 'normal', 
+                                            lineHeight: '1.5', 
+                                            fontFamily: 'sans-serif',
+                                            justifyContent: 'center',
+                                        }}
+                                    >
+                                        We lead in virtual mechatronics solutions, blending VR, robotics, and automation with unparalleled expertise. Choose us for seamless experiences, optimized processes, and transformative solutions, propelling your business into the future.
+                                    </Typography>
 
-            {/* Feature List Integrated Directly */}
-            <Box className="d-flex align-items-center mb-3">
-                <Typography variant="body1" sx={{ flex: 1, color: '#FFFFFF' }}>
-              <i className="fa fa-check btn-sm-square bg-white text-primary rounded-circle me-3"
-              sx={{ 
-                bgcolor: 'white', 
-                color: 'primary.main', 
-                borderRadius: '50%', 
-                width: 32, 
-                height: 32, 
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'center', 
-                marginRight: 1, 
-              }}></i>
-                Unmatched expertise in virtual mechatronics education
-              </Typography>
-            </Box>
+                                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'justify' }}>
+                                        <Typography variant="body1" sx={{ color: '#FFFFFF', fontSize: '18px',textAlign: 'justify' }}>
+                                            <i className="fa fa-check btn-sm-square bg-white text-primary rounded-circle me-3"></i>
+                                            Unmatched expertise in virtual mechatronics education
+                                        </Typography>
+                                        <Typography variant="body1" sx={{ color: '#FFFFFF', fontSize: '18px',textAlign: 'justify' }}>
+                                            <i className="fa fa-check btn-sm-square bg-white text-primary rounded-circle me-3"></i>
+                                            Immersive learning experiences through innovative integration
+                                        </Typography>
+                                        <Typography variant="body1" sx={{ color: '#FFFFFF', fontSize: '18px',textAlign: 'justify' }}>
+                                            <i className="fa fa-check btn-sm-square bg-white text-primary rounded-circle me-3"></i>
+                                            Streamlined processes for enhanced educational efficiency
+                                        </Typography>
+                                    </Box>
 
-            <Box className="d-flex align-items-center mb-3">
-              <Box 
-                className="btn-sm-square bg-white text-primary rounded-circle me-3" 
-                sx={{ 
-                  bgcolor: 'white', 
-                  color: 'primary.main', 
-                  borderRadius: '50%', 
-                  width: 32, 
-                  height: 32, 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center', 
-                  marginRight: 1, 
-                }}
-              >
-              </Box>
-              <Typography variant="body1" sx={{ flex: 1, color: '#FFFFFF' }}>
-              <i className="fa fa-check"></i>
-                Immersive learning experiences through innovative integration
-              </Typography>
-            </Box>
-
-            <Box className="d-flex align-items-center mb-3">
-              <Box 
-                className="btn-sm-square bg-white text-primary rounded-circle me-3" 
-                sx={{ 
-                  bgcolor: 'white', 
-                  color: 'primary.main', 
-                  borderRadius: '50%', 
-                  width: 32, 
-                  height: 32, 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center', 
-                  marginRight: 1, 
-                }}
-              >
-              </Box>
-              <Typography variant="body1" sx={{ flex: 1, color: '#FFFFFF' }}>
-              <i className="fa fa-check"></i>
-                Streamlined processes for enhanced educational efficiency
-              </Typography>
-            </Box>
-
-            <Grid container spacing={4} pt={3}>
-              <Grid item xs={12} sm={6}>
-                <Box className="d-flex align-items-center rounded p-3"
-                  sx={{
-                    background: 'rgba(256, 256, 256, 0.1)',
-                    flexDirection: 'row',
-                    gap: 2, 
-                    justifyContent: 'flex-start' 
-                  }}
-                >
-                  <i className="fa fa-users text-white"
-                    style={{
-                      fontSize: '24px',
-                      marginRight: '16px', 
-                      color: '#FFFFFF',
-                      fontWeight: 'bold'
-                    }}
-                  ></i>
-                  <Box className="ms-3">
-                    <Typography variant="h2" className="text-white mb-0" data-toggle="counter-up">
-                      <AnimatedNumber endNumber={9999} /> 
-                    </Typography>
-                    <Typography className="text-white mb-0">
-                      Happy students
-                    </Typography>
-                  </Box>
-                </Box>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Box className="d-flex align-items-center rounded p-3"
-                  sx={{ 
-                    background: 'rgba(256, 256, 256, 0.1)', 
-                    flexDirection: 'row', 
-                    alignItems: 'center',
-                    justifyContent: 'start'
-                  }}
-                >
-                  <i className="fa fa-check text-white" style={{ fontSize: '24px', marginRight: '16px' }}></i>
-                  <Box>
-                    <Typography variant="h2" className="text-white mb-0" data-toggle="counter-up">
-                      <AnimatedNumber endNumber={9999} /> 
-                    </Typography>
-                    <Typography className="text-white mb-0">
-                      Project Complete
-                    </Typography>
-                  </Box>
-                </Box>
-              </Grid>
-            </Grid>
+                                    <Grid container spacing={4} pt={3} justifyContent="center">
+                                        <Grid item xs={12} sm={6}>
+                                            <Box className="d-flex align-items-center rounded p-3"
+                                                sx={{
+                                                    background: 'rgba(256, 256, 256, 0.1)',
+                                                    display: 'flex',
+                                                    flexDirection: 'row',
+                                                    justifyContent: 'center',
+                                                    alignItems: 'center',
+                                                }}
+                                            >
+                                                <i className="fa fa-users text-white"
+                                                    style={{
+                                                        fontSize: '24px',
+                                                        marginRight: '16px', 
+                                                        color: '#FFFFFF',
+                                                        fontWeight: 'bold'
+                                                    }}
+                                                ></i>
+                                                <Box>
+                                                    <Typography variant="h2" className="text-white mb-0" data-toggle="counter-up">
+                                                        <AnimatedNumber endNumber={9999} /> 
+                                                    </Typography>
+                                                    <Typography className="text-white mb-0">
+                                                        Happy students
+                                                    </Typography>
+                                                </Box>
+                                            </Box>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <Box className="d-flex align-items-center rounded p-3"
+                                                sx={{ 
+                                                    background: 'rgba(256, 256, 256, 0.1)', 
+                                                    display: 'flex',
+                                                    flexDirection: 'row',
+                                                    justifyContent: 'center',
+                                                    alignItems: 'center'
+                                                }}
+                                            >
+                                                <i className="fa fa-check text-white" style={{ fontSize: '24px', marginRight: '16px' }}></i>
+                                                <Box>
+                                                    <Typography variant="h2" className="text-white mb-0" data-toggle="counter-up">
+                                                        <AnimatedNumber endNumber={9999} /> 
+                                                    </Typography>
+                                                    <Typography className="text-white mb-0">
+                                                        Project Complete
+                                                    </Typography>
+                                                </Box>
+                                            </Box>
+                                        </Grid>
+                                    </Grid>
+                                </Box>
+                            </Grid>
+                <Grid item xs={12} md={6} className="text-center md:text-right">
+                  <img className="img-fluid rounded-lg shadow-lg" src={choose} alt="Mechatronics" />
           </Grid>
-          <Grid item xs={12} md={6} className="text-center md:text-right">
-            <img className="img-fluid rounded-lg shadow-lg" src={choose} alt="Mechatronics" />
           </Grid>
-        </Grid>
       </Box>
     </Box>
     </motion.div>
@@ -552,13 +500,20 @@ const VirtualMechatronicsLab = () => {
       transition={{ duration: 9 }} // Animation duration
     >
             <Box className="container-fluid bg-gray-100 py-12">
-                <Box className="container mx-auto text-center"
-                sx={{ 
-                    padding: '50px 0',  // Padding around the section
-                    backgroundColor: 'light grey',  // Background color
-                    textAlign: 'center',  // Center the content
-                }}>
-                    <Typography variant="h4" className="mb-8" sx={{ color: '#14183e', fontWeight:'bold' }}>
+            <Box
+            className="container mx-auto text-center"
+            sx={{
+                padding: '50px 0',
+                backgroundColor: 'light grey',
+                textAlign: 'center',
+                width: '80%', 
+                maxWidth: '1200px',
+                marginLeft:'120px',
+                margin: '0 auto'
+
+            }}
+        >
+            <Typography variant="h4" className="mb-8" sx={{ color: '#14183e', fontWeight:'bold' }}>
                         Explore Our Recent 
                         <br></br>Projects
                     </Typography>
@@ -594,17 +549,17 @@ const VirtualMechatronicsLab = () => {
             <Box
                 className="container mx-auto"
                 sx={{
-                padding: '50px 0', // Padding around the section
-                backgroundColor: 'white', // Background color
-                textAlign: 'center', // Center the content
+                    padding: '50px',
+                    textAlign: 'justify', 
+                    maxWidth: '1200px',
+                    marginLeft:'120px',
+                    justifyContent:'center'
+    
                 }}
             >
-                <Grid container spacing={5}>
+                <Grid container spacing={1}>
                 {/* Left Grid (Text) */}
-                <Grid
-                    item
-                    xs={12}
-                    md={5}
+                <Grid item xs={12} md={6}
                     sx={{
                     borderRight: { md: '2px solid #ddd' }, // Add border on the right of the left grid for larger screens
                     paddingRight: '20px', // Add padding to the right to give space before the border
@@ -615,15 +570,15 @@ const VirtualMechatronicsLab = () => {
                     className="mb-4"
                     sx={{ color: '#14183e', fontWeight: 'bold' }}
                     >
-                    What Our Sponsors & <br />
+                    What Our Sponsors & <br/>
                     Partners Say!
                     </Typography>
                     <Typography
                     className="mb-4"
                     sx={{
-                        marginTop: '10px',
+                        marginTop: '20px',
                         textAlign: 'justify',
-                        fontSize: '18px',
+                        fontSize: '20px',
                         color: 'rgb(85,85,85)',
                         fontWeight: 'normal',
                         padding: '0 20px',
@@ -637,15 +592,14 @@ const VirtualMechatronicsLab = () => {
                     variant="contained"
                     color="primary"
                     className="rounded-full px-6 py-2"
-                    sx={{ borderRadius: '9999px', marginRight: '10px' }}
+                    sx={{ borderRadius: '9999px', marginRight: '10px',marginTop:'20px' }}
                     >
                     Read More
                     </Button>
                 </Grid>
 
                 {/* Right Grid (Testimonial) */}
-                <Grid item xs={12} md={7}>
-                <Grid item xs={12} md={7}>
+                <Grid item xs={12} md={6}>
                     <Box
                     className="border-l-4 border-primary pl-4"
                     sx={{
@@ -686,6 +640,7 @@ const VirtualMechatronicsLab = () => {
                         sx={{
                         display: 'flex', // Use flexbox to align items horizontally
                         alignItems: 'center', // Vertically align items in the center
+                        marginTop:'20px'
                         }}
                     >
                         <img
@@ -707,18 +662,17 @@ const VirtualMechatronicsLab = () => {
                         >
                             Prof. Eng. Jean Bosco
                         </Typography>
-                        <Typography variant="body1">University Professor</Typography>
+                        <Typography variant="body1" sx={{color: 'rgb(85, 85, 85)',}}>University Professor</Typography>
                         </Box>
                     </Box>
                     </Box>
                 </Grid>
                 </Grid>
-                </Grid>
             </Box>
             </Box>
             </motion.div>
-
-        </div>
+      
+        </Box>
         
     );
 };

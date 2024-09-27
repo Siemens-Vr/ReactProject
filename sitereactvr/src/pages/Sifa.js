@@ -117,7 +117,6 @@ const Sifa = () => {
     <div className={classes.contentContainer}>
       {/* sifa */}
       <Container className="py-1">
-      <Typography variant='h4'sx={{fontWeight:'bold',color:'#14183e'}}>SIFA</Typography>
         <Grid container spacing={5} alignItems="center">
           <Grid item lg={6}>
             <div className={classes.aboutImg}>
@@ -232,8 +231,8 @@ const Sifa = () => {
           </Grid>
         </Grid>
         </Container>
-        <Box className="mx-auto text-center mb-3" style={{ maxWidth: '900px', justifyContent: 'center', alignItems: 'center' }}>
-          <Button variant="contained" className="text-primary px-3 mb-3" style={{ borderRadius: '9999px', width: '100%' }}>
+        <Box className="mx-auto text-center mb-3" style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <Button variant="contained" className="text-primary px-3 mb-3" style={{ borderRadius: '9999px',marginLeft:'40px', marginBottom:'20px', justifyContent:'center' }}>
             How the Siemens Mechatronics Certification Centre and the Advanced Virtual Reality Lab at Dedan Kimathi University of Technology fit into this initiative
           </Button>
         </Box>
@@ -241,7 +240,6 @@ const Sifa = () => {
       <Container className="py-5">
         <Grid container spacing={5} alignItems="center">
           <Grid item lg={6}>
-            <Button variant="outlined" className="text-primary px-3 mb-3" style={{ borderRadius: '9999px',marginTop: '20px'  }}>Purpose</Button>
             <Typography variant="h4" gutterBottom
             sx={{marginTop: '10px',
               textAlign:'justify',
@@ -453,29 +451,19 @@ const Sifa = () => {
       </Container>
       </Box>
          {/* Features */}
-          <Box className="container-fluid bg-primary text-white py-12">
-            <Box className="container mx-auto" sx={{ 
-                padding: '50px 20px',  // Add horizontal padding to move content away from margin
-                backgroundColor: '#1363c6',  // Background color
-                textAlign: 'center',
-                color:'#FFFFFF'
-            }}>
-              <Grid container spacing={5}>
-                <Grid item xs={12} md={6} className="mb-8" sx={{backgroundColor:'transparent',textDecoration:'#FFFFFF',position:'relative'}} >
-                  <Button 
-                    variant="outlined" 
-                    sx={{ 
-                        position: 'absolute',
-                        top: '0px',
-                        borderColor: '#ffffff', // Set border color to grey
-                        borderRadius: '9999px', // Make the button fully rounded
-                        color: '#ffffff' // Set button text color
-                    }} 
-                    className="px-6 py-2 mb-8"
-                  >
-                    Features
-                  </Button>
-                  <Typography variant="h3" className="mb-4" sx={{textDecoration:'#FFFFFF'}}>
+          <Box className="container-fluid bg-primary text-white py-12" sx={{backgroundColor: '#1363c6'}}>
+          <Box className="container mx-auto" 
+                        sx={{ 
+                            padding: '10px 0px',   
+                            textAlign: 'justify',
+                            color:'#FFFFFF',
+                            justifyContent:'center',
+                            maxWidth:'1200px',
+                            marginLeft:'120px'
+                        }}>
+              <Grid container spacing={5} justifyContent="center" alignItems="center">
+                            <Grid item xs={12} md={6} className="mb-8" padding={"20px 0px"}>
+                  <Typography variant="h4" className="mb-4" sx={{textDecoration:'#FFFFFF'}}>
                     Advanced Virtual Reality Lab
                   </Typography>
                   <Typography className="mb-4"
@@ -489,60 +477,55 @@ const Sifa = () => {
 
                   <FeatureList />
                   
-                  <Grid container spacing={4} pt={3}>
+                  <Grid container spacing={4} pt={3} justifyContent="center">
                     <Grid item xs={12} sm={6}>
                       <Box className="d-flex align-items-center rounded p-3"
                         sx={{
                           background: 'rgba(256, 256, 256, 0.1)',
+                          display: 'flex',
                           flexDirection: 'row',
-                          gap: 2, // Space between icon and text
-                          justifyContent: 'flex-start' // Align items to start of row
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                         }}>
+                      <i className="fa fa-users text-white"
+                        style={{
+                          fontSize: '24px',
+                          marginRight: '16px', 
+                          color: '#FFFFFF',
+                          fontWeight: 'bold'
                         }}
-                      >
-                        <Box
-                            className="d-flex align-items-center rounded p-3"
-                            sx={{ background: 'rgba(256, 256, 256, 0.1)', flexDirection: 'row', alignItems: 'center' }}
-                        >
-                            <i className="fa fa-users text-white" style={{ fontSize: '24px', marginRight: '16px' }}></i>
-                            <Box>
-                            <Typography variant="h2" className="text-white mb-0">
-                                <AnimatedNumber endNumber={9999} /> {/* Ensure you're passing a number */}
+                      ></i>
+                      <Box>
+                        <Typography variant="h2" className="text-white mb-0" data-toggle="counter-up">
+                          <AnimatedNumber endNumber={9999} /> 
                             </Typography>
                             <Typography className="text-white mb-0">
-                                Happy students
+                               Happy students
                             </Typography>
-                            </Box>
-                        </Box>
-                        </Box>
+                      </Box>
+                    </Box>
                     </Grid>
-
-                    <Grid item xs={12} sm={6}>
-                      <Box
-                        className="d-flex align-items-center rounded p-3"
-                        sx={{ 
-                          background: 'rgba(256, 256, 256, 0.1)', 
-                          flexDirection: 'row', 
-                          alignItems: 'center'
-                        }}
-                      >
-                        <Box
-                            className="d-flex align-items-center rounded p-3"
-                            sx={{ background: 'rgba(256, 256, 256, 0.1)', flexDirection: 'row', alignItems: 'center' }}
-                        >
-                            <i className="fa fa-check text-white" style={{ fontSize: '24px', marginRight: '16px' }}></i>
-                            <Box>
-                            <Typography variant="h2" className="text-white mb-0">
-                                <AnimatedNumber endNumber={9999} /> {/* Ensure you're passing a number */}
+                      <Grid item xs={12} sm={6}>
+                       <Box className="d-flex align-items-center rounded p-3"
+                          sx={{ 
+                            background: 'rgba(256, 256, 256, 0.1)', 
+                            display: 'flex',
+                            flexDirection: 'row',
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                          }}>
+                        <i className="fa fa-check text-white" style={{ fontSize: '24px', marginRight: '16px' }}></i>
+                          <Box>
+                            <Typography variant="h2" className="text-white mb-0" data-toggle="counter-up">
+                              <AnimatedNumber endNumber={9999} /> 
                             </Typography>
                             <Typography className="text-white mb-0">
-                                Project Complete
+                              Project Complete
                             </Typography>
-                            </Box>
+                          </Box>
                         </Box>
-                        </Box>
+                      </Grid>
                     </Grid>
-  
-                  </Grid>
                 </Grid>
                 <Grid item xs={12} md={6} className="text-center md:text-right">
                   <img className="img-fluid rounded-lg shadow-lg" src={choose} alt="img" />

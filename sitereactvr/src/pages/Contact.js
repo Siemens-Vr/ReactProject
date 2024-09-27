@@ -9,17 +9,22 @@ const Contact = () => {
     <Box className="content-container py-10 ml-10" sx={{alignItems:'center'}}>
       <Container maxWidth="md"x={{alignItems:'center'}}>
         {/* Contact Heading Section */}
-        <Box className="mx-auto text-center" data-wow-delay="0.1s" sx={{ maxWidth: 500,
-            padding: '50px 0',  // Padding around the section
-            backgroundColor: 'white',  // Background color
-            textAlign: 'center',
-            alignContent:'center'
-         }}>
+        <Box className="mx-auto text-center" data-wow-delay="0.1s"sx={{
+                padding: '50px 0',
+                backgroundColor: 'light grey',
+                textAlign: 'center',
+                width: '80%', 
+                maxWidth: '1200px',
+                marginLeft:'120px',
+                margin: '0 auto'
+
+            }}>
             <Typography variant='h4'sx={{fontWeight:'bold',color:'#14183e'}}>CONTACT US</Typography>
           <Typography variant="h5" className="mb-4"
           sx={{ 
             marginTop: '10px',
             textAlign:'justify',
+            marginLeft: '40px',
             fontFamily:'Open Sans,sans-serif',
             color:'#14183e',
             fontWeight:'bolder',
@@ -30,6 +35,7 @@ const Contact = () => {
           sx={{ 
             marginTop: '10px',
             textAlign:'justify',
+            marginLeft: '40px',
             fontFamily:'Open Sans,sans-serif',
             color:'#14183e',
             fontWeight:'bolder',
@@ -46,6 +52,7 @@ const Contact = () => {
               sx={{ 
                 marginTop: '10px',
                 textAlign:'justify',
+                marginLeft: '60px',
                 fontFamily:'Open Sans,sans-serif',
                 fontWeight:'bolder',
                 alignItems:'center',}}>
@@ -55,6 +62,7 @@ const Contact = () => {
               sx={{ 
                 marginTop: '10px',
                 textAlign:'justify',
+                marginLeft: '60px',
                 fontFamily:'Open Sans,sans-serif',
                 fontWeight:'bolder',
                 alignItems:'center'}}>
@@ -64,9 +72,12 @@ const Contact = () => {
               sx={{ 
                 marginTop: '10px',
                 textAlign:'justify',
+                marginLeft: '60px',
                 fontFamily:'Open Sans,sans-serif',
                 fontWeight:'bolder',
-                alignItems:'center',}}>
+                alignItems:'center',
+                marginBottom: '20px',}}>
+                  
                 <EmailIcon className="mr-2" /> vr.africa@dkut.ac.ke
               </Typography>
             </Box>
