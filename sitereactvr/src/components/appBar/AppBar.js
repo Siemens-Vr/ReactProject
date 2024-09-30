@@ -15,7 +15,6 @@ import { Tooltip } from '@mui/material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import logo from '../../assets/Virtual Mechatronics Lab Logo V2-01.png';
 
-
 // List of constant pages
 const pages = [
   { name: 'Home', path: '/' },
@@ -30,10 +29,21 @@ const pages = [
 export default function Header() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Simulate user login state
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+      setIsLoggedIn(true);
+      // Check if the user is an admin
+      setIsAdmin(user.isAdmin || user.email === 'vr.africa.dkut.ac.ke'); // Replace with your admin check logic
+    }
+  }, []);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -50,21 +60,14 @@ export default function Header() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  const navigate =useNavigate();
-  useEffect(()=>{
-    const user= localStorage.getItem('user');
-    if (user) {
-      setIsLoggedIn(true);
-    }
-  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('user');
     setIsLoggedIn(false);
+    setIsAdmin(false);
     setAnchorElUser(null);
     alert('Logged out successfully!');
     navigate('/login');
-    
   };
 
   return (
@@ -117,33 +120,59 @@ export default function Header() {
                   </Typography>
                 </MenuItem>
               ))}
+              {isAdmin && (
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">
+                    <Link to="/Users" style={{ textDecoration: 'none', color: 'inherit' }}>
+                      Users
+                    </Link>
+                  </Typography>
+                </MenuItem>
+              )}
             </Menu>
           </>
         ) : (
           <Box sx={{ display: 'flex' }}>
-          {pages.map((page) => (
-            <Button key={page.name} color="inherit">
+            {pages.map((page) => (
+              <Button key={page.name} color="inherit">
                 <NavLink
-                to={page.path}
-                style={({ isActive }) => ({
-                  textDecoration: isActive ? 'underline' : 'none', 
-                  fontWeight: isActive ? 'bold' : 'normal', 
-                  color: 'inherit', 
-                  opacity: isActive ? 1 : 0.5,
-                  transform: isActive ? 'translateY(0px)' : 'translateY(10)', 
-                  transition: 'all 0.3s ease', 
+                  to={page.path}
+                  style={({ isActive }) => ({
+                    textDecoration: isActive ? 'underline' : 'none', 
+                    fontWeight: isActive ? 'bold' : 'normal', 
+                    color: 'inherit', 
+                    opacity: isActive ? 1 : 0.5,
+                    transform: isActive ? 'translateY(0px)' : 'translateY(10)', 
+                    transition: 'all 0.3s ease', 
                   })}
-              >
-                {page.name}
-              </NavLink>
-            </Button>
-          ))}
-        </Box>
+                >
+                  {page.name}
+                </NavLink>
+              </Button>
+            ))}
+            {isAdmin && (
+              <Button color="inherit">
+                <NavLink
+                  to="/Users"
+                  style={({ isActive }) => ({
+                    textDecoration: isActive ? 'underline' : 'none', 
+                    fontWeight: isActive ? 'bold' : 'normal', 
+                    color: 'inherit', 
+                    opacity: isActive ? 1 : 0.5,
+                    transform: isActive ? 'translateY(0px)' : 'translateY(10)', 
+                    transition: 'all 0.3s ease', 
+                  })}
+                >
+                  Users
+                </NavLink>
+              </Button>
+             )} 
+          </Box>
         )}
 
         {/* User Account Section */}
-        <Box>
-          {!isLoggedIn ? (
+        <Box> 
+         {!isLoggedIn ? (
             // Show Login and Signup buttons when not logged in
             <>
               <Button variant="outlined"
@@ -188,9 +217,9 @@ export default function Header() {
                 </Link>
               </Button>
 
-            </>
-          ) : (
-            // Show account icon and user menu when logged in
+            </> 
+           ) : (
+            // Show account icon and user menu when logged in 
             <>
               <IconButton
                 size="large"
@@ -233,7 +262,7 @@ export default function Header() {
                 </MenuItem>
               </Menu>
             </>
-          )}
+        )}
         </Box>
       </Toolbar>
     </AppBar>

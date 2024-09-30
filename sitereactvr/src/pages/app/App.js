@@ -9,7 +9,9 @@ import Worldskills from '../Worldskill';
 import Sifa from '../Sifa';
 import Blog from '../Blog';
 import Contact from '../Contact';
+import Add from '../AddProduct';
 import Login from '../login';
+import Users from '../Users';
 import SignUp from '../Signup';
 import Forget from '../ForgetPassword';
 import Footer from '../../components/Footer/Footer';
@@ -20,7 +22,7 @@ function App() {
   const location = useLocation(); // This will now work inside Router
 
   // Hide Header, VideoCard, Partners, and Footer on /login and /signup pages
-  const hideHeaderPartnersFooter = location.pathname === '/login' || location.pathname === '/signup'|| location.pathname === '/ForgetPassword';
+  const hideHeaderPartnersFooter = location.pathname === '/login' || location.pathname === '/signup'|| location.pathname === '/ForgetPassword' || location.pathname === '/AddProduct' || location.pathname === '/Users';
 
   return (
     <div className="App">
@@ -42,6 +44,8 @@ function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/AddProduct" element={<Add />} />
+        <Route path="/Users" element={<Users />} />
         <Route path="/ForgetPassword" element={<Forget />} />
       </Routes>
 
