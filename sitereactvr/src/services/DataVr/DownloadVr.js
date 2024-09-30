@@ -12,18 +12,28 @@ import axios from "axios";
 const useDownload = () => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleUseDownload = async (e) => {
+  const handleUseDownload = async (e, productName, id) => {
     e.preventDefault();
     setIsLoading(true);
 
+    const email = sessionStorage.getItem("email");
+
+    // Console log for debugging email and productName
+    console.log("User Email:", email);
+    console.log("Product Name:", productName);
+    console.log("ProductId:", id);
+
     try {
       const response = await axios.get("http://localhost:5004/product", {
-        params: { email: "esteban.lavaux2@plop.fr", productName: "plop" },
-        responseType: "blob", // This is important for downloading binary data
+        params: { email, productName, id }, // Pass email and productName dynamically
+        responseType: "blob", // Important for downloading binary data
       });
 
       if (response) {
         setIsLoading(false);
+
+        // Log response to see if the backend is returning the correct file path
+        console.log("Backend response:", response);
 
         // Create a Blob from the response
         const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -31,14 +41,14 @@ const useDownload = () => {
         a.href = url;
 
         // Attempt to extract filename from response headers, or fallback to default
-        const contentDisposition = response.headers['content-disposition'];
+        const contentDisposition = response.headers["content-disposition"];
         let fileName = "downloaded_file.txt"; // Default filename
 
         // If the filename is provided in the Content-Disposition header, extract it
         if (contentDisposition) {
-          const matches = /filename="(.+)"/.exec(contentDisposition);
+          const matches = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/.exec(contentDisposition);
           if (matches != null && matches[1]) {
-            fileName = matches[1];
+            fileName = matches[1].replace(/['"]/g, ''); // Clean up quotes
           }
         }
 

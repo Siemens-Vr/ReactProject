@@ -82,12 +82,12 @@ const Products = () => {
         }));
     };
 
-    const handleDownload = (event) => {
+    const handleDownload = (event,productName,id) => {
         event.preventDefault();
         if (!isLoggedIn) {
             navigate('/login');
         } else {
-            handleUseDownload(event);
+            handleUseDownload(event,productName,id);
         }
     };
 
@@ -142,7 +142,7 @@ const Products = () => {
                             </Box>
                             <Typography variant="body1" sx={{ marginTop: 2, marginBottom: 2, textAlign:'justify'}}>{selectedProduct.longDescription}</Typography>
                             <a href={selectedProduct.path} download target="_blank" rel="noopener noreferrer">
-                                <Button onClick = {(e) => handleDownload(e)}
+                                <Button onClick = {(e) => handleDownload(e, selectedProduct.productName,selectedProduct.id)}
                                     variant="contained"
                                     color="primary"
                                     startIcon={<CloudDownload />} 
@@ -182,7 +182,7 @@ const Products = () => {
                                     <Typography variant="body2">Access to Future Versions</Typography>
                                 </Box>
                             </Box>
-                            <Button onClick = {(e) => handleDownload(e)}
+                            <Button onClick = {(e) => handleDownload(e, selectedProduct.productName,selectedProduct.id)}
                                         variant="contained"
                                         color="primary"
                                         sx={{

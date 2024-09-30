@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {get} from "../../axios";
+//import {get} from "../../axios";
 import axios from "axios";
 import { storeTokens } from "../../axios";
 
@@ -28,7 +28,10 @@ const useLogin = ( ) => {
             const response = await axios.post('http://localhost:5002/api-database/login', formData);
             if (response) {
                 setIsLoading(false);
+                const email = response.data.user.email;
+                //console.log(email)
                 storeTokens(response.data.token, response.data.refreshToken)
+                sessionStorage.setItem('email', email);
             }
           } catch (error) {
             setIsLoading(false);
