@@ -19,7 +19,7 @@ function PostProductData() {
 
     try {
       // Envoyer les données au serveur Node.js
-      const response = await axios.post('http://localhost:5002/product', { name, price });
+      const response = await axios.post('https://api-database-sz4l.onrender.com/product', { name, price });
       console.log('Réponse du serveur:', response.data);
     } catch (error) {
       console.error('Erreur lors de l\'envoi des données:', error);

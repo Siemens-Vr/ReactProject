@@ -37,11 +37,14 @@ export default function Header() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (user) {
-      setIsLoggedIn(true);
-      // Check if the user is an admin
-      setIsAdmin(user.isAdmin || user.email === 'vr.africa.dkut.ac.ke'); // Replace with your admin check logic
+    const token = sessionStorage.getItem('accessToken');
+    if (token) {
+        setIsLoggedIn(true);
+        // Assuming admin role check is part of user info in session storage or from an API
+        const userRole = sessionStorage.getItem('userRole'); // Example way to get role
+        if (userRole === 'admin') {
+            setIsAdmin(true); 
+        }
     }
   }, []);
 
@@ -69,6 +72,7 @@ export default function Header() {
     alert('Logged out successfully!');
     navigate('/login');
   };
+ 
 
   return (
     <AppBar position="static">
@@ -128,7 +132,7 @@ export default function Header() {
                     </Link>
                   </Typography>
                 </MenuItem>
-              )}
+             )}
             </Menu>
           </>
         ) : (
@@ -166,7 +170,7 @@ export default function Header() {
                   Users
                 </NavLink>
               </Button>
-             )} 
+            )}
           </Box>
         )}
 

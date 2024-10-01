@@ -11,7 +11,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const { handleSubmit, loading, error, success } = useLogin();
+  const { handleSubmit, error, } = useLogin();
 
   const navigate = useNavigate();
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { 
   Button, Typography, Box, TextField, 
   Grid, Paper, Select, MenuItem, InputLabel,
@@ -7,9 +8,9 @@ import {
 
 const AddProduct = () => {
   const [product, setProduct] = useState({
-    title: '',
-    description: '',
+    productName: '',
     longDescription: '',
+    path:'',
     price: '',
     owner: '',
     model: '',
@@ -29,37 +30,26 @@ const AddProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('/api/products', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(product),
-      });
-      if (response.ok) {
-        // Handle successful product creation
+      const response = await axios.post('https://api-database-sz4l.onrender.com/product', product);
+      if (response.status === 200) {
         console.log('Product created successfully');
+        setProduct({
+          productName: '',
+          longDescription: '',
+          path:'',
+          price: '',
+          owner: '',
+          model: '',
+          licence: '',
+          downloadSize: '',
+          textures: ''
+        });
       } else {
-        // Handle errors
         console.error('Failed to create product');
       }
     } catch (error) {
       console.error('Error:', error);
     }
-    
-    console.log('Product submitted:', product);
-    // Reset form after submission
-    setProduct({
-      title: '',
-      description: '',
-      longDescription: '',
-      price: '',
-      owner: '',
-      model: '',
-      licence: '',
-      downloadSize: '',
-      textures: ''
-    });
   };
 
   return (
@@ -74,24 +64,13 @@ const AddProduct = () => {
               <TextField
                 fullWidth
                 label="Title"
-                name="title"
-                value={product.title}
+                name="productName"
+                value={product.productName}
                 onChange={handleChange}
                 required
               />
             </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label="Short Description"
-                name="description"
-                value={product.description}
-                onChange={handleChange}
-                required
-                multiline
-                rows={2}
-              />
-            </Grid>
+        
             <Grid item xs={12}>
               <TextField
                 fullWidth
@@ -102,6 +81,16 @@ const AddProduct = () => {
                 required
                 multiline
                 rows={4}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                fullWidth
+                label="Link"
+                name="path"
+                value={product.path}
+                onChange={handleChange}
+                required
               />
             </Grid>
             <Grid item xs={12} sm={6}>

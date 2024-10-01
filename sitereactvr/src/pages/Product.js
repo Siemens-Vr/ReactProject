@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react';
 import { Button, Typography, Grid, Box, Dialog, DialogTitle, DialogContent, DialogActions, Divider, TextField, Rating} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Pic1 from '../assets/img/vr/VRMultiLab - MainScene - Android - Unity 2022.3.9f1 _DX11_ 11_30_2023 6_21_58 PM.png';
-import { CloudDownload, AccountCircle, AccessTime, CreditCard, Lock, Support, Update } from "@mui/icons-material";
+import { CloudDownload, AccountCircle, AccessTime, Lock, Support, Update } from "@mui/icons-material";
 import visa from '../assets/img/logos/visa.jpeg';
 import mastercard from '../assets/img/logos/mastercard.png';
 import paypal from '../assets/img/logos/paypal.png';
@@ -24,7 +24,7 @@ const Products = () => {
 
     useEffect(() => {
         // Check login status and admin role
-        const token = sessionStorage.getItem('accessToken');
+         const token = sessionStorage.getItem('accessToken');
         if (token) {
             setIsLoggedIn(true);
             // Assuming admin role check is part of user info in session storage or from an API
@@ -36,7 +36,7 @@ const Products = () => {
 
         const fetchProducts = async () => {
             try {
-                const response = await axios.get('http://localhost:5002/product');
+                const response = await axios.get('https://api-database-sz4l.onrender.com/product');
                 setProducts(response.data); 
             } catch (error) {
                 console.error('Error fetching products:', error);
@@ -69,7 +69,7 @@ const Products = () => {
             comments: [...(prevProduct.comments || []), newComment]
         }));
 
-        setComment(''); // Clear the comment input
+        setComment(''); 
     };
 
     const handleAddRating = (newRating) => {
@@ -84,12 +84,12 @@ const Products = () => {
         }));
     };
 
-    const handleDownload = (event) => {
+    const handleDownload = (event, productName, id) => {
         event.preventDefault();
         if (!isLoggedIn) {
             navigate('/login');
         } else {
-            handleUseDownload(event);
+            handleUseDownload(event, productName, id);
         }
     };
 
@@ -106,7 +106,7 @@ const Products = () => {
     };
 
     const handleAddProduct = () => {
-        navigate('/AddProduct'); // Navigate to the add product page
+        navigate('/AddProduct'); 
     };
 
     return (
@@ -136,8 +136,7 @@ const Products = () => {
                         Add Product
                     </Button>
                 )}
-
-                <Grid container spacing={1}>
+            <Grid container spacing={1}>
                     {products.map((product, index) => (
                         <ProductItem1
                             key={index}
@@ -167,7 +166,7 @@ const Products = () => {
                             </Box>
                             <Typography variant="body1" sx={{ marginTop: 2, marginBottom: 2, textAlign:'justify'}}>{selectedProduct.longDescription}</Typography>
                             <a href={selectedProduct.path} download target="_blank" rel="noopener noreferrer">
-                                <Button onClick = {(e) => handleDownload(e)}
+                                <Button onClick = {(e) => handleDownload(e, selectedProduct.productName, selectedProduct.id)}
                                     variant="contained"
                                     color="primary"
                                     startIcon={<CloudDownload />} 
@@ -207,7 +206,7 @@ const Products = () => {
                                     <Typography variant="body2">Access to Future Versions</Typography>
                                 </Box>
                             </Box>
-                            <Button onClick = {(e) => handleDownload(e)}
+                            <Button onClick = {(e) => handleDownload(e, selectedProduct.productName, selectedProduct.id)}
                                         variant="contained"
                                         color="primary"
                                         sx={{
@@ -304,9 +303,9 @@ const ProductItem1 = ({ imgSrc, title, description, onClick }) => (
                     transform: 'scale(1.05)',
                     boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.3)',
                 },
-                cursor: 'pointer' // Add pointer cursor
+                cursor: 'pointer' 
             }}
-            onClick={onClick} // Open the dialog on image click
+            onClick={onClick}
         >
             <img
                 className="w-full h-56 object-cover"

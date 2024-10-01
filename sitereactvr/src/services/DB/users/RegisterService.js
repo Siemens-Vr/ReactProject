@@ -29,7 +29,7 @@ const useSignUp = () => {
       };
 
         try {
-            const response = await axios.post('http://localhost:5002/api-database/register', formData);
+            const response = await axios.post('https://api-database-sz4l.onrender.com/api-database/register', formData);
             if (response) {
                 setIsLoading(false);
             }
