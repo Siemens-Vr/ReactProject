@@ -8,6 +8,8 @@ import paypal from '../assets/img/logos/paypal.png';
 import useDownload from '../services/DataVr/DownloadVr';
 import Pic1 from '../assets/img/vr/VRMultiLab - MainScene - Android - Unity 2022.3.9f1 _DX11_ 11_30_2023 6_21_58 PM.png';
 import axios from 'axios'; 
+import UnityComponent from '../components/Unity/unityComponent'; 
+
 
 const Products = () => {
     const [open, setOpen] = useState(false);
@@ -131,7 +133,22 @@ const Products = () => {
                 <DialogContent>
                     <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }} gap={3}>
                         <Box flexBasis="50%">
-                            <img src={Pic1} alt={selectedProduct.productName} style={{ width: '100%', borderRadius: '8px' }} />
+                        <Typography variant="h6" sx={{ marginBottom: 1 }}>
+                {selectedProduct.productName}
+            </Typography>
+            {/* Replace the image with the Unity component */}
+            <Box sx={{ width: '300px', height: '200px', position: 'relative' }}>
+                <UnityComponent
+                    loaderUrl="/build/webgl.loader.js" 
+                    dataUrl="/build/webgl.data"
+                    frameworkUrl="/build/webgl.framework.js"
+                    codeUrl="/build/webgl.wasm"
+                    width="100%"
+                    height="100%"
+                    isActive={true} // Make sure the Unity component is active
+                    onClick={() => console.log('Unity component clicked!')}
+                />
+            </Box>
                             <Box display="flex" alignItems="center" gap={1} mt={1}>
                                 <AccountCircle />
                                 <Typography variant="body2" sx={{ fontWeight:'bold'}}>{selectedProduct.owner}</Typography>
