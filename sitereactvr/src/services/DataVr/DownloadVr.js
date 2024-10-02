@@ -42,7 +42,7 @@ const useDownload = () => {
 
         // Attempt to extract filename from response headers, or fallback to default
         const contentDisposition = response.headers["content-disposition"];
-        let fileName = "downloaded_file.txt"; // Default filename
+        let fileName = "downloaded_file.apk"; // Default filename should be APK, not TXT
 
         // If the filename is provided in the Content-Disposition header, extract it
         if (contentDisposition) {
