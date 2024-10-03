@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import axios from "axios";
 
@@ -24,7 +25,7 @@ const useDownload = () => {
     console.log("ProductId:", id);
 
     try {
-      const response = await axios.get('https://api-dwl.onrender.com/product', {
+      const response = await axios.get("https://api-dwl.onrender.com/product", {
         params: { email, productName, id }, // Pass email and productName dynamically
         responseType: "blob", // Important for downloading binary data
       });
@@ -42,7 +43,7 @@ const useDownload = () => {
 
         // Attempt to extract filename from response headers, or fallback to default
         const contentDisposition = response.headers["content-disposition"];
-        let fileName = "downloaded_file.txt"; // Default filename
+        let fileName = "downloaded_file.apk"; // Default filename should be APK, not TXT
 
         // If the filename is provided in the Content-Disposition header, extract it
         if (contentDisposition) {

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { NavLink, useNavigate, Link} from 'react-router-dom';
+import React, {  useState } from 'react';
+import { NavLink, useNavigate, Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -26,27 +26,13 @@ const pages = [
   { name: 'Contact', path: '/contact' }
 ];
 
-export default function Header() {
+export default function Header({ userRole, isAuthenticated }) {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const token = sessionStorage.getItem('accessToken');
-    if (token) {
-        setIsLoggedIn(true);
-        // Assuming admin role check is part of user info in session storage or from an API
-        const userRole = sessionStorage.getItem('userRole'); // Example way to get role
-        if (userRole === 'admin') {
-            setIsAdmin(true); 
-        }
-    }
-  }, []);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -65,14 +51,12 @@ export default function Header() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('user');
-    setIsLoggedIn(false);
-    setIsAdmin(false);
+    sessionStorage.removeItem('accessToken');
+    sessionStorage.removeItem('userEmail');
     setAnchorElUser(null);
     alert('Logged out successfully!');
     navigate('/login');
   };
- 
 
   return (
     <AppBar position="static">
@@ -124,7 +108,7 @@ export default function Header() {
                   </Typography>
                 </MenuItem>
               ))}
-              {isAdmin && (
+              {isAuthenticated && userRole === 'admin' && (
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
                     <Link to="/Users" style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -132,7 +116,7 @@ export default function Header() {
                     </Link>
                   </Typography>
                 </MenuItem>
-             )}
+              )}
             </Menu>
           </>
         ) : (
@@ -142,29 +126,29 @@ export default function Header() {
                 <NavLink
                   to={page.path}
                   style={({ isActive }) => ({
-                    textDecoration: isActive ? 'underline' : 'none', 
-                    fontWeight: isActive ? 'bold' : 'normal', 
-                    color: 'inherit', 
+                    textDecoration: isActive ? 'underline' : 'none',
+                    fontWeight: isActive ? 'bold' : 'normal',
+                    color: 'inherit',
                     opacity: isActive ? 1 : 0.5,
-                    transform: isActive ? 'translateY(0px)' : 'translateY(10)', 
-                    transition: 'all 0.3s ease', 
+                    transform: isActive ? 'translateY(0px)' : 'translateY(10)',
+                    transition: 'all 0.3s ease',
                   })}
                 >
                   {page.name}
                 </NavLink>
               </Button>
             ))}
-            {isAdmin && (
+            {isAuthenticated && userRole === 'admin' && (
               <Button color="inherit">
                 <NavLink
                   to="/Users"
                   style={({ isActive }) => ({
-                    textDecoration: isActive ? 'underline' : 'none', 
-                    fontWeight: isActive ? 'bold' : 'normal', 
-                    color: 'inherit', 
+                    textDecoration: isActive ? 'underline' : 'none',
+                    fontWeight: isActive ? 'bold' : 'normal',
+                    color: 'inherit',
                     opacity: isActive ? 1 : 0.5,
-                    transform: isActive ? 'translateY(0px)' : 'translateY(10)', 
-                    transition: 'all 0.3s ease', 
+                    transform: isActive ? 'translateY(0px)' : 'translateY(10)',
+                    transition: 'all 0.3s ease',
                   })}
                 >
                   Users
@@ -175,55 +159,8 @@ export default function Header() {
         )}
 
         {/* User Account Section */}
-        <Box> 
-         {!isLoggedIn ? (
-            // Show Login and Signup buttons when not logged in
-            <>
-              <Button variant="outlined"
-                className="rounded-full border px-3 mb-3"
-                size="small"
-                sx={{ 
-                  borderColor: 'grey.400',
-                  borderRadius: '9999px', 
-                  color: '#ffffff',
-                  backgroundColor: 'transparent',
-                  alignItems: 'center',
-                  mr: 1,
-                  '&:hover': {
-                    backgroundColor: '#ffffff',
-                    color: 'blue', 
-                    borderColor: 'blue',
-                  }
-                }}>
-                <Link to="/login" style={{ color: 'inherit', textDecoration: 'none' }}>
-                  Login
-                </Link>
-              </Button>
-
-              <Button variant="outlined"
-                className="rounded-full border px-3 mb-3"
-                size="small"
-                sx={{ 
-                  borderColor: 'grey.400',
-                  borderRadius: '9999px', 
-                  color: '#ffffff',
-                  backgroundColor: 'transparent', 
-                  alignItems: 'center',
-                  mr: 1,
-                  '&:hover': {
-                    backgroundColor: '#ffffff', 
-                    color: 'blue', 
-                    borderColor: 'blue', 
-                  }
-                }}>
-                <Link to="/signup" style={{ color: 'inherit', textDecoration: 'none' }}>
-                  Sign up
-                </Link>
-              </Button>
-
-            </> 
-           ) : (
-            // Show account icon and user menu when logged in 
+        <Box>
+          {isAuthenticated ? (
             <>
               <IconButton
                 size="large"
@@ -256,17 +193,55 @@ export default function Header() {
                     View Profile
                   </Link>
                 </MenuItem>
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Link to="/edit-profile" style={{ textDecoration: 'none', color: 'inherit' }}>
-                    Edit Profile
-                  </Link>
-                </MenuItem>
-                <MenuItem onClick={handleLogout}>
-                  Logout
-                </MenuItem>
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Menu>
             </>
-        )}
+          ) : (
+            <>
+              <Button variant="outlined"
+                className="rounded-full border px-3 mb-3"
+                size="small"
+                sx={{ 
+                  borderColor: 'grey.400',
+                  borderRadius: '9999px', 
+                  color: '#ffffff',
+                  backgroundColor: 'transparent',
+                  alignItems: 'center',
+                  mr: 1,
+                  '&:hover': {
+                    backgroundColor: '#ffffff',
+                    color: 'blue',
+                    borderColor: 'blue',
+                  }
+                }}
+              >
+                <Link to="/login" style={{ color: 'inherit', textDecoration: 'none' }}>
+                  Login
+                </Link>
+              </Button>
+              <Button variant="outlined"
+                className="rounded-full border px-3 mb-3"
+                size="small"
+                sx={{ 
+                  borderColor: 'grey.400',
+                  borderRadius: '9999px',
+                  color: '#ffffff',
+                  backgroundColor: 'transparent',
+                  alignItems: 'center',
+                  mr: 1,
+                  '&:hover': {
+                    backgroundColor: '#ffffff',
+                    color: 'blue',
+                    borderColor: 'blue',
+                  }
+                }}
+              >
+                <Link to="/signup" style={{ color: 'inherit', textDecoration: 'none' }}>
+                  Sign up
+                </Link>
+              </Button>
+            </>
+          )}
         </Box>
       </Toolbar>
     </AppBar>

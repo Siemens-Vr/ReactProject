@@ -46,16 +46,27 @@ const Login = () => {
     return isValid;
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (validateFields()) {
-      handleSubmit(e);
-      if (!error) {
-        navigate('/');
+      try {
+        const userData = await handleSubmit(e);  // Get user data including the role
+  
+        if (userData && userData.role) {  // Ensure userData and role are present
+          localStorage.setItem('userRole', userData.role);  // Store role
+          localStorage.setItem('isAuthenticated', true);    // Mark user as authenticated
+          navigate('/');  // Navigate to homepage after successful login
+        } else {
+          console.error('User data or role not found');
+        }
+      } catch (error) {
+        console.error('Error during form submission', error);
       }
     }
   };
+  
+  
 
   return (
     <Box className="login-page" sx={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

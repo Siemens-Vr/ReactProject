@@ -1,5 +1,6 @@
+import React, { useState, useEffect } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation, Navigate } from 'react-router-dom';
 import Header from '../../components/appBar/AppBar';
 import VideoCard from '../../components/VideoSolution/VideoCard';
 import HomePage from '../Home';
@@ -20,16 +21,30 @@ import Partners from '../../components/Partners/Partners';
 // Move useLocation inside the App function
 function App() {
   const location = useLocation(); // This will now work inside Router
+     // Get user role and authentication status from local storage
+     const [isAuthenticated, setIsAuthenticated] = useState(false);
+     const [userRole, setUserRole] = useState(null);
+  
+  useEffect(() => {
+    // Check if user is already authenticated (e.g., on page load)
+    const role = sessionStorage.getItem('userRole');
+    const auth = sessionStorage.getItem('isAuthenticated');
+    
+    if (auth === 'true') {
+      setIsAuthenticated(true);
+      setUserRole(role);
+    }
+  }, []);
 
   // Hide Header, VideoCard, Partners, and Footer on /login and /signup pages
   const hideHeaderPartnersFooter = location.pathname === '/login' || location.pathname === '/signup'|| location.pathname === '/ForgetPassword' || location.pathname === '/AddProduct' || location.pathname === '/Users';
 
   return (
     <div className="App">
-      {/* Conditionally render Header, VideoCard, and Partners */}
+      
       {!hideHeaderPartnersFooter && (
         <>
-          <Header PageName={"test"} />
+         <Header userRole={userRole} isAuthenticated={isAuthenticated} />
           <VideoCard />
         </>
       )}
@@ -42,10 +57,10 @@ function App() {
         <Route path="/sifa" element={<Sifa />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/blog" element={<Blog />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} setUserRole={setUserRole} />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/AddProduct" element={<Add />} />
-        <Route path="/Users" element={<Users />} />
+        <Route path="/Users" element={userRole === 'admin' ? <Users /> : <Navigate to="/" />} />
         <Route path="/ForgetPassword" element={<Forget />} />
       </Routes>
 
