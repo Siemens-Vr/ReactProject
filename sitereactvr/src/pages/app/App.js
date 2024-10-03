@@ -60,7 +60,8 @@ function App() {
         <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} setUserRole={setUserRole} />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/AddProduct" element={<Add />} />
-        <Route path="/Users" element={userRole === 'admin' ? <Users /> : <Navigate to="/Users" />} />
+        <Route path="/Users" element={<Users />} />
+        {/* <Route path="/Users" element={userRole === 'admin' ? <Users /> : <Navigate to="/Users" />} /> */}
         <Route path="/ForgetPassword" element={<Forget />} />
       </Routes>
 
