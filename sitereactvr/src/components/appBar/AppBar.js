@@ -115,7 +115,7 @@ export default function Header({ isloggedIn }) {
                   </Typography>
                 </MenuItem>
               ))}
-              {userRole === 'admin' && (
+              {isloggedIn && userRole === 'admin' && (
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
                     <Link to="/Users" style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -145,7 +145,7 @@ export default function Header({ isloggedIn }) {
                 </NavLink>
               </Button>
             ))}
-            {userRole === 'admin' && (
+            {isloggedIn && userRole === 'admin' && (
               <Button color="inherit">
                 <NavLink
                   to="/Users"
