@@ -26,7 +26,7 @@ const pages = [
   { name: 'Contact', path: '/contact' }
 ];
 
-export default function Header({ userRole, isAuthenticated }) {
+export default function Header({ userRole, isloggedIn }) {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -108,7 +108,7 @@ export default function Header({ userRole, isAuthenticated }) {
                   </Typography>
                 </MenuItem>
               ))}
-              {isAuthenticated && userRole === 'admin' && (
+              {userRole === 'admin' && (
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
                     <Link to="/Users" style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -138,7 +138,7 @@ export default function Header({ userRole, isAuthenticated }) {
                 </NavLink>
               </Button>
             ))}
-            {isAuthenticated && userRole === 'admin' && (
+            {userRole === 'admin' && (
               <Button color="inherit">
                 <NavLink
                   to="/Users"
@@ -160,7 +160,7 @@ export default function Header({ userRole, isAuthenticated }) {
 
         {/* User Account Section */}
         <Box>
-          {isAuthenticated ? (
+          {isloggedIn ? (
             <>
               <IconButton
                 size="large"
