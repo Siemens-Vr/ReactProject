@@ -26,16 +26,25 @@ const pages = [
   { name: 'Contact', path: '/contact' }
 ];
 
-export default function Header({ isloggedIn }) {
-  const [userRole, setUserRole] = useState(null);
+export default function Header() {
+  const [isloggedIn, setIsloggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false); // New state for admin
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   // Fetch userRole from sessionStorage when the component mounts
   useEffect(() => {
-    const role = sessionStorage.getItem('userRole');
-    setUserRole(role); // Set the userRole in state
-  }, []);
+    // Check login status and admin role
+    const token = sessionStorage.getItem('accessToken');
+    if (token) {
+        setIsloggedIn(true);
+        // Assuming admin role check is part of user info in session storage or from an API
+        const userRole = sessionStorage.getItem('userRole'); // Example way to get role
+        if (userRole === 'admin') {
+            setIsAdmin(true); 
+        }
+    }
+  })
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
@@ -115,7 +124,7 @@ export default function Header({ isloggedIn }) {
                   </Typography>
                 </MenuItem>
               ))}
-              {isloggedIn && userRole === 'admin' && (
+              {isloggedIn && isAdmin(
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
                     <Link to="/Users" style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -145,7 +154,7 @@ export default function Header({ isloggedIn }) {
                 </NavLink>
               </Button>
             ))}
-            {isloggedIn && userRole === 'admin' && (
+            {isloggedIn && isAdmin(
               <Button color="inherit">
                 <NavLink
                   to="/Users"
