@@ -1,8 +1,14 @@
-import React, { useState,useEffect } from 'react';
-import { Button, Typography, Grid, Box, Dialog, DialogTitle, DialogContent, DialogActions, Divider, TextField, Rating} from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { 
+    Button, Typography, Grid, Box, Dialog, DialogTitle, 
+    DialogContent, DialogActions, Divider, TextField, Rating, 
+    IconButton
+} from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import Pic1 from '../assets/img/vr/VRMultiLab - MainScene - Android - Unity 2022.3.9f1 _DX11_ 11_30_2023 6_21_58 PM.png';
-import { CloudDownload, AccountCircle, AccessTime, Lock, Support, Update } from "@mui/icons-material";
+import { 
+    CloudDownload, AccountCircle, AccessTime, Lock, 
+    Support, Update, Edit, Delete 
+} from "@mui/icons-material";
 import visa from '../assets/img/logos/visa.jpeg';
 import mastercard from '../assets/img/logos/mastercard.png';
 import paypal from '../assets/img/logos/paypal.png';
@@ -10,40 +16,40 @@ import axios from 'axios';
 import useDownload from '../services/DataVr/DownloadVr';
 import UnityComponent from '../components/Unity/unityComponent';
 
-
 const Products = () => {
     const [open, setOpen] = useState(false);
-    const [products, setProducts] = useState([]); // State to store the fetched products
+    const [products, setProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState({});
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [isAdmin, setIsAdmin] = useState(false); // New state for admin
+    const [isAdmin, setIsAdmin] = useState(false);
     const [comment, setComment] = useState('');
     const [rating, setRating] = useState(0);
     const [userEmail, setUserEmail] = useState('');
+    const [openEditDialog, setOpenEditDialog] = useState(false);
+    const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+    const [editedProduct, setEditedProduct] = useState({});
     const { handleUseDownload } = useDownload();
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Check login status and admin role
-         const token = sessionStorage.getItem('accessToken');
+        const token = sessionStorage.getItem('accessToken');
         if (token) {
             setIsLoggedIn(true);
-            // Assuming admin role check is part of user info in session storage or from an API
-            const userRole = sessionStorage.getItem('userRole'); // Example way to get role
+            const userRole = sessionStorage.getItem('userRole');
             if (userRole === 'admin') {
-                setIsAdmin(true); 
+                setIsAdmin(true);
             }
         }
 
         const fetchProducts = async () => {
             try {
                 const response = await axios.get('https://api-database-sz4l.onrender.com/product');
-                setProducts(response.data); 
+                setProducts(response.data);
             } catch (error) {
                 console.error('Error fetching products:', error);
             }
         };
-    
+
         fetchProducts();
     }, []);
 
@@ -52,6 +58,12 @@ const Products = () => {
         setOpen(true);
     };
 
+    const handleClose = () => {
+        setOpen(false);
+        setSelectedProduct({});
+        setComment('');
+        setRating(0);
+    };
 
     const handleAddComment = () => {
         if (!isLoggedIn) {
@@ -70,7 +82,7 @@ const Products = () => {
             comments: [...(prevProduct.comments || []), newComment]
         }));
 
-        setComment(''); 
+        setComment('');
     };
 
     const handleAddRating = (newRating) => {
@@ -99,15 +111,42 @@ const Products = () => {
         const total = reviews.reduce((sum, review) => sum + review.rating, 0);
         return (total / reviews.length).toFixed(1);
     };
-    const handleClose = () => {
-        setOpen(false);
-        setSelectedProduct({});
-        setComment('');
-        setRating(0);
-    };
 
     const handleAddProduct = () => {
-        navigate('/AddProduct'); 
+        navigate('/AddProduct');
+    };
+
+    const handleEditClick = (event) => {
+        event.stopPropagation();
+        setEditedProduct({ ...selectedProduct });
+        setOpenEditDialog(true);
+    };
+
+    const handleDeleteClick = (event) => {
+        event.stopPropagation();
+        setOpenDeleteDialog(true);
+    };
+
+    const handleEditSave = async () => {
+        try {
+            await axios.put(`https://api-database-sz4l.onrender.com/product/${editedProduct.id}`, editedProduct);
+            setProducts(products.map(p => p.id === editedProduct.id ? editedProduct : p));
+            setSelectedProduct(editedProduct);
+            setOpenEditDialog(false);
+        } catch (error) {
+            console.error('Error updating product:', error);
+        }
+    };
+
+    const handleDelete = async () => {
+        try {
+            await axios.delete(`https://api-database-sz4l.onrender.com/product/${selectedProduct.id}`);
+            setProducts(products.filter(p => p.id !== selectedProduct.id));
+            setOpen(false);
+            setOpenDeleteDialog(false);
+        } catch (error) {
+            console.error('Error deleting product:', error);
+        }
     };
 
     return (
@@ -126,7 +165,6 @@ const Products = () => {
                     Explore Our Products
                 </Typography>
 
-                {/* Show Add Product button if the user is an admin */}
                 {isAdmin && (
                     <Button
                         variant="contained"
@@ -137,11 +175,12 @@ const Products = () => {
                         Add Product
                     </Button>
                 )}
-            <Grid container spacing={1}>
+
+                <Grid container spacing={1}>
                     {products.map((product, index) => (
                         <ProductItem1
                             key={index}
-                            imgSrc={product.image || Pic1} // Example product image
+                            imgSrc={product.image}
                             title={product.productName}
                             description={product.longDescription}
                             onClick={() => handleClickOpen(product)}
@@ -297,6 +336,104 @@ const Products = () => {
                     <Button onClick={handleClose} color="primary">
                         Close
                     </Button>
+                    {isAdmin && (
+                        <>
+                            <IconButton onClick={handleEditClick} color="primary">
+                                <Edit />
+                            </IconButton>
+                            <IconButton onClick={handleDeleteClick} color="error">
+                                <Delete />
+                            </IconButton>
+                        </>
+                    )}
+                </DialogActions>
+            </Dialog>
+
+            {/* Edit Dialog */}
+            <Dialog open={openEditDialog} onClose={() => setOpenEditDialog(false)} maxWidth="sm" fullWidth>
+                <DialogTitle>Edit Product</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        fullWidth
+                        label="Product Name"
+                        value={editedProduct.productName || ''}
+                        onChange={(e) => setEditedProduct({ ...editedProduct, productName: e.target.value })}
+                        margin="normal"
+                    />
+                    <TextField
+                        fullWidth
+                        label="Description"
+                        value={editedProduct.longDescription || ''}
+                        onChange={(e) => setEditedProduct({ ...editedProduct, longDescription: e.target.value })}
+                        margin="normal"
+                        multiline
+                        rows={4}
+                    />
+                    <TextField
+                        fullWidth
+                        label="Price"
+                        value={editedProduct.price || ''}
+                        onChange={(e) => setEditedProduct({ ...editedProduct, price: e.target.value })}
+                        margin="normal"
+                    />
+                    <TextField
+                        fullWidth
+                        label="Owner"
+                        value={editedProduct.owner || ''}
+                        onChange={(e) => setEditedProduct({ ...editedProduct, owner: e.target.value })}
+                        margin="normal"
+                    />
+                    <TextField
+                        fullWidth
+                        label="License"
+                        value={editedProduct.license || ''}
+                        onChange={(e) => setEditedProduct({ ...editedProduct, license: e.target.value })}
+                        margin="normal"
+                    />
+                    <TextField
+                        fullWidth
+                        label="Model"
+                        value={editedProduct.model || ''}
+                        onChange={(e) => setEditedProduct({ ...editedProduct, model: e.target.value })}
+                        margin="normal"
+                    />
+                    <TextField
+                        fullWidth
+                        label="Texture"
+                        value={editedProduct.texture || ''}
+                        onChange={(e) => setEditedProduct({ ...editedProduct, textures: e.target.value })}
+                        margin="normal"
+                    />
+                    <TextField
+                        fullWidth
+                        label="Path"
+                        value={editedProduct.path || ''}
+                        onChange={(e) => setEditedProduct({ ...editedProduct, path: e.target.value })}
+                        margin="normal"
+                    />
+                    <TextField
+                        fullWidth
+                        label="Download Size"
+                        value={editedProduct.price || ''}
+                        onChange={(e) => setEditedProduct({ ...editedProduct, downloadSize: e.target.value })}
+                        margin="normal"
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setOpenEditDialog(false)}>Cancel</Button>
+                    <Button onClick={handleEditSave} color="primary">Save</Button>
+                </DialogActions>
+            </Dialog>
+
+            {/* Delete Confirmation Dialog */}
+            <Dialog open={openDeleteDialog} onClose={() => setOpenDeleteDialog(false)}>
+                <DialogTitle>Confirm Delete</DialogTitle>
+                <DialogContent>
+                    <Typography>Are you sure you want to delete this product?</Typography>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setOpenDeleteDialog(false)}>Cancel</Button>
+                    <Button onClick={handleDelete} color="error">Delete</Button>
                 </DialogActions>
             </Dialog>
         </Box>
@@ -327,7 +464,6 @@ const ProductItem1 = ({ imgSrc, title, description, onClick }) => (
                 className="w-full h-56 object-cover"
                 src={imgSrc}
                 alt={title}
-                // style={{height: '50vh', width:'50vh'}}
             />
             <Box
                 sx={{
@@ -353,6 +489,5 @@ const ProductItem1 = ({ imgSrc, title, description, onClick }) => (
         </Box>
     </Grid>
 );
-
 
 export default Products;
