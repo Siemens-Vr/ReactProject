@@ -424,13 +424,19 @@ const Products = () => {
                         onChange={(e) => setEditedProduct({ ...editedProduct, owner: e.target.value })}
                         margin="normal"
                     />
-                    <TextField
-                        fullWidth
-                        label="License"
-                        value={editedProduct.license || ''}
-                        onChange={(e) => setEditedProduct({ ...editedProduct, license: e.target.value })}
-                        margin="normal"
-                    />
+                    <FormControl fullWidth margin="normal">
+                        <InputLabel id="edit-licence-label">Licence</InputLabel>
+                        <Select
+                            labelId="edit-licence-label"
+                            value={editedProduct.licence || ''}
+                            onChange={(e) => setEditedProduct({ ...editedProduct, licence: e.target.value })}
+                            label="Licence"
+                        >
+                            <MenuItem value="Editorial">Editorial</MenuItem>
+                            <MenuItem value="Commercial">Commercial</MenuItem>
+                            <MenuItem value="Personal">Personal</MenuItem>
+                        </Select>
+                    </FormControl>
                     <TextField
                         fullWidth
                         label="Model"
@@ -444,6 +450,7 @@ const Products = () => {
                         value={editedProduct.texture || ''}
                         onChange={(e) => setEditedProduct({ ...editedProduct, textures: e.target.value })}
                         margin="normal"
+                        type='number'
                     />
                     <TextField
                         fullWidth
