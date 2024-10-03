@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useCallback } from 'react';
 import { Unity, useUnityContext } from 'react-unity-webgl';
 
+
 const UnityComponent = ({ loaderUrl, dataUrl, frameworkUrl, codeUrl, width, height, isActive, onClick }) => {
     const { unityProvider, isLoaded, loadingProgression, error } = useUnityContext({
         loaderUrl,

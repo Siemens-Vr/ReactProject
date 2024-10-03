@@ -124,7 +124,7 @@ export default function Header() {
                   </Typography>
                 </MenuItem>
               ))}
-              {isloggedIn && isAdmin(
+              {isAdmin && (
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
                     <Link to="/Users" style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -154,7 +154,7 @@ export default function Header() {
                 </NavLink>
               </Button>
             ))}
-            {isloggedIn && isAdmin(
+            {isAdmin && (
               <Button color="inherit">
                 <NavLink
                   to="/Users"
