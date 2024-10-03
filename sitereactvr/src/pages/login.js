@@ -46,22 +46,14 @@ const Login = () => {
     return isValid;
   };
 
-  const handleFormSubmit = async (e) => {
+  
+  const handleFormSubmit = (e) => {
     e.preventDefault();
-  
+
     if (validateFields()) {
-      try {
-        const userData = await handleSubmit(e);  // Get user data including the role
-  
-        if (userData && userData.role) {  // Ensure userData and role are present
-          localStorage.setItem('userRole', userData.role);  // Store role
-          localStorage.setItem('isAuthenticated', true);    // Mark user as authenticated
-          navigate('/');  // Navigate to homepage after successful login
-        } else {
-          console.error('User data or role not found');
-        }
-      } catch (error) {
-        console.error('Error during form submission', error);
+      handleSubmit(e);
+      if (!error) {
+        navigate('/');
       }
     }
   };

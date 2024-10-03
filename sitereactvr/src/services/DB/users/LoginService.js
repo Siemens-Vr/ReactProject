@@ -25,18 +25,19 @@ const useLogin = () => {
     try {
       // Correct login URL
       const response = await axios.post('https://api-database-sz4l.onrender.com/api-database/login', formData);
-  
-      if (response && response.data) {
+      console.log('Full response:', response); 
+      if (response) {
         setIsLoading(false);
         const email = response.data.user.email;
-        const role = response.data.user.role;
+        const userRole = response.data.user.userRole;
         const token = response.data.token;
   
         storeTokens(token, response.data.refreshToken);
         sessionStorage.setItem('email', email);
-        sessionStorage.setItem('userRole', role);
+        sessionStorage.setItem('role', userRole);
   
-        return { email, role };
+        return { email, userRole };
+      
       }
     } catch (error) {
       setIsLoading(false);

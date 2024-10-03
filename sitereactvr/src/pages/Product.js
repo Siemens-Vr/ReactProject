@@ -172,7 +172,7 @@ const Products = () => {
                     onClick={() => console.log('Unity component clicked!')}
                 />
             </Box>
-                            <Box display="flex" alignItems="center" gap={1} mt={1}>
+               <Box display="flex" alignItems="center" gap={1} mt={1}>
                                 <AccountCircle />
                                 <Typography variant="body2" sx={{ fontWeight:'bold'}}>{selectedProduct.owner}</Typography>
                             </Box>
