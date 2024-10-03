@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { 
     Button, Typography, Grid, Box, Dialog, DialogTitle, 
     DialogContent, DialogActions, Divider, TextField, Rating, 
-    IconButton
+    IconButton,Snackbar, Alert
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { 
@@ -15,6 +15,7 @@ import paypal from '../assets/img/logos/paypal.png';
 import axios from 'axios';
 import useDownload from '../services/DataVr/DownloadVr';
 import UnityComponent from '../components/Unity/unityComponent';
+import Pic1 from '../assets/img/vr/VRMultiLab - MainScene - Android - Unity 2022.3.9f1 _DX11_ 11_30_2023 6_21_58 PM.png';
 
 const Products = () => {
     const [open, setOpen] = useState(false);
@@ -30,6 +31,11 @@ const Products = () => {
     const [editedProduct, setEditedProduct] = useState({});
     const { handleUseDownload } = useDownload();
     const navigate = useNavigate();
+    const [snackbar, setSnackbar] = useState({
+        open: false,
+        message: '',
+        severity: 'success'
+    });
 
     useEffect(() => {
         const token = sessionStorage.getItem('accessToken');
@@ -133,8 +139,18 @@ const Products = () => {
             setProducts(products.map(p => p.id === editedProduct.id ? editedProduct : p));
             setSelectedProduct(editedProduct);
             setOpenEditDialog(false);
+            setSnackbar({
+                open: true,
+                message: 'Product updated successfully!',
+                severity: 'success'
+            });
         } catch (error) {
             console.error('Error updating product:', error);
+            setSnackbar({
+                open: true,
+                message: 'Error updating product. Please try again.',
+                severity: 'error'
+            });
         }
     };
 
@@ -144,9 +160,25 @@ const Products = () => {
             setProducts(products.filter(p => p.id !== selectedProduct.id));
             setOpen(false);
             setOpenDeleteDialog(false);
+            setSnackbar({
+                open: true,
+                message: 'Product deleted successfully!',
+                severity: 'success'
+            });
         } catch (error) {
             console.error('Error deleting product:', error);
+            setSnackbar({
+                open: true,
+                message: 'Error deleting product. Please try again.',
+                severity: 'error'
+            });
         }
+    };
+    const handleSnackbarClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setSnackbar({ ...snackbar, open: false });
     };
 
     return (
@@ -178,17 +210,26 @@ const Products = () => {
 
                 <Grid container spacing={1}>
                     {products.map((product, index) => (
-                        <ProductItem1
-                            key={index}
-                            imgSrc={product.image}
-                            title={product.productName}
-                            description={product.longDescription}
-                            onClick={() => handleClickOpen(product)}
-                        />
+                         <ProductItem1
+                         key={index}
+                         imgSrc={Pic1} 
+                         title={product.productName}
+                         description={product.longDescription}
+                         onClick={() => handleClickOpen(product)}
+                     />
                     ))}
                 </Grid>
             </Box>
-
+            <Snackbar 
+                open={snackbar.open} 
+                autoHideDuration={6000} 
+                onClose={handleSnackbarClose}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            >
+                <Alert onClose={handleSnackbarClose} severity={snackbar.severity} sx={{ width: '100%' }}>
+                    {snackbar.message}
+                </Alert>
+            </Snackbar>
             {/* Dialog for showing more product details */}
             <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>
                 <DialogTitle sx={{fontWeight:'bold'}}>{selectedProduct.productName}</DialogTitle>
