@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, {  useState ,useEffect} from 'react';
 import { NavLink, useNavigate, Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -26,9 +26,16 @@ const pages = [
   { name: 'Contact', path: '/contact' }
 ];
 
-export default function Header({ userRole, isloggedIn }) {
+export default function Header({ isloggedIn }) {
+  const [userRole, setUserRole] = useState(null);
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
+
+  // Fetch userRole from sessionStorage when the component mounts
+  useEffect(() => {
+    const role = sessionStorage.getItem('userRole');
+    setUserRole(role); // Set the userRole in state
+  }, []);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
