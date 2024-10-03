@@ -18,6 +18,11 @@ const AddProduct = () => {
     downloadSize: '',
     textures: ''
   });
+  const [file, setFile] = useState(null); 
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,14 +34,32 @@ const AddProduct = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
+    // Create a FormData object to handle multipart data
+    const formData = new FormData();
+    formData.append('file', file); // Append the file to the form data
+    
+    // Append all product data to formData
+    Object.keys(product).forEach(key => {
+      formData.append(key, product[key]);
+    });
+  
     try {
-      const response = await axios.post('http://localhost:5002/product', product);
+      const response = await axios.post('http://localhost:5002/product', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data', // Required for file uploads
+        },
+        
+      });
+      //console.log(multipart);
+      console.log(formData)
+  
       if (response.status === 200) {
         console.log('Product created successfully');
         setProduct({
           productName: '',
           longDescription: '',
-          path:'',
+          path: '',
           price: '',
           owner: '',
           model: '',
@@ -44,6 +67,7 @@ const AddProduct = () => {
           downloadSize: '',
           textures: ''
         });
+        setFile(null); // Reset the file input
       } else {
         console.error('Failed to create product');
       }
@@ -51,7 +75,7 @@ const AddProduct = () => {
       console.error('Error:', error);
     }
   };
-
+  
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
       <Paper elevation={3} sx={{ padding: 4, width: '80%', maxWidth: 800 }}>
@@ -162,6 +186,14 @@ const AddProduct = () => {
                 type="number"
               />
             </Grid>
+            <Grid item xs={12}>
+              <input 
+                type="file" 
+                accept=".zip" 
+                onChange={handleFileChange} 
+                required
+              />
+               </Grid>
             <Grid item xs={12}>
               <Button 
                 type="submit" 

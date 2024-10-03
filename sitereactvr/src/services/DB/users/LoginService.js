@@ -26,12 +26,15 @@ const useLogin = ( ) => {
 
         try {
             const response = await axios.post('http://localhost:5002/api-database/login', formData);
+            console.log(response);
             if (response) {
                 setIsLoading(false);
                 const email = response.data.user.email;
+                const userRole = response.data.user.userRole;
                 //console.log(email)
                 storeTokens(response.data.token, response.data.refreshToken)
                 sessionStorage.setItem('email', email);
+                sessionStorage.setItem('userRole', userRole);
             }
           } catch (error) {
             setIsLoading(false);
