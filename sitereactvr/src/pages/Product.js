@@ -242,10 +242,10 @@ const Products = () => {
             {/* Replace the image with the Unity component */}
             <Box sx={{ width: '300px', height: '200px', position: 'relative' }}>
                 <UnityComponent
-                    loaderUrl="/webgl.loader.js" 
-                    dataUrl="/webgl.data"
-                    frameworkUrl="/webgl.framework.js"
-                    codeUrl="/webgl.wasm"
+                    loaderUrl="/build/vrtemplate publish.loader.js" 
+                    dataUrl="/build/webgl.data"
+                    frameworkUrl="/build/build.framework.js"
+                    codeUrl="/build/build.wasm"
                     width="100%"
                     height="100%"
                     isActive={true} // Make sure the Unity component is active
