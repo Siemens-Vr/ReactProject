@@ -34,7 +34,7 @@ const useLogin = () => {
   
         storeTokens(token, response.data.refreshToken);
         sessionStorage.setItem('email', email);
-        sessionStorage.setItem('role', userRole);
+        sessionStorage.setItem('userRole', userRole);
   
         return { email, userRole };
       
