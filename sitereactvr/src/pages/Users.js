@@ -95,7 +95,7 @@ const UserManagement = () => {
                 <TableCell>{user.gender}</TableCell>
                 <TableCell>{user.company}</TableCell>
                 <TableCell>{user.age}</TableCell>
-                <TableCell>{user.UserRole}</TableCell>
+                <TableCell>{user.userRole}</TableCell>
                 <TableCell>
                   <IconButton 
                     variant="contained" 
