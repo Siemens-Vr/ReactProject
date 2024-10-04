@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Box,
   Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, InputLabel, Select,
-  Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, MenuItem
+  Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, MenuItem,
+  IconButton
 } from '@mui/material';
 import axios from 'axios';
 
@@ -96,22 +97,22 @@ const UserManagement = () => {
                 <TableCell>{user.age}</TableCell>
                 <TableCell>{user.UserRole}</TableCell>
                 <TableCell>
-                  <Button 
+                  <IconButton 
                     variant="contained" 
                     color="primary" 
                     onClick={() => handleOpen(user)}
                     sx={{ marginRight: 1, marginBottom: 1 }}
                   >
                     Edit
-                  </Button>
-                  <Button 
+                  </IconButton>
+                  <IconButton 
                     variant="contained" 
-                    style={{backgroundColor:'red'}}
+                    style={{backgroundColor:'error'}}
                     
                     onClick={() => handleDelete(user.id)}
                   >
                     Delete
-                  </Button>
+                  </IconButton>
                 </TableCell>
               </TableRow>
             ))}
