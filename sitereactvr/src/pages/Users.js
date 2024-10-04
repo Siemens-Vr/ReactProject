@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box,
-  Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper,
-  Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle
+  Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, InputLabel, Select,
+  Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, MenuItem
 } from '@mui/material';
 import axios from 'axios';
 
@@ -81,6 +81,7 @@ const UserManagement = () => {
               <TableCell sx={{ color: '#ffffff', fontWeight: 'bold' }}>Gender</TableCell>
               <TableCell sx={{ color: '#ffffff', fontWeight: 'bold' }}>Company</TableCell>
               <TableCell sx={{ color: '#ffffff', fontWeight: 'bold' }}>Age</TableCell>
+              <TableCell sx={{ color: '#ffffff', fontWeight: 'bold '}}>Role</TableCell>
               <TableCell sx={{ color: '#ffffff', fontWeight: 'bold' }}>Actions</TableCell>
             </TableRow>
           </TableHead>
@@ -93,6 +94,7 @@ const UserManagement = () => {
                 <TableCell>{user.gender}</TableCell>
                 <TableCell>{user.company}</TableCell>
                 <TableCell>{user.age}</TableCell>
+                <TableCell>{user.UserRole}</TableCell>
                 <TableCell>
                   <Button 
                     variant="contained" 
@@ -186,6 +188,18 @@ const UserManagement = () => {
             onChange={handleInputChange}
             sx={{ marginBottom: 2 }}
           />
+          <FormControl fullWidth margin="dense">
+            <InputLabel id="edit-role-label">Role</InputLabel>
+              <Select
+                labelId="edit-role-label"
+                value={formData.userRole}
+                onChange={handleInputChange}
+                label="Role"
+              >
+              <MenuItem value="userRole">User</MenuItem>
+              <MenuItem value="Admin">Admin</MenuItem>
+              </Select>
+            </FormControl>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
