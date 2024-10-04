@@ -4,6 +4,7 @@ import { Box,
   Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, MenuItem,
   IconButton
 } from '@mui/material';
+import { Edit as EditIcon, Delete as DeleteIcon } from '@mui/icons-material';
 import axios from 'axios';
 
 const UserManagement = () => {
@@ -97,21 +98,18 @@ const UserManagement = () => {
                 <TableCell>{user.age}</TableCell>
                 <TableCell>{user.userRole}</TableCell>
                 <TableCell>
-                  <IconButton 
-                    variant="contained" 
-                    color="primary" 
+                  <IconButton
+                    color="primary"
                     onClick={() => handleOpen(user)}
-                    sx={{ marginRight: 1, marginBottom: 1 }}
+                    sx={{ marginRight: 1 }}
                   >
-                    Edit
+                    <EditIcon />
                   </IconButton>
-                  <IconButton 
-                    variant="contained" 
-                    style={{backgroundColor:'error'}}
-                    
+                  <IconButton
+                    color="error"
                     onClick={() => handleDelete(user.id)}
                   >
-                    Delete
+                    <DeleteIcon />
                   </IconButton>
                 </TableCell>
               </TableRow>

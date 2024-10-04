@@ -10,7 +10,6 @@ const AddProduct = () => {
   const [product, setProduct] = useState({
     productName: '',
     longDescription: '',
-    path:'',
     price: '',
     owner: '',
     model: '',
@@ -18,6 +17,7 @@ const AddProduct = () => {
     downloadSize: '',
     textures: ''
   });
+  const [apkFile, setApkFile] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,16 +27,35 @@ const AddProduct = () => {
     }));
   };
 
+  const handleFileChange = (e) => {
+    setApkFile(e.target.files[0]);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    
+    // Append all product data to formData
+    Object.keys(product).forEach(key => {
+      formData.append(key, product[key]);
+    });
+    
+    // Append the file
+    if (apkFile) {
+      formData.append('apkFile', apkFile);
+    }
+
     try {
-      const response = await axios.post('https://api-database-sz4l.onrender.com/product', product);
+      const response = await axios.post('https://api-database-sz4l.onrender.com/product', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
       if (response.status === 200) {
         console.log('Product created successfully');
         setProduct({
           productName: '',
           longDescription: '',
-          path:'',
           price: '',
           owner: '',
           model: '',
@@ -44,6 +63,7 @@ const AddProduct = () => {
           downloadSize: '',
           textures: ''
         });
+        setApkFile(null);
       } else {
         console.error('Failed to create product');
       }
@@ -81,16 +101,6 @@ const AddProduct = () => {
                 required
                 multiline
                 rows={4}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label="Link"
-                name="path"
-                value={product.path}
-                onChange={handleChange}
-                required
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -163,6 +173,21 @@ const AddProduct = () => {
               />
             </Grid>
             <Grid item xs={12}>
+              <input
+                accept=".apk"
+                style={{ display: 'none' }}
+                id="apk-file-input"
+                type="file"
+                onChange={handleFileChange}
+              />
+              <label htmlFor="apk-file-input">
+                <Button variant="contained" component="span">
+                  Upload APK File
+                </Button>
+              </label>
+              {apkFile && <Typography variant="body2" sx={{ mt: 1 }}>{apkFile.name}</Typography>}
+            </Grid>
+            <Grid item xs={12}>
               <Button 
                 type="submit" 
                 variant="contained" 
@@ -188,3 +213,9 @@ const AddProduct = () => {
 };
 
 export default AddProduct;
+
+
+
+
+
+
