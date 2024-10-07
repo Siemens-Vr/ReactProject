@@ -15,7 +15,8 @@ const AddProduct = () => {
     model: '',
     licence: '',
     downloadSize: '',
-    textures: ''
+    textures: '',
+    publishDate:''
   });
   const [apkFile, setApkFile] = useState(null);
 
@@ -61,7 +62,8 @@ const AddProduct = () => {
           model: '',
           licence: '',
           downloadSize: '',
-          textures: ''
+          textures: '',
+          publishDate:''
         });
         setApkFile(null);
       } else {
@@ -161,15 +163,21 @@ const AddProduct = () => {
                 type="number"
               />
             </Grid>
+           
             <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                label="Textures"
-                name="textures"
-                value={product.textures}
+                label="Publication Date"
+                name="publishDate"
+                type="date"
+                value={product.publishDate || ''}
                 onChange={handleChange}
-                required
-                type="number"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                inputProps={{
+                  max: new Date().toISOString().split('T')[0] 
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -213,9 +221,3 @@ const AddProduct = () => {
 };
 
 export default AddProduct;
-
-
-
-
-
-

@@ -258,7 +258,7 @@ const Products = () => {
                             </Box>
                             <Box display="flex" alignItems="center" gap={1} mt={1}>
                                 <AccessTime />
-                                <Typography variant="body2" sx={{ fontWeight:'bold'}}>Published date</Typography>
+                                <Typography variant="body2" sx={{ fontWeight:'bold'}}>{selectedProduct.publishDate}</Typography>
                             </Box>
                             <Typography variant="body1" sx={{ marginTop: 2, marginBottom: 2, textAlign:'justify'}}>{selectedProduct.longDescription}</Typography>
                             <a href={selectedProduct.path} download target="_blank" rel="noopener noreferrer">
@@ -337,13 +337,14 @@ const Products = () => {
                             <Typography variant="h7" sx={{ marginBottom: 1}}>Texture: {selectedProduct.textures}</Typography>
                              <Divider sx={{ my: 2 }} />
                             <Typography variant="h7" sx={{ marginBottom: 1 }}>Average Rating: {getAverageRating(selectedProduct.reviews)}</Typography>
+                            <Typography variant="h7" sx={{ marginBottom: 1 }}>Ratings: {getAverageRating(selectedProduct.reviews)}</Typography>
                             <Rating
                                 name="product-rating"
                                 value={getAverageRating(selectedProduct.reviews)}
                                 precision={0.1}
                                 readOnly
                             />
-                            <Typography variant="h6" sx={{ marginTop: 2 }}>Comments</Typography>
+                            <Typography variant="h6" sx={{ marginTop: 2 }}>Reviews</Typography>
                             {selectedProduct.comments && selectedProduct.comments.length > 0 ? (
                                 <Box>
                                     {selectedProduct.comments.map((comment, index) => (
